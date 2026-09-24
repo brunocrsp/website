@@ -8,7 +8,6 @@
 import Base from '../../layouts/Base.astro';
 import PageHero from '../PageHero.astro';
 import ProtocolBackground from '../bg/ProtocolBackground.astro';
-import ContactForm from '../ContactForm.astro';
 import fr from '../../i18n/fr.json';
 import en from '../../i18n/en.json';
 import { t, type Lang } from '../../i18n';
@@ -232,5 +231,4 @@ const slug = (n: string) => n.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
     </div>
   </section>
 
-  <ContactForm lang={lang} title={t(lang, 'protocols.cta.title')} body={t(lang, 'protocols.cta.body')} />
 </Base>

@@ -554,10 +554,6 @@
       "title": "How a point is configured",
       "body": "A driver carries the connection: address, port, credentials, cadence. Each point carries its address within the protocol, its data type and its unit. Compatible equipment is discovered automatically where the protocol allows it, otherwise configuration is done by import or by hand. One site mixes as many protocols as needed in a single instance."
     },
-    "cta": {
-      "title": "Let's check on your equipment",
-      "body": "Send the list of your PLCs and their protocols. Reply within two business days on what connects directly and what needs a gateway."
-    },
     "list": [
       {
         "name": "Modbus TCP",

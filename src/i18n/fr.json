@@ -554,10 +554,6 @@
       "title": "Comment un point est configuré",
       "body": "Un driver porte la connexion : adresse, port, identifiants, cadence. Chaque point porte son adresse dans le protocole, son type de donnée et son unité. Les équipements compatibles sont découverts automatiquement quand le protocole le permet, sinon la configuration se fait par import ou à la main. Un même site mélange autant de protocoles que nécessaire dans une seule instance."
     },
-    "cta": {
-      "title": "Vérifions sur vos équipements",
-      "body": "Envoyez la liste de vos automates et de leurs protocoles. Réponse sous deux jours ouvrés sur ce qui se connecte directement et ce qui demande une passerelle."
-    },
     "list": [
       {
         "name": "Modbus TCP",
