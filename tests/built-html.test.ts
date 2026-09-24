@@ -246,14 +246,15 @@ describe('Pricing page', () => {
       expect(html[key]).toContain(lang === 'fr' ? '2 400 €' : '€2,400');
     });
 
-    it(`${lang} contact buttons pre-select the licence and managed operations`, () => {
-      expect(html[key]).toContain(`href="/${lang}/contact/?sujet=licence"`);
-      expect(html[key]).toContain(`href="/${lang}/contact/?sujet=exploitation"`);
+    it(`${lang} offer buttons lead to the request form on the page, with their topic`, () => {
+      expect(html[key]).toMatch(/href="#demande" data-sujet="licence"/);
+      expect(html[key]).toMatch(/href="#demande" data-sujet="exploitation"/);
+      expect(html[key]).toContain('id="demande"');
+      expect(html[key]).toMatch(/name="topic" value="licence" checked/);
     });
 
-    it(`${lang} keeps the anchors other pages link to`, () => {
+    it(`${lang} keeps the anchor the homepage links to`, () => {
       expect(html[key]).toContain('id="exploitation-deleguee"');
-      expect(html[key]).toContain('id="continuity"');
     });
 
     it(`${lang} announces every update, major versions included`, () => {

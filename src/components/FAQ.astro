@@ -1,7 +1,6 @@
 ---
 import { t, type Lang } from '../i18n';
 import { FAQ_KEYS } from '../i18n/faq-keys';
-import { href } from '../i18n/routes';
 
 interface Props {
   lang: Lang;
@@ -37,7 +36,6 @@ const bande = standalone ? 'wrap pb-20 md:pb-28' : `section${surface ? ' bg-surf
           </summary>
           <div class="pb-5 pl-7 t-body">
             <p>{t(lang, `faq.${key}.a`)}</p>
-            {key === 'disappear' && <p class="mt-3"><a href={href(lang, 'pricing', 'continuity')} class="link">{t(lang, 'footer.continuity')}</a></p>}
           </div>
         </details>
       ))}

@@ -718,46 +718,6 @@
       "tagline": "Pour les sites sans équipe technique : Meshvise est exploité pour vous.",
       "body": "L'offre n'est pas encore ouverte. Écrivez pour en discuter."
     },
-    "setup": {
-      "title": "La mise en service",
-      "intro": "Chiffrée sur devis, selon le nombre d'équipements à raccorder.",
-      "steps": [
-        {
-          "title": "Installation",
-          "body": "Meshvise est installé à distance sur votre serveur."
-        },
-        {
-          "title": "Raccordement",
-          "body": "Vos équipements sont connectés et leurs mesures nommées."
-        },
-        {
-          "title": "Prise en main",
-          "body": "Une session avec vos équipes pour bien démarrer."
-        }
-      ]
-    },
-    "continuity": {
-      "title": "Vos données ne dépendent pas de Meshvise",
-      "intro": "Une supervision tourne dix ans. Ce qui est installé chez vous ne doit dépendre de personne.",
-      "items": [
-        {
-          "title": "Vos données sont chez vous",
-          "body": "Sur votre serveur, dans une base standard, lisibles sans Meshvise."
-        },
-        {
-          "title": "Rien ne sort de votre site",
-          "body": "Aucune donnée n'est envoyée ailleurs, et tout fonctionne sans internet."
-        },
-        {
-          "title": "Reprise possible par un intégrateur",
-          "body": "Le produit repose sur des briques standards : l'exploitation ne dépend pas de nous."
-        },
-        {
-          "title": "Un contrat français",
-          "body": "Rédigé en français, sous droit français."
-        }
-      ]
-    },
     "faq_title": "Vos questions avant de commander"
   },
   "faq": {
@@ -804,7 +764,6 @@
     "tagline": "Supervision industrielle, hébergée chez vous. Treize protocoles inclus, données dans une base que vous possédez.",
     "product": "Produit",
     "contact": "Contact",
-    "continuity": "Vos données restent lisibles",
     "rights": "Tous droits réservés.",
     "tech_line": "Contrat en français, droit français."
   },

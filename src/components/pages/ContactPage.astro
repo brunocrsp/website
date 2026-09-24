@@ -11,187 +11,34 @@
  * on voit d'un regard ce qu'on peut demander. Le lien qui mène ici la choisit
  * d'office (`?sujet=licence`, `?sujet=exploitation`, `?sujet=essai`…).
  *
- * Depuis le 2026-09-23, l'envoi part directement : le formulaire poste sur
- * `/api/contact`, et le Worker transmet la demande par courriel à
- * contact@meshvise.com. Le visiteur voit une confirmation sur la page. Si
- * l'envoi échoue (réseau, limite de débit, ou serveur de développement
- * Astro qui n'a pas de Worker), la page le dit et propose le courriel
- * prérempli en secours : une demande n'est jamais perdue en silence.
+ * La demande elle-même (tuiles, champs, envoi direct) vit dans
+ * ContactRequest, partagé avec la page Tarifs.
  */
 import Base from '../../layouts/Base.astro';
 import fr from '../../i18n/fr.json';
 import en from '../../i18n/en.json';
+import ContactRequest from '../ContactRequest.astro';
 import { t, type Lang } from '../../i18n';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 
 const c = (lang === 'fr' ? fr : en).contact;
-const libelles = (lang === 'fr' ? fr : en).contact_form.topics as Record<string, string>;
-
-// Les demandes, dans l'ordre d'engagement ; « autre » est choisie d'office.
-const SUJETS = ['licence', 'exploitation', 'essai', 'demo', 'autre'] as const;
 ---
 
 <Base lang={lang} title={t(lang, 'contact.meta.title')} description={t(lang, 'contact.meta.description')}>
-  <div hidden data-textes
-    data-sending={c.form.sending}
-    data-error={c.form.error}
-    data-error-rate={c.form.error_rate}
-    data-error-email={c.form.error_email}
-    data-fallback={c.form.fallback}></div>
   <section class="border-b border-line">
     <div class="wrap pt-8 pb-10 md:pt-10 md:pb-12">
       <h1 class="t-hero accroche">
         {c.lead} <span class="accent">{c.accent}</span>
       </h1>
       <p class="sous-titre">{c.subtitle}</p>
-
       <div class="corps-page">
-        <!-- La confirmation, à la place du formulaire une fois la demande partie. -->
-        <div class="carte envoye" data-envoye hidden tabindex="-1">
-          <span class="coche" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false"><path d="M5 12.5 L10 17.5 L19 7" /></svg>
-          </span>
-          <h2 class="t-section">{c.form.sent_title}</h2>
-          <p class="t-body mt-2">{c.form.sent_body}</p>
-        </div>
-
-        <form class="carte" data-contact-form data-lang={lang}>
-          <fieldset class="sujets">
-            <legend class="field-label legende">{t(lang, 'contact_form.topic')}</legend>
-            <div class="tuiles">
-              {SUJETS.map((k) => (
-                <label class={`tuile tuile--${k}`}>
-                  <input type="radio" name="topic" value={k} checked={k === 'autre'} data-libelle={libelles[k]} />
-                  <span class="icone" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" focusable="false">
-                      {k === 'licence' && <g><circle cx="8" cy="12" r="4" /><path d="M12 12 H21 M18 12 V15 M21 12 V14" /></g>}
-                      {k === 'exploitation' && <g><path d="M5 14 V12 A7 7 0 0 1 19 12 V14" /><rect x="3.5" y="13" width="4" height="6" rx="1.5" /><rect x="16.5" y="13" width="4" height="6" rx="1.5" /></g>}
-                      {k === 'essai' && <g><rect x="3" y="6" width="10" height="12" rx="2" /><path d="M13 12 H17" /><rect x="17" y="9" width="4" height="6" rx="1" /></g>}
-                      {k === 'demo' && <g><rect x="3" y="4.5" width="18" height="12" rx="2" /><path d="M10 8 L14.5 10.5 L10 13 Z M8 20 H16" /></g>}
-                      {k === 'autre' && <g><path d="M4 5 H20 V16 H11 L7 20 V16 H4 Z" /><path d="M10 9 A2 2 0 1 1 12 11 V12.5 M12 14.5 V14.6" /></g>}
-                    </svg>
-                  </span>
-                  <span class="nom-sujet">{libelles[k]}</span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
-          <div class="champs">
-            <div>
-              <label for="contact-name" class="field-label">{t(lang, 'contact_form.name')}</label>
-              <input id="contact-name" name="name" type="text" required placeholder={t(lang, 'contact_form.name_ph')} class="field" />
-            </div>
-            <div>
-              <label for="contact-company" class="field-label">{t(lang, 'contact_form.company')}</label>
-              <input id="contact-company" name="company" type="text" required placeholder={t(lang, 'contact_form.company_ph')} class="field" />
-            </div>
-            <div>
-              <label for="contact-email" class="field-label">{t(lang, 'contact_form.email')}</label>
-              <input id="contact-email" name="email" type="email" required placeholder={t(lang, 'contact_form.email_ph')} class="field" />
-            </div>
-            <div class="large">
-              <label for="contact-install" class="field-label">{t(lang, 'contact_form.install')}</label>
-              <textarea id="contact-install" name="install" rows="2" placeholder={t(lang, 'contact_form.install_ph')} class="field resize-y"></textarea>
-            </div>
-          </div>
-
-          <!-- Piège à robots : invisible et hors du parcours clavier, un
-               humain le laisse vide. -->
-          <div class="piege" aria-hidden="true">
-            <label for="contact-website">Website</label>
-            <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" />
-          </div>
-
-          <div class="pied">
-            <button type="submit" class="btn btn-primary btn-lg envoyer">{t(lang, 'contact_form.submit_contact')}</button>
-            <p class="statut" data-statut role="status" aria-live="polite"></p>
-          </div>
-        </form>
-
+        <ContactRequest lang={lang} />
       </div>
     </div>
   </section>
 </Base>
-
-<script is:inline>
-  (function () {
-    var form = document.querySelector('form[data-contact-form]');
-    if (!form) return;
-    var textes = document.querySelector('[data-textes]').dataset;
-    var statut = form.querySelector('[data-statut]');
-    var bouton = form.querySelector('button[type="submit"]');
-    var envoye = document.querySelector('[data-envoye]');
-
-    // La demande annoncée par le lien (?sujet=licence) est cochée d'office.
-    var sujet = new URLSearchParams(window.location.search).get('sujet');
-    if (sujet) {
-      var choix = form.querySelector('input[name="topic"][value="' + CSS.escape(sujet) + '"]');
-      if (choix) choix.checked = true;
-    }
-
-    // Le courriel prérempli, proposé seulement si l'envoi direct échoue.
-    function lienSecours(fd, demande) {
-      var body = [
-        'Demande / Request: ' + demande,
-        'Nom / Name: ' + (fd.get('name') || ''),
-        'Entreprise / Company: ' + (fd.get('company') || ''),
-        'Email: ' + (fd.get('email') || ''),
-        '',
-        String(fd.get('install') || ''),
-      ].join('\n');
-      return 'mailto:contact@meshvise.com?subject=' + encodeURIComponent('Meshvise · ' + demande) + '&body=' + encodeURIComponent(body);
-    }
-
-    function erreur(message, fd, demande) {
-      statut.textContent = message + ' ';
-      var a = document.createElement('a');
-      a.href = lienSecours(fd, demande);
-      a.textContent = textes.fallback;
-      statut.appendChild(a);
-      statut.classList.add('statut--erreur');
-      bouton.disabled = false;
-    }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var fd = new FormData(form);
-      var coche = form.querySelector('input[name="topic"]:checked');
-      var demande = coche ? coche.dataset.libelle : '';
-      bouton.disabled = true;
-      statut.classList.remove('statut--erreur');
-      statut.textContent = textes.sending;
-      fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({
-          topic: coche ? coche.value : 'autre',
-          name: fd.get('name'),
-          company: fd.get('company'),
-          email: fd.get('email'),
-          install: fd.get('install'),
-          website: fd.get('website'),
-          lang: form.dataset.lang,
-        }),
-      })
-        .then(function (res) {
-          return res.json().catch(function () { return {}; }).then(function (data) {
-            if (res.ok && data.ok) {
-              form.hidden = true;
-              envoye.hidden = false;
-              envoye.focus();
-              return;
-            }
-            var message = res.status === 429 ? textes.errorRate : data.code === 'bad-email' ? textes.errorEmail : textes.error;
-            erreur(message, fd, demande);
-          });
-        })
-        .catch(function () { erreur(textes.error, fd, demande); });
-    });
-  })();
-</script>
 
 <style>
   /* Toute la page tient dans un écran sans défiler (2026-09-23) : le titre
@@ -206,138 +53,5 @@ const SUJETS = ['licence', 'exploitation', 'essai', 'demo', 'autre'] as const;
     color: var(--color-ink-2);
     max-width: 52ch;
   }
-
-  .corps-page {
-    margin-top: 1.75rem;
-    display: grid;
-  }
-
-  /* ── Le formulaire ─────────────────────────────────────────────────── */
-  .carte {
-    padding: 2rem;
-    border-radius: 12px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-line);
-    box-shadow: 0 2px 4px rgb(22 27 35 / 0.06), 0 30px 60px -30px rgb(22 27 35 / 0.3);
-  }
-  @media (min-width: 768px) { .carte { padding: 1.75rem 2rem; } }
-
-  .sujets { border: 0; margin: 0; padding: 0; min-width: 0; }
-  .legende { padding: 0; margin-bottom: 0.625rem; }
-  /* Les cinq demandes sur une ligne ; sur écran moyen, trois en haut et les
-     deux dernières plus larges en dessous (six colonnes, aucune ligne ne
-     laisse de trou). */
-  .tuiles {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 0.75rem;
-  }
-  /* L'icône à gauche, le nom à droite : une tuile basse. */
-  .tuile {
-    position: relative;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    column-gap: 0.75rem;
-    align-items: center;
-    padding: 0.75rem;
-    border-radius: 10px;
-    border: 2px solid var(--color-line);
-    background: var(--color-canvas);
-    cursor: pointer;
-    transition: border-color 140ms ease, background-color 140ms ease, box-shadow 140ms ease;
-  }
-  .tuile:hover { border-color: var(--color-n-300); }
-  .tuile input {
-    position: absolute;
-    opacity: 0;
-    width: 1px;
-    height: 1px;
-  }
-  .tuile:has(input:checked) {
-    border-color: var(--color-accent);
-    background: var(--color-accent-bg);
-  }
-  .tuile:has(input:focus-visible) { box-shadow: 0 0 0 3px var(--color-accent-bg); border-color: var(--color-accent); }
-  .icone {
-    display: grid;
-    place-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 8px;
-    background: var(--color-n-100);
-    color: var(--color-ink-2);
-    transition: background-color 140ms ease, color 140ms ease;
-  }
-  .tuile:has(input:checked) .icone { background: var(--color-accent); color: #fff; }
-  .icone svg {
-    width: 1.375rem;
-    height: 1.375rem;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .nom-sujet { font-size: 0.9375rem; font-weight: 600; line-height: 1.25; color: var(--color-ink); }
-
-  .champs {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--color-line);
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem 1.25rem;
-  }
-  .large { grid-column: 1 / -1; }
-  .pied {
-    margin-top: 1.25rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.75rem 1.25rem;
-  }
-  .envoyer:disabled { opacity: 0.6; cursor: progress; }
-  .statut { margin: 0; font-size: 0.9375rem; color: var(--color-ink-2); }
-  .statut:empty { display: none; }
-  .statut--erreur { color: var(--color-crit); }
-  .statut :global(a) { color: var(--color-accent); font-weight: 500; }
-  .piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-
-  .envoye { text-align: center; padding-block: 3rem; }
-  .envoye:focus { outline: none; }
-  .coche {
-    display: inline-grid;
-    place-items: center;
-    width: 3.5rem;
-    height: 3.5rem;
-    margin-bottom: 1rem;
-    border-radius: 50%;
-    background: var(--color-normal);
-    color: #fff;
-  }
-  .coche svg {
-    width: 1.75rem;
-    height: 1.75rem;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  @media (max-width: 1023px) {
-    .champs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .tuiles { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-    .tuile { grid-column: span 2; }
-    .tuile--demo,
-    .tuile--autre { grid-column: span 3; }
-  }
-  @media (max-width: 640px) {
-    .carte { padding: 1.5rem; }
-    .champs { grid-template-columns: minmax(0, 1fr); }
-    .tuiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .tuile,
-    .tuile--demo { grid-column: span 1; }
-    .tuile--autre { grid-column: 1 / -1; }
-  }
+  .corps-page { margin-top: 1.75rem; }
 </style>

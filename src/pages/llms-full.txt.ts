@@ -60,12 +60,6 @@ function section(lang: Lang, d: Dict): string {
   p(`- **${d.pricing.onprem.name}**: ${d.pricing.onprem.price} ${d.pricing.onprem.period}. ${d.pricing.onprem.setup}. ${d.pricing.onprem.tagline}`);
   for (const it of d.pricing.onprem.items) p(`  - ${it}`);
   p(`- **${d.pricing.managed.name}**: ${d.pricing.managed.price}. ${d.pricing.managed.tagline} ${d.pricing.managed.body}`);
-  sous(d.pricing.setup.title);
-  p(d.pricing.setup.intro);
-  for (const e of d.pricing.setup.steps) p(`- **${e.title}**: ${e.body}`);
-  sous(d.pricing.continuity.title);
-  p(d.pricing.continuity.intro);
-  for (const g of d.pricing.continuity.items) p(`- **${g.title}**: ${g.body}`);
   sous(d.pricing.faq_title);
   for (const k of FAQ_KEYS) {
     const q = (d.faq as Record<string, { q: string; a: string }>)[k];

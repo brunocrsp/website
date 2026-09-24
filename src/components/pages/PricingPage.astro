@@ -5,34 +5,32 @@
  * Construite le 2026-09-23 sur la grammaire de l'accueil, de « Pourquoi
  * superviser » et de la page Produit : une accroche en deux temps dont la
  * fin est à la couleur d'accent, et sous elle le bloc graphite, qui porte
- * ici l'offre elle-même, prix, contenu et prise de contact. Puis la mise
- * en service en trois étapes, la continuité (ce qui reste au client si
- * Meshvise disparaît) et les questions d'un acheteur.
+ * ici l'offre elle-même, prix, contenu et prise de contact. Puis la demande
+ * de contact, la même que sur la page Contact (ContactRequest), et les
+ * questions d'un acheteur.
  *
- * La page ne porte pas de formulaire depuis le 2026-09-23 : chaque « Prendre
- * contact » mène à la page Contact avec la demande déjà choisie, la licence
- * ou l'exploitation déléguée.
+ * Depuis le 2026-09-24, la demande est sur la page même, à la place de la
+ * mise en service et de la continuité : les boutons « Prendre contact » de
+ * l'offre y descendent (#demande) en cochant la licence ou l'exploitation
+ * déléguée (data-sujet), sans quitter la page.
  *
  * La démonstration et l'essai ne sont pas des tarifs : ils vivent dans la
  * navigation et dans « Par où commencer ». L'exploitation déléguée a sa
  * colonne mais rien n'y est promis, parce qu'elle n'est pas livrable ; elle
- * garde l'ancre `exploitation-deleguee`, où mène la carte de l'accueil. La
- * continuité garde l'ancre `continuity`, où mènent le pied de page et la
- * FAQ.
+ * garde l'ancre `exploitation-deleguee`, où mène la carte de l'accueil.
  */
 import Base from '../../layouts/Base.astro';
 import FAQ from '../FAQ.astro';
+import ContactRequest from '../ContactRequest.astro';
 import fr from '../../i18n/fr.json';
 import en from '../../i18n/en.json';
 import { t, type Lang } from '../../i18n';
-import { href } from '../../i18n/routes';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 
 const d = (lang === 'fr' ? fr : en).pricing;
-const etapes = d.setup.steps as { title: string; body: string }[];
-const garanties = d.continuity.items as { title: string; body: string }[];
+const c = (lang === 'fr' ? fr : en).contact;
 
 ---
 
@@ -58,57 +56,31 @@ const garanties = d.continuity.items as { title: string; body: string }[];
               </li>
             ))}
           </ul>
-          <a href={`${href(lang, 'contact')}?sujet=licence`} class="btn btn-primary btn-lg devis">{t(lang, 'common.cta_contact')}</a>
+          <a href="#demande" data-sujet="licence" class="btn btn-primary btn-lg devis">{t(lang, 'common.cta_contact')}</a>
         </div>
         <div id="exploitation-deleguee" class="deleguee">
           <p class="nom">{d.managed.name}</p>
           <p class="prix-doux">{d.managed.price}</p>
           <p class="t-body mt-4">{d.managed.tagline}</p>
           <p class="t-body mt-3">{d.managed.body}</p>
-          <a href={`${href(lang, 'contact')}?sujet=exploitation`} class="ecrire">{t(lang, 'common.cta_contact')} <span aria-hidden="true">→</span></a>
+          <a href="#demande" data-sujet="exploitation" class="ecrire">{t(lang, 'common.cta_contact')} <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- La mise en service : trois étapes, chiffrées sur devis. -->
-  <section id="mise-en-service" class="section bg-surface border-b border-line">
+  <!-- La demande de contact, la même que sur la page Contact. -->
+  <section id="demande" class="section bg-surface border-b border-line">
     <div class="wrap">
       <div class="section-head">
-        <h2 class="t-page">{d.setup.title}</h2>
-        <p class="t-lede">{d.setup.intro}</p>
+        <h2 class="t-page">{c.lead} <span class="accent">{c.accent}</span></h2>
+        <p class="t-lede">{c.subtitle}</p>
       </div>
-      <ol class="etapes">
-        {etapes.map((e, i) => (
-          <li class="etape">
-            <span class="numero" aria-hidden="true">{i + 1}</span>
-            <h3 class="t-section">{e.title}</h3>
-            <p class="t-body mt-2">{e.body}</p>
-          </li>
-        ))}
-      </ol>
+      <ContactRequest lang={lang} topic="licence" />
     </div>
   </section>
 
-  <!-- Ce qui reste au client, quoi qu'il arrive à Meshvise. -->
-  <section id="continuity" class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="t-page">{d.continuity.title}</h2>
-        <p class="t-lede">{d.continuity.intro}</p>
-      </div>
-      <dl class="garanties">
-        {garanties.map((g) => (
-          <div class="garantie">
-            <dt class="t-section">{g.title}</dt>
-            <dd class="t-body mt-2">{g.body}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
-  </section>
-
-  <FAQ lang={lang} title={d.faq_title} surface />
+  <FAQ lang={lang} title={d.faq_title} />
 
 </Base>
 
@@ -195,44 +167,12 @@ const garanties = d.continuity.items as { title: string; body: string }[];
   }
   .ecrire:hover { color: var(--color-n-0); }
 
-  /* ── Mise en service ───────────────────────────────────────────────── */
-  .etapes {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2.5rem;
-  }
-  .etape { padding-top: 1.5rem; border-top: 2px solid var(--color-line); }
-  .numero {
-    display: block;
-    margin-bottom: 1rem;
-    font-size: 3rem;
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: var(--color-accent);
-  }
-
-  /* ── Continuité ────────────────────────────────────────────────────── */
-  .garanties {
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.5rem 4rem;
-  }
-  .garantie { padding-top: 1.5rem; border-top: 2px solid var(--color-line); }
-  .garantie dd { margin-left: 0; }
-
   @media (max-width: 1023px) {
     .offre { grid-template-columns: minmax(0, 1fr); }
     .deleguee { border-left: 0; border-top: 1px solid var(--color-n-700); }
   }
   @media (max-width: 767px) {
-    .inclus,
-    .etapes,
-    .garanties { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+    .inclus { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
     .inclus { gap: 0.875rem; }
   }
 </style>

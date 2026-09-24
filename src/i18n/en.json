@@ -718,46 +718,6 @@
       "tagline": "For sites without a technical team: Meshvise is run for you.",
       "body": "The offer is not open yet. Write to discuss it."
     },
-    "setup": {
-      "title": "Commissioning",
-      "intro": "Quoted case by case, based on the number of devices to connect.",
-      "steps": [
-        {
-          "title": "Installation",
-          "body": "Meshvise is installed remotely on your server."
-        },
-        {
-          "title": "Connection",
-          "body": "Your equipment is connected and its measurements named."
-        },
-        {
-          "title": "Getting started",
-          "body": "A session with your teams to get off to a good start."
-        }
-      ]
-    },
-    "continuity": {
-      "title": "Your data does not depend on Meshvise",
-      "intro": "A supervision system runs for ten years. What is installed on your premises must not depend on anyone.",
-      "items": [
-        {
-          "title": "Your data stays with you",
-          "body": "On your server, in a standard database, readable without Meshvise."
-        },
-        {
-          "title": "Nothing leaves your site",
-          "body": "No data is sent anywhere else, and everything works without internet."
-        },
-        {
-          "title": "An integrator can take over",
-          "body": "The product is built on standard components: operations do not depend on us."
-        },
-        {
-          "title": "A French contract",
-          "body": "Written in French, under French law."
-        }
-      ]
-    },
     "faq_title": "Your questions before ordering"
   },
   "faq": {
@@ -804,7 +764,6 @@
     "tagline": "Industrial supervision, hosted on your premises. Thirteen protocols included, data in a database you own.",
     "product": "Product",
     "contact": "Contact",
-    "continuity": "Your data stays readable",
     "rights": "All rights reserved.",
     "tech_line": "Contract in French, French law."
   },
