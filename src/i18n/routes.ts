@@ -1,7 +1,7 @@
 import type { Lang } from './index';
 
 /**
- * Slugs localisés des huit pages du site (spec docs/00-vision/vitrine.md).
+ * Slugs localisés des pages du site (spec docs/00-vision/vitrine.md).
  * Une seule source de vérité : Header, Footer, liens internes et bascule
  * de langue passent tous par `href()` / `alternateHref()`.
  */
@@ -13,6 +13,8 @@ export const ROUTES = {
   contact: { fr: 'contact', en: 'contact' },
   pricing: { fr: 'tarifs', en: 'pricing' },
   demo: { fr: 'demo', en: 'demo' },
+  legal: { fr: 'mentions-legales', en: 'legal-notice' },
+  privacy: { fr: 'confidentialite', en: 'privacy' },
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;

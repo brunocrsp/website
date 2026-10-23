@@ -1,0 +1,73 @@
+---
+/**
+ * Mentions légales (loi pour la confiance dans l'économie numérique,
+ * article 6 III) : l'éditeur, le directeur de la publication, l'hébergeur.
+ * L'identité de l'éditeur vit dans `src/i18n/editeur.ts`, pas ici : une
+ * seule source pour les deux langues et pour la politique de
+ * confidentialité.
+ */
+import Base from '../../layouts/Base.astro';
+import PageHero from '../PageHero.astro';
+import LegalText from '../LegalText.astro';
+import { t, type Lang } from '../../i18n';
+import { exigerEditeurEnCI, jetonsLegaux, valeurEditeur, type Jeton } from '../../i18n/editeur';
+import fr from '../../i18n/fr.json';
+import en from '../../i18n/en.json';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+
+exigerEditeurEnCI();
+
+const d = (lang === 'fr' ? fr : en).legal;
+const jetons = jetonsLegaux(lang);
+const editeur: Array<[string, Jeton]> = [
+  [d.editor.labels.name, valeurEditeur(lang, 'nom')],
+  [d.editor.labels.status, { texte: d.editor.status }],
+  [d.editor.labels.address, valeurEditeur(lang, 'adresse')],
+  [d.editor.labels.siren, valeurEditeur(lang, 'siren')],
+  [d.editor.labels.phone, valeurEditeur(lang, 'telephone')],
+  [d.editor.labels.email, jetons.email],
+];
+const directeur = valeurEditeur(lang, 'directeur');
+---
+
+<Base lang={lang} title={t(lang, 'legal.meta.title')} description={t(lang, 'legal.meta.description')}>
+  <PageHero title={d.title} />
+  <section class="wrap py-14 md:py-20">
+    <div class="prose">
+      <h2>{d.editor.title}</h2>
+      <p>{d.editor.intro}</p>
+      <dl class="fiche">
+        {editeur.map(([libelle, v]) => (
+          <div>
+            <dt>{libelle}</dt>
+            <dd>{v.manque ? <mark class="a-completer">{v.texte}</mark> : v.href ? <a href={v.href}>{v.texte}</a> : v.texte}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <h2>{d.director.title}</h2>
+      <p>{directeur.manque ? <mark class="a-completer">{directeur.texte}</mark> : directeur.texte}</p>
+
+      {d.sections.map((s) => (
+        <>
+          <h2>{s.title}</h2>
+          {s.body.map((p) => <LegalText texte={p} jetons={jetons} />)}
+        </>
+      ))}
+
+      <p class="t-small">{d.updated}</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .fiche { display: grid; gap: 0.5rem; }
+  .fiche > div { display: grid; grid-template-columns: 10rem 1fr; gap: 1rem; }
+  .fiche dt { color: var(--color-muted); }
+  .fiche dd { color: var(--color-ink); }
+  @media (max-width: 639px) {
+    .fiche > div { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>

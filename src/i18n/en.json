@@ -760,12 +760,118 @@
     "title": "The public demo is not online yet",
     "body": "It will run on a simulated industrial site, with direct access. Meanwhile, a thirty-minute video demonstration on a case close to yours is available now."
   },
+  "legal": {
+    "meta": {
+      "title": "Legal notice · Meshvise",
+      "description": "Publisher, publication director and host of the meshvise.com website."
+    },
+    "title": "Legal notice",
+    "updated": "Updated on 23 October 2026.",
+    "pending": "to be completed",
+    "privacy_link": "privacy policy",
+    "editor": {
+      "title": "Publisher",
+      "intro": "The meshvise.com website is published by:",
+      "status": "Sole trader (entrepreneur individuel)",
+      "labels": {
+        "name": "Name",
+        "status": "Status",
+        "address": "Address",
+        "siren": "SIREN (French company number)",
+        "phone": "Phone",
+        "email": "Email"
+      }
+    },
+    "director": {
+      "title": "Publication director"
+    },
+    "sections": [
+      {
+        "title": "Hosting",
+        "body": [
+          "The website is hosted by Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, United States, phone +1 650 319 8930, {cloudflare}."
+        ]
+      },
+      {
+        "title": "Intellectual property",
+        "body": [
+          "The texts, illustrations, screenshots and logos of the website belong to the publisher. Reproducing them, even in part, requires the publisher's written consent."
+        ]
+      },
+      {
+        "title": "Personal data",
+        "body": [
+          "Data sent through the contact form is processed as described in the {privacy}."
+        ]
+      }
+    ]
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy · Meshvise",
+      "description": "The data the meshvise.com website collects, why, for how long, and your rights."
+    },
+    "title": "Privacy policy",
+    "lede": "The website collects one thing only: what you write in the contact form. Here is what happens to it.",
+    "updated": "Updated on 23 October 2026.",
+    "legal_link": "legal notice",
+    "sections": [
+      {
+        "title": "Data controller",
+        "body": [
+          "{nom}, publisher of the website, reachable at {email}. Full contact details are in the {legal}."
+        ]
+      },
+      {
+        "title": "Data collected",
+        "body": [
+          "The contact form collects your name, your company, your email address, the subject of your request and the message you write. Nothing is collected until you send it.",
+          "As with any website, the host processes each visitor's IP address to deliver the pages and protect the site, in particular to limit repeated submissions of the form."
+        ]
+      },
+      {
+        "title": "Purpose and legal basis",
+        "body": [
+          "This data serves one purpose: answering your request, whether it concerns a licence, a trial, a demonstration or a question. Processing relies on pre-contractual steps taken at your request (Article 6(1)(b) GDPR) and, for a general question, on the legitimate interest in answering you (Article 6(1)(f)).",
+          "It is neither sold nor transferred, and is used for no mailing you did not ask for."
+        ]
+      },
+      {
+        "title": "Recipients",
+        "body": [
+          "Your request is read by the publisher only. To deliver it, three providers process it on the publisher's behalf: Cloudflare, which hosts the website, Resend, which sends the email, and Google, which provides the mailbox that receives it.",
+          "These three companies are established in the United States. Data transfers to them are governed by the EU-US Data Privacy Framework or by the European Commission's standard contractual clauses."
+        ]
+      },
+      {
+        "title": "Retention",
+        "body": [
+          "Your data is kept for three years after the last exchange, then deleted. If your request leads to a contract, the data it needs is kept for the duration of the contract, then for as long as accounting obligations require."
+        ]
+      },
+      {
+        "title": "Cookies",
+        "body": [
+          "The website sets no cookie of its own and uses no audience measurement, advertising or social media tool: no banner asks for your consent. Cloudflare may set a technical security cookie, strictly necessary to the service and exempt from consent."
+        ]
+      },
+      {
+        "title": "Your rights",
+        "body": [
+          "You can access your data, have it corrected or erased, object to its processing, or ask for its restriction or portability, by writing to {email}. You will receive an answer within one month.",
+          "If you believe your rights are not respected, you can lodge a complaint with the CNIL, the French data protection authority, {cnil}."
+        ]
+      }
+    ]
+  },
   "footer": {
     "tagline": "Industrial supervision, hosted on your premises. Thirteen protocols included, data in a database you own.",
     "product": "Product",
     "contact": "Contact",
     "rights": "All rights reserved.",
-    "tech_line": "Contract in French, French law."
+    "tech_line": "Contract in French, French law.",
+    "legal": "Legal notice",
+    "privacy": "Privacy"
   },
   "a11y": {
     "skip_to_content": "Skip to content",

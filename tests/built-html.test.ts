@@ -29,6 +29,10 @@ const pages = {
   en_demo: resolve(dist, 'en', 'demo', 'index.html'),
   fr_contact: resolve(dist, 'fr', 'contact', 'index.html'),
   en_contact: resolve(dist, 'en', 'contact', 'index.html'),
+  fr_legal: resolve(dist, 'fr', 'mentions-legales', 'index.html'),
+  en_legal: resolve(dist, 'en', 'legal-notice', 'index.html'),
+  fr_privacy: resolve(dist, 'fr', 'confidentialite', 'index.html'),
+  en_privacy: resolve(dist, 'en', 'privacy', 'index.html'),
 };
 type Page = keyof typeof pages;
 const SITE = Object.keys(pages).filter((k) => k !== 'apex') as Page[];
@@ -269,6 +273,41 @@ describe('Footer', () => {
     it(`${lang} footer links to the contact page`, () => {
       const f = html[lang].match(/<footer[\s\S]*<\/footer>/)![0];
       expect(f).toContain(`href="/${lang}/contact/"`);
+    });
+  }
+
+  // Les mentions légales doivent être accessibles depuis chaque page.
+  for (const key of SITE) {
+    it(`${key} footer links to the legal notice and the privacy policy`, () => {
+      const lang = key.startsWith('en') ? 'en' : 'fr';
+      const f = html[key].match(/<footer[\s\S]*<\/footer>/)![0];
+      expect(f).toContain(lang === 'fr' ? 'href="/fr/mentions-legales/"' : 'href="/en/legal-notice/"');
+      expect(f).toContain(lang === 'fr' ? 'href="/fr/confidentialite/"' : 'href="/en/privacy/"');
+    });
+  }
+});
+
+describe('Legal pages', () => {
+  for (const lang of ['fr', 'en'] as const) {
+    it(`${lang} legal notice names the host and links to the privacy policy`, () => {
+      const p = html[`${lang}_legal`];
+      expect(p).toContain('Cloudflare, Inc., 101 Townsend St.');
+      expect(p).toContain('contact@meshvise.com');
+      expect(p).toContain(lang === 'fr' ? 'href="/fr/confidentialite/"' : 'href="/en/privacy/"');
+    });
+
+    it(`${lang} privacy policy names every processor and the authority`, () => {
+      const p = html[`${lang}_privacy`];
+      for (const s of ['Cloudflare', 'Resend', 'Google', 'href="https://www.cnil.fr"', 'href="mailto:contact@meshvise.com"']) {
+        expect(p, s).toContain(s);
+      }
+      expect(p).toContain(lang === 'fr' ? 'href="/fr/mentions-legales/"' : 'href="/en/legal-notice/"');
+    });
+
+    it(`${lang} legal pages leave no token unreplaced`, () => {
+      for (const key of [`${lang}_legal`, `${lang}_privacy`] as const) {
+        expect(html[key]).not.toMatch(/\{[a-z]+\}/);
+      }
     });
   }
 });

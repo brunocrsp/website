@@ -1,0 +1,39 @@
+---
+/**
+ * Politique de confidentialité (RGPD, article 13) : ce que le formulaire de
+ * contact recueille, pourquoi, qui le traite, combien de temps, et les
+ * droits de la personne. Le site n'a pas d'autre collecte : ni cookie à
+ * lui, ni mesure d'audience, ni script tiers. Si cela change, cette page
+ * change avec.
+ */
+import Base from '../../layouts/Base.astro';
+import PageHero from '../PageHero.astro';
+import LegalText from '../LegalText.astro';
+import { t, type Lang } from '../../i18n';
+import { exigerEditeurEnCI, jetonsLegaux } from '../../i18n/editeur';
+import fr from '../../i18n/fr.json';
+import en from '../../i18n/en.json';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+
+exigerEditeurEnCI();
+
+const d = (lang === 'fr' ? fr : en).privacy;
+const jetons = jetonsLegaux(lang);
+---
+
+<Base lang={lang} title={t(lang, 'privacy.meta.title')} description={t(lang, 'privacy.meta.description')}>
+  <PageHero title={d.title} subtitle={d.lede} />
+  <section class="wrap py-14 md:py-20">
+    <div class="prose">
+      {d.sections.map((s) => (
+        <>
+          <h2>{s.title}</h2>
+          {s.body.map((p) => <LegalText texte={p} jetons={jetons} />)}
+        </>
+      ))}
+      <p class="t-small">{d.updated}</p>
+    </div>
+  </section>
+</Base>

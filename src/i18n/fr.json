@@ -760,12 +760,118 @@
     "title": "La démo publique n'est pas encore en ligne",
     "body": "Elle tournera sur un site industriel simulé, en accès direct. En attendant, une démonstration de trente minutes en visio, sur un cas proche du vôtre, est possible dès maintenant."
   },
+  "legal": {
+    "meta": {
+      "title": "Mentions légales · Meshvise",
+      "description": "Éditeur, directeur de la publication et hébergeur du site meshvise.com."
+    },
+    "title": "Mentions légales",
+    "updated": "Mise à jour le 23 octobre 2026.",
+    "pending": "à compléter",
+    "privacy_link": "politique de confidentialité",
+    "editor": {
+      "title": "Éditeur",
+      "intro": "Le site meshvise.com est édité par :",
+      "status": "Entrepreneur individuel",
+      "labels": {
+        "name": "Nom",
+        "status": "Statut",
+        "address": "Adresse",
+        "siren": "SIREN",
+        "phone": "Téléphone",
+        "email": "Courriel"
+      }
+    },
+    "director": {
+      "title": "Directeur de la publication"
+    },
+    "sections": [
+      {
+        "title": "Hébergement",
+        "body": [
+          "Le site est hébergé par Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, États-Unis, téléphone +1 650 319 8930, {cloudflare}."
+        ]
+      },
+      {
+        "title": "Propriété intellectuelle",
+        "body": [
+          "Les textes, illustrations, captures d'écran et logos du site appartiennent à l'éditeur. Leur reproduction, même partielle, demande son accord écrit."
+        ]
+      },
+      {
+        "title": "Données personnelles",
+        "body": [
+          "Les données envoyées par le formulaire de contact sont traitées comme le décrit la {privacy}."
+        ]
+      }
+    ]
+  },
+  "privacy": {
+    "meta": {
+      "title": "Confidentialité · Meshvise",
+      "description": "Les données que collecte le site meshvise.com, pourquoi, combien de temps, et vos droits."
+    },
+    "title": "Politique de confidentialité",
+    "lede": "Le site ne collecte qu'une chose : ce que vous écrivez dans le formulaire de contact. Voici ce qu'il en advient.",
+    "updated": "Mise à jour le 23 octobre 2026.",
+    "legal_link": "mentions légales",
+    "sections": [
+      {
+        "title": "Responsable du traitement",
+        "body": [
+          "{nom}, éditeur du site, joignable à {email}. Ses coordonnées complètes figurent dans les {legal}."
+        ]
+      },
+      {
+        "title": "Données collectées",
+        "body": [
+          "Le formulaire de contact recueille votre nom, votre entreprise, votre adresse électronique, l'objet de votre demande et le message que vous écrivez. Rien n'est recueilli tant que vous ne l'envoyez pas.",
+          "Comme pour tout site, l'hébergeur traite l'adresse IP de chaque visiteur pour acheminer les pages et protéger le site, notamment pour limiter les envois répétés du formulaire."
+        ]
+      },
+      {
+        "title": "Finalité et base légale",
+        "body": [
+          "Ces données servent à une seule chose : répondre à votre demande, qu'il s'agisse d'une licence, d'un essai, d'une démonstration ou d'une question. Le traitement repose sur les mesures précontractuelles prises à votre demande (article 6.1.b du RGPD) et, pour une question générale, sur l'intérêt légitime à vous répondre (article 6.1.f).",
+          "Elles ne sont ni vendues ni cédées, et ne servent à aucun envoi que vous n'avez pas demandé."
+        ]
+      },
+      {
+        "title": "Destinataires",
+        "body": [
+          "Votre demande n'est lue que par l'éditeur. Pour l'acheminer, trois prestataires la traitent pour son compte : Cloudflare, qui héberge le site, Resend, qui envoie le courriel, et Google, qui fournit la messagerie qui le reçoit.",
+          "Ces trois sociétés sont établies aux États-Unis. Les transferts de données vers elles sont encadrés par le cadre de protection des données UE-États-Unis ou par les clauses contractuelles types de la Commission européenne."
+        ]
+      },
+      {
+        "title": "Durée de conservation",
+        "body": [
+          "Vos données sont conservées trois ans après le dernier échange, puis supprimées. Si votre demande aboutit à un contrat, celles qui lui sont nécessaires sont gardées le temps du contrat, puis le temps qu'exigent les obligations comptables."
+        ]
+      },
+      {
+        "title": "Cookies",
+        "body": [
+          "Le site ne dépose lui-même aucun cookie et n'utilise aucun outil de mesure d'audience, de publicité ni de réseau social : aucun bandeau ne vous demande donc votre consentement. Cloudflare peut déposer un cookie technique de sécurité, strictement nécessaire au service et dispensé de consentement."
+        ]
+      },
+      {
+        "title": "Vos droits",
+        "body": [
+          "Vous pouvez accéder à vos données, les faire rectifier ou effacer, vous opposer à leur traitement, en demander la limitation ou la portabilité, en écrivant à {email}. La réponse vous parvient dans un délai d'un mois.",
+          "Si vous estimez que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL, {cnil}."
+        ]
+      }
+    ]
+  },
   "footer": {
     "tagline": "Supervision industrielle, hébergée chez vous. Treize protocoles inclus, données dans une base que vous possédez.",
     "product": "Produit",
     "contact": "Contact",
     "rights": "Tous droits réservés.",
-    "tech_line": "Contrat en français, droit français."
+    "tech_line": "Contrat en français, droit français.",
+    "legal": "Mentions légales",
+    "privacy": "Confidentialité"
   },
   "a11y": {
     "skip_to_content": "Aller au contenu",

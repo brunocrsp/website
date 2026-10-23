@@ -371,6 +371,11 @@ h1, h2, h3 { font-weight: 500; }
 .prose tbody td { padding: 0.7rem 1rem 0.7rem 0; border-bottom: 1px solid var(--color-line); vertical-align: top; }
 .prose tbody tr:last-child td { border-bottom: 0; }
 .prose figcaption { font-size: 0.875rem; color: var(--color-muted); margin-top: 0.5rem; }
+/* Un champ des pages légales que l'éditeur n'a pas encore rempli : il se voit. */
+.a-completer {
+  background: var(--color-warn-bg); color: var(--color-warn);
+  border: 1px solid var(--color-warn-border); border-radius: 3px; padding: 0 0.3em;
+}
 
 /* Formulaires */
 .field {

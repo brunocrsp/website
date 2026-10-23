@@ -1,0 +1,25 @@
+---
+/**
+ * Un paragraphe des pages légales. Le texte vient des traductions ; les
+ * jetons `{nom}`, `{email}`… y sont remplacés par une valeur ou un lien.
+ * Une valeur manquante s'affiche « à compléter », bien visible, et un jeton
+ * inconnu fait échouer la construction plutôt que de s'afficher tel quel.
+ */
+import type { Jeton } from '../i18n/editeur';
+
+interface Props {
+  texte: string;
+  jetons: Record<string, Jeton>;
+}
+
+const { texte, jetons } = Astro.props;
+const parts = texte.split(/(\{[a-z]+\})/g).map((p) => {
+  const m = p.match(/^\{([a-z]+)\}$/);
+  if (!m) return { texte: p } as Jeton;
+  const j = jetons[m[1]];
+  if (!j) throw new Error(`LegalText : jeton inconnu ${p} dans « ${texte} »`);
+  return j;
+});
+---
+
+<p>{parts.map((j) => (j.manque ? <mark class="a-completer">{j.texte}</mark> : j.href ? <a href={j.href}>{j.texte}</a> : j.texte))}</p>

@@ -44,6 +44,10 @@ const year = new Date().getFullYear();
 
     <div class="mt-12 pt-6 border-t border-line flex flex-col md:flex-row justify-between gap-2 t-small">
       <p>© {year} Meshvise. {t(lang, 'footer.rights')}</p>
+      <p class="flex gap-5">
+        <a href={href(lang, 'legal')} class="hover:text-ink">{t(lang, 'footer.legal')}</a>
+        <a href={href(lang, 'privacy')} class="hover:text-ink">{t(lang, 'footer.privacy')}</a>
+      </p>
       <p>{t(lang, 'footer.tech_line')}</p>
     </div>
   </div>

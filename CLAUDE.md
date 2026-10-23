@@ -29,7 +29,7 @@ The Worker proxies `env.ASSETS` and serves `POST /api/contact`, `POST /api/trial
 
 ## The site (since 2026-09-23)
 
-Seven pages per language, nothing else:
+Seven pages per language, plus the two legal pages linked from the footer:
 
 | Page | FR / EN | Component |
 |---|---|---|
@@ -40,6 +40,10 @@ Seven pages per language, nothing else:
 | Tarifs | `/fr/tarifs/` · `/en/pricing/` | `pages/PricingPage.astro` |
 | Démo | `/fr/demo/` · `/en/demo/` | `pages/DemoPage.astro` |
 | Contact | `/fr/contact/` · `/en/contact/` | `pages/ContactPage.astro` |
+| Mentions légales | `/fr/mentions-legales/` · `/en/legal-notice/` | `pages/LegalPage.astro` |
+| Confidentialité | `/fr/confidentialite/` · `/en/privacy/` | `pages/PrivacyPage.astro` |
+
+- **Legal pages**: the publisher's identity (name, address, SIREN, phone, publication director) lives in `src/i18n/editeur.ts`, one source for both languages. An empty field shows "à compléter" on the page and **fails the build in CI**: the site cannot be deployed without its publisher. The privacy policy describes exactly what the site collects (the contact form, and the IP address the host sees); a new form, cookie, analytics tool or third-party script changes that page in the same commit.
 
 - **Top bar**: Accueil, Pourquoi superviser, Produit, Protocoles, Tarifs, and the "Voir la démo" button. The mobile menu shows the same list.
 - **Removed on 2026-09-23**, do not bring back without Bruno: FAQ, Guides (and the content collection), À propos, Intégrateurs, Essai (trial page), the `preview-motion` pages. The FAQ survives as a section of the pricing page only (`FAQ_KEYS`, seven buyer questions), and its FAQPage structured data is emitted there only (`<Base faq>`).
