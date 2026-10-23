@@ -95,7 +95,7 @@
         {
           "id": "methodes",
           "label": "Méthodes",
-          "line": "Le rendement calculé depuis les compteurs, micro-arrêts compris.",
+          "line": "Marche, arrêts et pièces produites, calculés machine par machine.",
           "alt": "Un opérateur au pupitre d'un portique qui dépose des pièces sur un convoyeur."
         },
         {

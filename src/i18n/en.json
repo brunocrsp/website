@@ -95,7 +95,7 @@
         {
           "id": "methodes",
           "label": "Process engineering",
-          "line": "Output calculated from the counters, micro-stoppages included.",
+          "line": "Running time, stoppages and parts produced, calculated machine by machine.",
           "alt": "An operator at the panel of a gantry placing parts onto a conveyor."
         },
         {
