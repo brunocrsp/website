@@ -2,14 +2,14 @@
 
 ## Project Overview
 
-Marketing site for Meshvise (the SCADA/IIoT product), live at https://meshvise.com. Pure static Astro build, deployed via Cloudflare Workers (wrangler). The same Worker also hosts the trial license signer endpoint (`POST /api/trial`) used by the Meshvise product. See cross-repo references below.
+Marketing site for Meshvise (the SCADA/IIoT product), served at https://meshvise.com and https://www.meshvise.com. Pure static Astro build, deployed via Cloudflare Workers (wrangler). The same Worker handles the contact form (`POST /api/contact`) and still hosts the trial license signer endpoint (`POST /api/trial`) specified by ADR-0006. See cross-repo references below.
 
 ## Sister repo and cross-repo context
 
-The Meshvise product app lives in a sister repo at `c:/Users/bruno/Desktop/Meshvise/code/meshvise/` (GitHub: `meshvise/meshvise`), branch `dev`, single worktree, one Claude session at a time (see its own `CLAUDE.md`). **You do not touch that repo.** You only read from it as needed:
+Paths below are relative to the workspace root, `~/Meshvise`. The Meshvise product app lives in a sister repo at `code/meshvise/` (GitHub: `brunocrsp/meshvise`), branch `dev` (see its own `CLAUDE.md`). **You do not touch that repo.** You only read from it as needed:
 
-- Spec source of truth for the trial license system: `c:/Users/bruno/Desktop/Meshvise/documentation/docs/adr/0006-trial-license-system.md`. Read-only. Defines the JWT claims schema, key isolation rules, expiration sanction, email nurture cadence. Do not improvise off-spec.
-- Project status and open work: `c:/Users/bruno/Desktop/Meshvise/documentation/docs/pilotage.md`. The documentation (ADRs, pilotage, audits, pricing grid, EULA) is its own repo, `documentation/` at the workspace root.
+- Spec source of truth for the trial license system: `documentation/docs/adr/0006-trial-license-system.md`. Read-only. Defines the JWT claims schema, key isolation rules, expiration sanction, email nurture cadence. Do not improvise off-spec.
+- Project status and open work: `documentation/docs/pilotage.md`. The documentation (ADRs, pilotage, audits, pricing grid, EULA) is its own repo, `documentation/` at the workspace root.
 - Known cross-repo defects: the audit registry `docs/audits/registre.md` in the documentation repo. **AUD-006**: the product's first boot (`first_boot.py`) requires `issued_to.email`, a claim that ADR-0006 does not define and that `buildTrialClaims` therefore does not set: a trial license issued today never reaches a running interface. The worker follows the spec; the fix belongs to the product or to an ADR-0006 amendment. Do not add the claim to the worker on your own. The cross-repo interfaces are described in the documentation repo's `docs/01-architecture/interfaces-entre-repos.md`.
 - **The site must not promise what the product does not do.** Before writing a claim, check it against the audit registry: an open finding (indicator coverage, writes to the process…) makes the claim false today.
 
@@ -25,7 +25,7 @@ The trial signer's public key lives in the meshvise repo (verifier side). The tr
 | i18n | French (default) + English. Routes `/<lang>/`, slugs in `src/i18n/routes.ts` |
 | Tests | vitest (`tests/`), including assertions on the built HTML |
 
-The Worker proxies `env.ASSETS` and serves `POST /api/trial` (plus `/crl.json`). **No page of the site posts to `/api/trial` since 2026-09-22**: the trial is on quote and requested through the Contact page. The endpoint stays because ADR-0006 specifies it for the product. Stay minimal on the edge.
+The Worker proxies `env.ASSETS` and serves `POST /api/contact`, `POST /api/trial` (plus `/crl.json`). **No page of the site posts to `/api/trial` since 2026-09-22**: the trial is on quote and requested through the Contact page. The endpoint stays because ADR-0006 specifies it for the product. Stay minimal on the edge.
 
 ## The site (since 2026-09-23)
 
@@ -43,7 +43,7 @@ Seven pages per language, nothing else:
 
 - **Top bar**: Accueil, Pourquoi superviser, Produit, Protocoles, Tarifs, and the "Voir la démo" button. The mobile menu shows the same list.
 - **Removed on 2026-09-23**, do not bring back without Bruno: FAQ, Guides (and the content collection), À propos, Intégrateurs, Essai (trial page), the `preview-motion` pages. The FAQ survives as a section of the pricing page only (`FAQ_KEYS`, seven buyer questions), and its FAQPage structured data is emitted there only (`<Base faq>`).
-- **Every "Prendre contact" leads to the Contact page** with the request pre-selected: `/fr/contact/?sujet=licence`, `exploitation`, `essai`, `demo`, `autre`. Forms compose a `mailto:` (no backend yet); the request sets the email subject.
+- **Every "Prendre contact" leads to the Contact page** with the request pre-selected: `/fr/contact/?sujet=licence`, `exploitation`, `essai`, `demo`, `autre`. The form posts to `/api/contact`, which emails contact@meshvise.com through Resend (worker secret `RESEND_API_KEY`); the request sets the email subject. Without the key the endpoint answers an error and the page offers a pre-filled email instead of a false success.
 - **Pricing**: one licence per site, 2 400 € per year, support and every update included, major versions too (decision of 2026-09-23, documentation `2d0b225`). Commissioning on quote. Managed operations "on request", not deliverable yet: promise nothing more.
 
 ## Design and writing conventions
@@ -59,9 +59,11 @@ Seven pages per language, nothing else:
 | Branch | Purpose | Auto-deploy |
 |--------|---------|-------------|
 | `master` | Prod, serves `meshvise.com` and `www.meshvise.com` | YES (`.github/workflows/deploy.yml`, runs after CI green on master) |
-| `dev` | Integration, accumulates work | NO |
+| `feat/vitrine-v3` | Work in progress, merged into `master` when Bruno decides | NO |
 
-**Never push to `master` without explicit user approval in the session.** Master push triggers a Cloudflare Workers deploy to prod after CI completion, and CI runs `npm run build` then `npm test`: a red test blocks the deploy. Default workflow: branch from `dev`, merge back, the user decides when `master` moves.
+`origin/dev` is a stale branch of 2026-09, not an ancestor of `master`: do not branch from it.
+
+**Never push to `master` without explicit user approval in the session.** Master push triggers a Cloudflare Workers deploy to prod after CI completion, and CI runs `npm run build` then `npm test`: a red test blocks the deploy. Default workflow: work on the feature branch, the user decides when `master` moves.
 
 ## Hard rules
 
@@ -109,7 +111,7 @@ un refus veut dire que la vitrine tourne déjà sur 4321.
 
 ## Key files
 
-- `src/worker.js` Cloudflare Worker entry (`/api/trial`, `/crl.json`, static assets)
+- `src/worker.js` Cloudflare Worker entry (`/api/contact`, `/api/trial`, `/crl.json`, static assets)
 - `wrangler.jsonc` Worker config, custom domains, bindings (KV, rate limiting, secrets)
 - `src/pages/<lang>/*.astro` thin route files; the pages live in `src/components/pages/`
 - `src/layouts/Base.astro` head, icons, structured data

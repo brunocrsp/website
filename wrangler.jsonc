@@ -14,13 +14,13 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  // custom_domain routes meshvise.com + www.meshvise.com reportes au go-live
-  // (Phase 3 cutover Step 5, declenche par Bruno au premier prospect trial signe).
-  // Cf. docs/cutover-runbook-2026-05-07.md.
-  // "routes": [
-  //   { "pattern": "meshvise.com", "custom_domain": true },
-  //   { "pattern": "www.meshvise.com", "custom_domain": true }
-  // ],
+  // Le site sert meshvise.com et www.meshvise.com : Cloudflare cree les
+  // enregistrements DNS des deux domaines au premier deploiement qui porte
+  // ces routes, c'est-a-dire au premier push sur master qui les contient.
+  "routes": [
+    { "pattern": "meshvise.com", "custom_domain": true },
+    { "pattern": "www.meshvise.com", "custom_domain": true }
+  ],
 
   // Trial license bindings (Vague 5).
   // - TRIAL_DEDUPE: KV used for email dedupe (key `email:<lower>`, TTL 30d)

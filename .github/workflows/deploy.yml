@@ -31,15 +31,6 @@ jobs:
 
       - name: Astro build
         run: npm run build
-        env:
-          # Public Turnstile siteKey, embedded in the static HTML at build
-          # time via import.meta.env.PUBLIC_TURNSTILE_SITE_KEY in
-          # src/components/TrialForm.astro. Posed as a GitHub Actions
-          # repository variable (not secret — value is public, visible
-          # in HTML). If unset, TrialForm.astro falls back to Cloudflare's
-          # always-pass test siteKey, which is fine for staging but should
-          # be set in prod.
-          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
@@ -49,16 +40,20 @@ jobs:
           command: deploy
 
       - name: Smoke test
-        # Pre go-live (Phase 3 cutover Step 5 not done yet): custom_domain
-        # meshvise.com / www.meshvise.com are not bound to the worker.
-        # Smoke pings the workers.dev URL instead. At Step 5, swap back
-        # to https://meshvise.com.
+        # The site is served on its own domain since the custom_domain
+        # routes of wrangler.jsonc. The first deploy that carries them
+        # creates the DNS records, which can take a minute to answer.
         run: |
-          sleep 10
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 https://meshvise-website.meshvise.workers.dev)
-          if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 400 ]; then
-            echo "Smoke test failed: got HTTP $HTTP_CODE"
-            exit 1
-          fi
-          echo "Smoke test passed (HTTP $HTTP_CODE)"
+          for url in https://meshvise.com/fr/ https://www.meshvise.com/en/; do
+            for i in 1 2 3 4 5 6; do
+              HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 "$url")
+              [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 400 ] && break
+              sleep 10
+            done
+            if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 400 ]; then
+              echo "Smoke test failed on $url: got HTTP $HTTP_CODE"
+              exit 1
+            fi
+            echo "Smoke test passed on $url (HTTP $HTTP_CODE)"
+          done
 
