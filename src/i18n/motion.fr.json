@@ -6,9 +6,9 @@
       "section": "V-01 · USURE DE BROCHE",
       "title": "Ce qui se voit avant la panne",
       "lede": "Une broche ne casse pas d'un coup. Sa vibration monte pendant des semaines, et personne ne la mesure parce que personne ne la regarde.",
-      "p1": "Meshvise lit la valeur efficace de vibration sur le centre d'usinage et la garde jour après jour. Elle tient à 2,2 mm/s pendant neuf jours, puis dérive de 3,1 mm/s en trois semaines. Au vingt-sixième jour elle franchit le seuil de 4,5 mm/s de la norme ISO 10816, et l'alarme part par courriel avec l'historique.",
-      "p2": "La température de roulement de la même broche a pris 17 °C en douze jours. Deux mesures indépendantes concluent pareil, donc la dépose se programme un samedi, machine froide, au lieu de subir un arrêt en pleine série.",
-      "alt": "Trente jours de vibration de broche sur le centre d'usinage CU1. La valeur tient à 2,2 mm/s pendant neuf jours, puis dérive jusqu'à 5,3 mm/s. Au passage du seuil ISO 10816 de 4,5 mm/s, l'alarme part, et la broche reste au-dessus depuis quatre jours."
+      "p1": "Meshvise lit la valeur efficace de vibration sur le centre d'usinage et la garde jour après jour. En usinage, elle monte de 2,3 à 5,1 mm/s en un mois. Au dix-huitième jour de production, elle franchit le seuil de 4,5 mm/s de la norme ISO 10816, et l'alarme part par courriel avec l'historique.",
+      "p2": "La température du palier de la même broche monte avec elle, de 41,5 à 47,5 °C, sans atteindre son seuil. Deux mesures concluent pareil, donc la dépose se programme un samedi, machine froide, au lieu de subir un arrêt en pleine série.",
+      "alt": "Un mois de vibration de broche sur le centre d'usinage CU1, jour de production après jour de production. La valeur monte de 2,3 à 5,1 mm/s. Au passage du seuil ISO 10816 de 4,5 mm/s, l'alarme part, et la broche reste au-dessus depuis quatre jours."
     },
     "engineStrip": {
       "protocols": "protocoles",

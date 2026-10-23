@@ -31,16 +31,21 @@
  * rejouée à chaque remise à zéro, une date absolue y vieillirait mal.
  *
  * - Arrêts : `/overview/kpis?period=month`, arrêts longs, LAV1 en tête avec
- *   88 sur 743 (11,8 %). Les micro-arrêts valent 0 tant qu'ils ne se comptent
+ *   87 sur 740 (11,8 %). Les micro-arrêts valent 0 tant qu'ils ne se comptent
  *   que sur le signal « prête » (CH-16 étape 2) : aucune question ne porte
  *   dessus.
  * - Compresseur : moyenne de `Compteur air comprimé / Power` de 00:00 à
  *   05:00, 17,4 kW les nuits des 15 et 22 octobre contre 9,7 et 10,3 kW celles
- *   des 29 et 30 septembre, avant la fuite de J-21.
- * - Seuil : révisions 7 (marie.martin, 22,5 °C) et 11 (jean.dupont, retour à
- *   24 °C, « l'alarme tirait 8 fois par semaine »), dix jours d'écart.
- * - Alarmes : `/bi/alarms/summary` sur trente jours, 292 levées, 33
- *   acquittées, 2 actives non acquittées.
+ *   des 29 et 30 septembre, avant la fuite de J-21. Inchangé au reset du soir.
+ * - Seuil : révisions 7 (marie.martin, 22,5 °C, J-16 08:45) et 11
+ *   (jean.dupont, retour à 24 °C, J-6 11:15), dix jours d'écart ; entre les
+ *   deux, `/bi/alarms` compte 33 levées de « Huile de coupe — température
+ *   haute ».
+ * - Alarmes : `/bi/alarms/summary` sur trente jours, 321 levées, 31
+ *   acquittées, toutes retombées, aucune active.
+ *
+ * Mesurés une première fois le matin du 2026-10-23, puis de nouveau le soir
+ * après la remise à zéro qui a rendu le scénario configurable.
  *
  * État de repos, sans script ou sous `prefers-reduced-motion` : le premier tour
  * entier, question et réponse. Les quatre paires sont dans le document, donc
@@ -65,7 +70,7 @@ const fr = {
     {
       q: "Quelle machine s'arrête le plus souvent ?",
       a1: 'La machine de lavage LAV1.',
-      a2: 'Elle compte 88 arrêts longs en trente jours, plus d’un sur dix de tout l’atelier.',
+      a2: 'Elle compte 87 arrêts longs en trente jours, plus d’un sur dix de tout l’atelier.',
       lus: [0, 3],
     },
     {
@@ -77,13 +82,13 @@ const fr = {
     {
       q: 'Qui a changé ce seuil, et quand ?',
       a1: 'Marie Martin, il y a deux semaines.',
-      a2: "Sa révision a resserré le seuil d'huile de coupe à 22,5 °C. Jean Dupont l’a ramené à 24 °C dix jours plus tard : l’alarme sonnait huit fois par semaine.",
+      a2: "Sa révision a resserré le seuil d'huile de coupe à 22,5 °C. Jean Dupont l’a ramené à 24 °C dix jours plus tard, après 33 alarmes.",
       lus: [5, 6],
     },
     {
       q: "Combien d'alarmes ont été acquittées ce mois-ci ?",
-      a1: '33 sur les 292 levées en trente jours.',
-      a2: 'Deux sont encore actives, et personne ne les a prises en compte.',
+      a1: '31 sur les 321 levées en trente jours.',
+      a2: 'Toutes sont retombées depuis, la plupart sans que personne ne les ait prises en compte.',
       lus: [5],
     },
   ],
@@ -105,7 +110,7 @@ const en = {
     {
       q: 'Which machine stops most often?',
       a1: 'Washing machine LAV1.',
-      a2: 'It recorded 88 long stoppages in thirty days, more than one in ten across the shop floor.',
+      a2: 'It recorded 87 long stoppages in thirty days, more than one in ten across the shop floor.',
       lus: [0, 3],
     },
     {
@@ -117,13 +122,13 @@ const en = {
     {
       q: 'Who changed this threshold, and when?',
       a1: 'Marie Martin, two weeks ago.',
-      a2: 'The revision tightened the cutting oil threshold to 22.5 °C. Jean Dupont set it back to 24 °C ten days later: the alarm was going off eight times a week.',
+      a2: 'The revision tightened the cutting oil threshold to 22.5 °C. Jean Dupont set it back to 24 °C ten days later, after 33 alarms.',
       lus: [5, 6],
     },
     {
       q: 'How many alarms were acknowledged this month?',
-      a1: '33 of the 292 raised in thirty days.',
-      a2: 'Two are still active, and nobody has taken them on.',
+      a1: '31 of the 321 raised in thirty days.',
+      a2: 'All of them have cleared since, most without anyone taking them on.',
       lus: [5],
     },
   ],

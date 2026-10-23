@@ -6,9 +6,9 @@
       "section": "V-01 · SPINDLE WEAR",
       "title": "What shows before the breakdown",
       "lede": "A spindle does not fail all at once. Its vibration climbs for weeks, and nobody measures it because nobody looks at it.",
-      "p1": "Meshvise reads the RMS vibration velocity on the machining centre and keeps it day after day. It holds at 2.2 mm/s for nine days, then drifts by 3.1 mm/s over three weeks. On the twenty-sixth day it crosses the 4.5 mm/s limit of ISO 10816, and the alarm goes out by email with the history.",
-      "p2": "The bearing temperature of the same spindle has risen 17 °C in twelve days. Two independent measurements reach the same conclusion, so the spindle is pulled on a Saturday, machine cold, instead of failing mid-run.",
-      "alt": "Thirty days of spindle vibration on machining centre CU1. The value holds at 2.2 mm/s for nine days, then drifts up to 5.3 mm/s. As it crosses the ISO 10816 limit of 4.5 mm/s, the alarm goes off, and the spindle has stayed above it for four days."
+      "p1": "Meshvise reads the RMS vibration velocity on the machining centre and keeps it day after day. While machining, it climbs from 2.3 to 5.1 mm/s in a month. On the eighteenth production day it crosses the 4.5 mm/s limit of ISO 10816, and the alarm goes out by email with the history.",
+      "p2": "The bearing temperature of the same spindle climbs with it, from 41.5 to 47.5 °C, without reaching its limit. Two measurements reach the same conclusion, so the spindle is pulled on a Saturday, machine cold, instead of failing mid-run.",
+      "alt": "A month of spindle vibration on machining centre CU1, production day after production day. The value climbs from 2.3 to 5.1 mm/s. As it crosses the ISO 10816 limit of 4.5 mm/s, the alarm goes off, and the spindle has stayed above it for four days."
     },
     "engineStrip": {
       "protocols": "protocols",

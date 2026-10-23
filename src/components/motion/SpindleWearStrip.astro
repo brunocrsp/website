@@ -3,7 +3,7 @@
  * V-01 · Usure de broche. Registre dépouillé.
  *
  * La valeur suit le crayon : pendant que le tracé se pose, le chiffre
- * défile jour après jour, de 2,2 à 5,3 mm/s, et passe au rouge exactement
+ * défile jour après jour, de 2,3 à 5,1 mm/s, et passe au rouge exactement
  * quand la courbe franchit le seuil. C'est ce que fait un enregistreur.
  *
  * Ni grille, ni cartouche, ni bandeau d'acte, ni caméra, ni texte dans le
@@ -11,11 +11,13 @@
  * phrase. L'étiquette du seuil et les deux bouts de l'axe ont été retirés
  * le 2026-09-22 : la phrase du dessus dit déjà les deux.
  *
- * La série reproduit la formule du jeu de démonstration : profil `mm/s`
- * (base 2,2), scénario `spindle-wear` (`ramp`, 3,1 mm/s sur les vingt et un
- * derniers jours, progression puissance 1,35). Le seuil de 4,5 mm/s est
- * franchi au vingt-sixième jour, soit quatre jours avant aujourd'hui, ce
- * qui est bien le J-5 du seed.
+ * La série est mesurée, pas modélisée : le maximum quotidien de
+ * `VIB1/RMSVelocity` (Broche CU1) sur le parc de démonstration rejoué le
+ * 2026-10-23 (ADR-0056), lu par `/bi/timeseries?step=1d&agg=max`, jours de
+ * production seulement (vingt-deux sur trente jours). C'est la valeur en
+ * usinage : à l'arrêt, la broche lit 0,2 mm/s. Le seuil de 4,5 mm/s est
+ * franchi au dix-huitième jour de production. À refaire après chaque
+ * remise à zéro qui change le scénario d'usure (`bellecombe.yaml`).
  */
 import { mt as t, type Lang } from './text';
 import Stat from './Stat.astro';
@@ -30,18 +32,13 @@ interface Props {
 const { lang } = Astro.props;
 const dec = (v: number, n = 1) => decimal(v, n, lang);
 
-// ── La série, telle que le seed la fabrique ────────────────────────────
-const JOURS = 30;
-const BASE = 2.2; // profil `mm/s` : une broche saine tient sous 2,8
-const RAMPE = 3.1; // scénario `spindle-wear`, amount
-const DEBUT = 9; // la rampe court sur les vingt et un derniers jours
+// ── La série, mesurée sur le parc de démonstration ─────────────────────
+const serie = [
+  2.26, 2.25, 2.35, 2.45, 2.56, 2.66, 2.76, 3.08, 3.2, 3.29, 3.41,
+  3.56, 3.85, 3.99, 4.1, 4.19, 4.29, 4.67, 4.79, 4.87, 4.95, 5.09,
+];
+const JOURS = serie.length - 1;
 const SEUIL = 4.5; // ISO 10816
-
-const serie = Array.from({ length: JOURS + 1 }, (_, d) => {
-  const p = d <= DEBUT ? 0 : Math.min(1, (d - DEBUT) / (JOURS - DEBUT));
-  const bruit = Math.sin(d * 2.399) * 0.055 + Math.sin(d * 0.817) * 0.035;
-  return Math.round((BASE + RAMPE * Math.pow(p, 1.35) + bruit) * 100) / 100;
-});
 const jFranchi = serie.findIndex((v) => v >= SEUIL);
 const depuis = JOURS - jFranchi;
 
@@ -133,29 +130,30 @@ const yHit = y(serie[jFranchi]);
     /* La cloche sonne juste après le franchissement : elle apparaît, puis
        balance deux fois et se pose. */
     @keyframes sws-bell {
-      0%, 36% { opacity: 0; transform: scale(0.4) rotate(0); }
-      41% { opacity: 1; transform: scale(1.12) rotate(0); }
-      45% { transform: scale(1) rotate(-16deg); }
-      49% { transform: rotate(13deg); }
-      53% { transform: rotate(-8deg); }
-      57%, 100% { opacity: 1; transform: scale(1) rotate(0); }
+      0%, 34.1% { opacity: 0; transform: scale(0.4) rotate(0); }
+      39.1% { opacity: 1; transform: scale(1.12) rotate(0); }
+      43.1% { transform: scale(1) rotate(-16deg); }
+      47.1% { transform: rotate(13deg); }
+      51.1% { transform: rotate(-8deg); }
+      55.1%, 100% { opacity: 1; transform: scale(1) rotate(0); }
     }
     @keyframes sws-limit {
       0%, 10% { opacity: 0; transform: translateX(26px); }
       26%, 100% { opacity: 1; transform: translateX(0); }
     }
     /* Le point apparaît là où le crayon franchit réellement le trait, et
-       non à la fin de la course : le franchissement tombe à 86,2 % de la
-       longueur du tracé, donc à 32,7 % d'un cycle où le tracé court de
-       zéro à 38 %. La valeur est calculée, pas estimée à l'œil. */
+       non à la fin de la course : le franchissement tombe à 81,2 % de la
+       longueur du tracé, donc à 30,8 % d'un cycle où le tracé court de
+       zéro à 38 %. La valeur est calculée sur la série, pas estimée à
+       l'œil : à recalculer si la série change. */
     @keyframes sws-dot {
-      0%, 32.7% { opacity: 0; transform: scale(0); }
+      0%, 30.8% { opacity: 0; transform: scale(0); }
       38% { opacity: 1; transform: scale(1.4); }
       44%, 100% { opacity: 1; transform: scale(1); }
     }
     @keyframes sws-ping {
-      0%, 32.7% { opacity: 0; r: 6; }
-      35% { opacity: 0.5; r: 6; }
+      0%, 30.8% { opacity: 0; r: 6; }
+      33.1% { opacity: 0.5; r: 6; }
       54%, 100% { opacity: 0; r: 28; }
     }
   }
