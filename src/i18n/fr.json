@@ -133,7 +133,7 @@
         {
           "id": "indicateurs",
           "title": "Indicateurs",
-          "body": "Taux de marche, micro-arrêts, consommation à l'arrêt : calculés depuis vos compteurs, pour suivre ce qui progresse."
+          "body": "Taux de marche, temps d'arrêt, part consommée hors production : calculés depuis vos compteurs, pour suivre ce qui progresse."
         },
         {
           "id": "revisions",
@@ -348,7 +348,7 @@
     },
     "kpi": {
       "title": "Les indicateurs, déjà calculés",
-      "body": "Micro-arrêts, disponibilité, consommation à l'arrêt : chaque machine arrive avec ses indicateurs. Quand une donnée manque, l'indicateur le dit au lieu d'afficher un chiffre faux."
+      "body": "Disponibilité, temps d'arrêt, consommation à l'arrêt : chaque machine arrive avec ses indicateurs. Quand une donnée manque, l'indicateur le dit au lieu d'afficher un chiffre faux."
     },
     "dash": {
       "title": "Vos tableaux de bord, sans code",
@@ -459,7 +459,7 @@
         },
         {
           "route": "Capteurs externes",
-          "gets": "Consommation, courant de broche, temps de cycle, comptage de pièces, micro-arrêts, état de la colonne lumineuse.",
+          "gets": "Consommation, courant de broche, temps de cycle, comptage de pièces, temps d'arrêt, état de la colonne lumineuse.",
           "cost": "Quelques centaines d'euros par machine",
           "cost_level": "normal",
           "when": "Le meilleur rapport valeur sur prix quand la machine est fermée ou ancienne. Une pince de mesure et un compteur d'énergie communicants suffisent à voir tourner une machine, à dater ses arrêts et à mesurer sa consommation."

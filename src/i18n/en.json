@@ -133,7 +133,7 @@
         {
           "id": "indicateurs",
           "title": "Indicators",
-          "body": "Run rate, micro-stops, energy used while stopped: calculated from your counters, to follow what improves."
+          "body": "Run rate, downtime, share of energy used outside production: calculated from your counters, to follow what improves."
         },
         {
           "id": "revisions",
@@ -348,7 +348,7 @@
     },
     "kpi": {
       "title": "Indicators, already calculated",
-      "body": "Micro-stops, availability, energy used while stopped: every machine arrives with its indicators. When data is missing, the indicator says so instead of showing a wrong figure."
+      "body": "Availability, downtime, energy used while stopped: every machine arrives with its indicators. When data is missing, the indicator says so instead of showing a wrong figure."
     },
     "dash": {
       "title": "Your dashboards, no code",
@@ -459,7 +459,7 @@
         },
         {
           "route": "External sensors",
-          "gets": "Consumption, spindle current, cycle time, part counting, micro-stops, stack light state.",
+          "gets": "Consumption, spindle current, cycle time, part counting, downtime, stack light state.",
           "cost": "A few hundred euros per machine",
           "cost_level": "normal",
           "when": "The best value for money when the machine is closed or old. A current clamp and a communicating energy meter are enough to see a machine run, timestamp its stops and measure its consumption."
