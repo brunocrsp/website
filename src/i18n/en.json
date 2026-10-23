@@ -394,7 +394,7 @@
       "acq": "Meshvise driver list: OPC UA, Modbus, BACnet, S7, MQTT and the other protocols of a machine shop, each with its address and polling rate.",
       "hist": "Seven-day energy consumption curve in Meshvise, with the configuration deployment marked on the period.",
       "alarms": "Spindle vibration alarm settings in Meshvise: severity, threshold, deadband, delay, notification group and webhook.",
-      "kpi": "Meshvise Indicators screen: the energy each meter uses while stopped, and for each indicator its window, its coverage or the reason it is missing.",
+      "kpi": "Meshvise Indicators screen: availability, downtime, parts produced and long stoppages across the site, each with its window, its comparison with the previous day and what is missing from its calculation.",
       "dash": "Meshvise \"Right now\" dashboard: alarms, machine states and power draw, live.",
       "trace": "Configuration revision history in Meshvise: message, author and date of each change, with a rollback on every line.",
       "synoptic": "The Meshvise synoptic editor: a library of industrial symbols and the utilities diagram of a machining cell, drawn in the browser."

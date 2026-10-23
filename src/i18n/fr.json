@@ -394,7 +394,7 @@
       "acq": "Liste des pilotes de Meshvise : OPC UA, Modbus, BACnet, S7, MQTT et les autres protocoles d'un atelier, chacun avec son adresse et sa cadence.",
       "hist": "Courbe d'énergie consommée sur sept jours dans Meshvise, avec le déploiement de configuration marqué sur la période.",
       "alarms": "Réglage d'une alarme de vibration de broche dans Meshvise : sévérité, seuil, bande morte, délai, groupe de notification et webhook.",
-      "kpi": "Écran Indicateurs de Meshvise : la consommation à l'arrêt de chaque compteur, et pour chaque indicateur sa fenêtre, sa couverture ou la raison de son absence.",
+      "kpi": "Écran Indicateurs de Meshvise : disponibilité, temps d'arrêt, pièces produites et arrêts longs du parc, chacun avec sa fenêtre, sa comparaison à la veille et ce qui manque à son calcul.",
       "dash": "Tableau de bord « En ce moment » de Meshvise : alarmes, état des machines et puissance appelée, en direct.",
       "trace": "Historique des révisions de configuration dans Meshvise : message, auteur et date de chaque changement, et le retour arrière sur chaque ligne.",
       "synoptic": "L'éditeur de synoptiques de Meshvise : une bibliothèque de symboles industriels et le schéma des utilités d'un îlot d'usinage, dessiné dans le navigateur."

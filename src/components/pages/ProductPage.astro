@@ -18,15 +18,17 @@
  *
  * Les captures sont prises sur le parc de démonstration de Bellecombe, une
  * série par langue : le produit est traduit, la page anglaise montre donc
- * l'interface en anglais. Pour les refaire : navigateur à 1232 × 800 px en
- * densité 2, recadrage de 976 × 610 px sans la barre latérale, le même
- * cadre pour les six. Deux écrans sont retouchés avant la prise, par
- * masquage et rien d'autre : les révisions perdent la colonne du nombre de
- * changements et laissent leurs messages revenir à la ligne (sinon le
- * tableau défile et perd son bouton de retour arrière), et la liste des
- * pilotes ne garde que ceux qui acquièrent (le 2026-09-16, six ou sept
- * pilotes du parc étaient en échec face à leur simulateur, défaut signalé à
- * part).
+ * l'interface en anglais (les noms du parc restent en français, ce sont des
+ * données). Reprises le 2026-10-23 sur le parc rejoué (ADR-0056), en lecture
+ * seule : le script de prise refuse toute requête qui n'est pas une lecture.
+ * Navigateur à 1232 × 800 px, recadrage de 976 × 610 px sans la barre
+ * latérale, rendu à 1952 px de large. Les révisions sont prises à 1440 px
+ * de large (recadrage 1184 × 740), seule largeur où le tableau garde ses
+ * boutons de retour arrière sans défiler. Un seul masquage : les drivers
+ * « E2E-… » laissés sur la base partagée par les tests de bout en bout, qui
+ * n'existent pas sur le parc. Les indicateurs montrent les cartes du parc et
+ * non le tableau : sa première colonne ne reste pas en place au défilement,
+ * la consommation à l'arrêt y serait sans nom de machine.
  *
  * Le synoptique (2026-10-23) est l'éditeur ouvert sur « Utilités de l'îlot
  * CN » : la section parle d'installations dessinées dans le navigateur.
