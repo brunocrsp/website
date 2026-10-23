@@ -43,8 +43,7 @@
     },
     "screen": {
       "label": "Aperçu du produit",
-      "alt": "Meshvise en fonctionnement sur l'atelier de démonstration",
-      "placeholder": "Capture du produit à venir"
+      "alt": "Meshvise en fonctionnement sur l'atelier de démonstration : le synoptique des utilités d'un îlot d'usinage, animé par les valeurs en direct, avec la navigation du produit."
     },
     "live": {
       "caption": "Ce que montre Meshvise : les points d'un site, en direct",
@@ -398,9 +397,8 @@
       "kpi": "Écran Indicateurs de Meshvise : la consommation à l'arrêt de chaque compteur, et pour chaque indicateur sa fenêtre, sa couverture ou la raison de son absence.",
       "dash": "Tableau de bord « En ce moment » de Meshvise : alarmes, état des machines et puissance appelée, en direct.",
       "trace": "Historique des révisions de configuration dans Meshvise : message, auteur et date de chaque changement, et le retour arrière sur chaque ligne.",
-      "synoptic": "Synoptique d'une installation dans Meshvise, animé par les valeurs réelles."
-    },
-    "pending": "Capture du synoptique à venir"
+      "synoptic": "L'éditeur de synoptiques de Meshvise : une bibliothèque de symboles industriels et le schéma des utilités d'un îlot d'usinage, dessiné dans le navigateur."
+    }
   },
   "protocols": {
     "meta": {

@@ -26,8 +26,13 @@
  * tableau défile et perd son bouton de retour arrière), et la liste des
  * pilotes ne garde que ceux qui acquièrent (le 2026-09-16, six ou sept
  * pilotes du parc étaient en échec face à leur simulateur, défaut signalé à
- * part). Le parc de démonstration n'a aucun synoptique : sa place est
- * réservée, dans le même cadre, jusqu'à ce qu'il en ait un.
+ * part).
+ *
+ * Le synoptique (2026-10-23) est l'éditeur ouvert sur « Utilités de l'îlot
+ * CN » : la section parle d'installations dessinées dans le navigateur.
+ * Navigateur à 1440 × 900 px en densité 1,75, recadrage de 1176 × 735 px
+ * depuis (248, 76), barre latérale exclue, bibliothèque de symboles comprise.
+ * Ouvert en lecture seule, aucune requête d'écriture ne part.
  */
 import Base from '../../layouts/Base.astro';
 import fr from '../../i18n/fr.json';
@@ -48,14 +53,16 @@ import alarmsEn from '../../assets/screens/en/alarmes.png';
 import kpiEn from '../../assets/screens/en/indicateurs.png';
 import dashEn from '../../assets/screens/en/tableaux.png';
 import traceEn from '../../assets/screens/en/revisions.png';
+import synopticFr from '../../assets/screens/fr/synoptique.png';
+import synopticEn from '../../assets/screens/en/synoptique.png';
 import { t, type Lang } from '../../i18n';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 
 const CAPTURES = {
-  fr: { acq: acqFr, hist: histFr, alarms: alarmsFr, kpi: kpiFr, dash: dashFr, trace: traceFr },
-  en: { acq: acqEn, hist: histEn, alarms: alarmsEn, kpi: kpiEn, dash: dashEn, trace: traceEn },
+  fr: { acq: acqFr, hist: histFr, alarms: alarmsFr, kpi: kpiFr, dash: dashFr, synoptic: synopticFr, trace: traceFr },
+  en: { acq: acqEn, hist: histEn, alarms: alarmsEn, kpi: kpiEn, dash: dashEn, synoptic: synopticEn, trace: traceEn },
 } as const;
 const captures = CAPTURES[lang];
 
@@ -157,7 +164,7 @@ const ANCRES: Record<string, string> = {
           <h2 class="t-page">{t(lang, 'product.synoptic.title')}</h2>
           <p class="corps">{t(lang, 'product.synoptic.body')}</p>
         </div>
-        <ProductShot alt={t(lang, 'product.shots.synoptic')} pending={t(lang, 'product.pending')} />
+        <ProductShot shot={captures.synoptic} alt={t(lang, 'product.shots.synoptic')} />
       </div>
       <div class="colonnes colonnes--2">
         {['live', 'logic'].map((k) => (

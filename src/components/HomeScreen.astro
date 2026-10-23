@@ -3,11 +3,12 @@
  * La capture du produit sur l'accueil, juste sous l'accroche : le visiteur
  * voit à quoi ressemble Meshvise avant de lire quoi que ce soit d'autre.
  *
- * Aucune capture n'est prête au 2026-09-23 : la section réserve la place
- * dans son cadre définitif (ProductShot, le même que sur la page Produit).
- * Pour poser la capture, importer les deux images (une par langue) et les
- * passer en `shot` depuis la page d'accueil : le cadre, les ombres et les
- * marges ne bougent pas.
+ * La capture (2026-10-23) est la fenêtre entière du produit, barre latérale
+ * comprise, sur le synoptique « Utilités de l'îlot CN » animé en direct :
+ * le visiteur voit l'atelier en fonctionnement et toute la navigation.
+ * Navigateur à 1440 × 900 px en densité 1,5, une image par langue, posée
+ * en `shot` depuis la page d'accueil, dans le même cadre (ProductShot) que
+ * la page Produit.
  */
 import type { ImageMetadata } from 'astro';
 import ProductShot from './ProductShot.astro';
@@ -15,7 +16,7 @@ import { t, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
-  shot?: ImageMetadata;
+  shot: ImageMetadata;
 }
 
 const { lang, shot } = Astro.props;
@@ -26,7 +27,6 @@ const { lang, shot } = Astro.props;
     <ProductShot
       shot={shot}
       alt={t(lang, 'home.screen.alt')}
-      pending={t(lang, 'home.screen.placeholder')}
       sizes="(min-width: 1184px) 1104px, 100vw"
       eager
     />

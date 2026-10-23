@@ -43,8 +43,7 @@
     },
     "screen": {
       "label": "Product preview",
-      "alt": "Meshvise running on the demonstration shop floor",
-      "placeholder": "Product screenshot coming soon"
+      "alt": "Meshvise running on the demonstration shop floor: the utilities synoptic of a machining cell, animated by live values, with the product navigation."
     },
     "live": {
       "caption": "What Meshvise shows: one site's points, live",
@@ -398,9 +397,8 @@
       "kpi": "Meshvise Indicators screen: the energy each meter uses while stopped, and for each indicator its window, its coverage or the reason it is missing.",
       "dash": "Meshvise \"Right now\" dashboard: alarms, machine states and power draw, live.",
       "trace": "Configuration revision history in Meshvise: message, author and date of each change, with a rollback on every line.",
-      "synoptic": "Synoptic of an installation in Meshvise, animated by live values."
-    },
-    "pending": "Synoptic screenshot coming soon"
+      "synoptic": "The Meshvise synoptic editor: a library of industrial symbols and the utilities diagram of a machining cell, drawn in the browser."
+    }
   },
   "protocols": {
     "meta": {

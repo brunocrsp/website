@@ -287,6 +287,23 @@ describe('Footer', () => {
   }
 });
 
+// Une capture manquante réserve sa place avec un cadre vide (ProductShot) :
+// utile en développement, jamais en production.
+describe('Product captures', () => {
+  for (const key of SITE) {
+    it(`${key} ships no empty capture slot`, () => {
+      expect(html[key]).not.toMatch(/class="attente/);
+    });
+  }
+
+  for (const lang of ['fr', 'en'] as const) {
+    it(`${lang} home and product pages show their captures`, () => {
+      expect(html[lang]).toMatch(/<img[^>]+alt="[^"]*"[^>]*class="capture/);
+      expect(html[`${lang}_product`].match(/class="capture/g)?.length).toBe(7);
+    });
+  }
+});
+
 describe('Legal pages', () => {
   for (const lang of ['fr', 'en'] as const) {
     it(`${lang} legal notice names the host and links to the privacy policy`, () => {
