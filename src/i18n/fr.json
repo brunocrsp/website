@@ -446,7 +446,7 @@
       "principle": "Meshvise ne remplace pas la passerelle du constructeur, il se branche sur sa sortie normalisée. Dès qu'une machine expose de l'OPC UA, du MQTT ou du Modbus, elle devient un équipement comme un autre.",
       "ladder_title": "Quatre voies, de la moins chère à la plus chère",
       "ladder_intro": "L'option qui fait parler une machine dans un protocole standard est presque toujours payante, facturée par machine, et parfois assortie d'une mise à niveau de la commande. Un devis de ce type suffit à enterrer un projet. Il existe pourtant trois voies moins chères avant celle-là, et elles suffisent pour la plupart des indicateurs.",
-      "ladder_key": "Un taux de rendement ne demande pas de lire la commande numérique. Marche, arrêt, cycle et pièces produites se mesurent de l'extérieur, pour une fraction du prix d'une option constructeur.",
+      "ladder_key": "Suivre la marche d'une machine ne demande pas de lire sa commande numérique. Marche, arrêt, cycle et pièces produites se mesurent de l'extérieur, pour une fraction du prix d'une option constructeur.",
       "ladder_col_route": "Voie",
       "ladder_col_gets": "Ce que vous obtenez",
       "ladder_col_cost": "Coût",

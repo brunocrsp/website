@@ -446,7 +446,7 @@
       "principle": "Meshvise does not replace the manufacturer's gateway, it connects to its standardised output. As soon as a machine exposes OPC UA, MQTT or Modbus, it becomes equipment like any other.",
       "ladder_title": "Four routes, from the cheapest to the most expensive",
       "ladder_intro": "The option that makes a machine speak a standard protocol is almost always paid for, billed per machine, and sometimes bundled with a control upgrade. A quote like that is enough to bury a project. Yet there are three cheaper routes before that one, and they cover most indicators.",
-      "ladder_key": "Computing OEE does not require reading the numerical control. Running, stopped, cycle and parts produced can be measured from the outside, for a fraction of the price of a manufacturer option.",
+      "ladder_key": "Tracking how a machine runs does not require reading its numerical control. Running, stopped, cycle and parts produced can be measured from the outside, for a fraction of the price of a manufacturer option.",
       "ladder_col_route": "Route",
       "ladder_col_gets": "What you get",
       "ladder_col_cost": "Cost",
