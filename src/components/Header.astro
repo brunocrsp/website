@@ -13,7 +13,7 @@ const alternateLangLabel = alternateLang === 'fr' ? 'Français' : 'English';
 const alternateUrl = alternateHref(Astro.url.pathname, lang, alternateLang);
 const switchLanguageLabel = t(lang, 'a11y.switch_language').replace('{lang}', alternateLangLabel);
 
-const NAV: RouteKey[] = ['home', 'why', 'product', 'protocols', 'pricing'];
+const NAV: RouteKey[] = ['home', 'why', 'product', 'protocols', 'pricing', 'contact'];
 const current = Astro.url.pathname;
 const isCurrent = (key: RouteKey) => current === href(lang, key);
 ---

@@ -183,8 +183,8 @@ describe('Hard-rule lint on built HTML', () => {
   }
 });
 
-// La structure du site depuis le 2026-09-23 : cinq entrées dans la barre,
-// les pages supprimées ne sont plus liées nulle part.
+// La structure du site depuis le 2026-09-23 : les entrées de la barre (Contact
+// ajouté le 2026-10-23), les pages supprimées ne sont plus liées nulle part.
 describe('Navigation', () => {
   for (const lang of ['fr', 'en'] as const) {
     const nav = () => {
@@ -193,12 +193,12 @@ describe('Navigation', () => {
       return m[1];
     };
 
-    it(`${lang} top bar lists home, why, product, protocols, pricing`, () => {
+    it(`${lang} top bar lists home, why, product, protocols, pricing, contact`, () => {
       const liens = [...nav().matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
       expect(liens).toEqual(
         lang === 'fr'
-          ? ['/fr/', '/fr/pourquoi-superviser/', '/fr/produit/', '/fr/protocoles/', '/fr/tarifs/']
-          : ['/en/', '/en/why-supervise/', '/en/product/', '/en/protocols/', '/en/pricing/'],
+          ? ['/fr/', '/fr/pourquoi-superviser/', '/fr/produit/', '/fr/protocoles/', '/fr/tarifs/', '/fr/contact/']
+          : ['/en/', '/en/why-supervise/', '/en/product/', '/en/protocols/', '/en/pricing/', '/en/contact/'],
       );
     });
 
