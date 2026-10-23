@@ -115,6 +115,6 @@ un refus veut dire que la vitrine tourne déjà sur 4321.
 - `src/layouts/Base.astro` head, icons, structured data
 - `src/i18n/{fr,en}.json` copy; `motion.{fr,en}.json` texts drawn inside the animations; `faq-keys.ts` the pricing FAQ
 - `src/styles/global.css` tokens, typography, `dark-block`, form fields
-- `public/llms.txt` the summary read by AI search engines: keep it in line with the site
+- `src/pages/llms.txt.ts` and `llms-full.txt.ts` what AI search engines read, both generated from the page texts at build time: never write them by hand
 - `tests/built-html.test.ts` assertions on the built static output; `tests/i18n.test.ts` FR/EN symmetry and typography
 - `.github/workflows/ci.yml`, `.github/workflows/deploy.yml` CI + auto-deploy

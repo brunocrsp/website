@@ -10,6 +10,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, it, expect, beforeAll } from 'vitest';
+import en from '../src/i18n/en.json';
 
 const dist = resolve(__dirname, '..', 'dist');
 const pages = {
@@ -281,7 +282,18 @@ describe('Files for search engines and AI', () => {
   it('llms.txt makes no withdrawn promise', () => {
     const t = lire('llms.txt');
     expect(t).not.toMatch(/7-day|seven-day|free trial|€0|PostgreSQL|Power BI|direct read/i);
+    expect(t).not.toMatch(/night-time|baseload|nothing is lost|templates ready|timers/i);
     expect(t).toContain('https://meshvise.com/llms-full.txt');
+  });
+
+  it('llms.txt is generated from the site texts', () => {
+    const t = lire('llms.txt');
+    expect(t).toContain(en.home.meta.description);
+    for (const f of en.home.see.features) expect(t).toContain(f.body);
+    expect(t).toContain(en.pricing.onprem.price);
+    expect(t).toContain('https://meshvise.com/fr/contact/');
+    expect(t).not.toContain('undefined');
+    expect(t).not.toContain('—');
   });
 
   it('llms-full.txt carries every page in both languages', () => {

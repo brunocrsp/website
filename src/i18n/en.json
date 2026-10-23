@@ -129,12 +129,12 @@
         {
           "id": "tableaux",
           "title": "Dashboards",
-          "body": "Templates ready at installation, and your own dashboards to build without code, fed live."
+          "body": "Your dashboards, built without code and fed live. The same dashboard works from one machine to the next."
         },
         {
           "id": "indicateurs",
           "title": "Indicators",
-          "body": "Run rate, micro-stops, night-time baseload: calculated from your counters, to follow what improves."
+          "body": "Run rate, micro-stops, energy used while stopped: calculated from your counters, to follow what improves."
         },
         {
           "id": "revisions",
@@ -270,7 +270,7 @@
       "title": "All your machines, whatever the brand",
       "intro": "Thirteen protocols included, no module to buy per brand.",
       "link": "Details of each protocol",
-      "after": "Meshvise finds the equipment on the network and reads each one at its own pace. If the network drops, nothing is lost: everything resumes where it stopped.",
+      "after": "Each device is read at its own pace. Devices that can describe themselves hand over their list of points, the others are declared in the interface. When a device stops answering, Meshvise says so instead of freezing its last value.",
       "protocols": [
         {
           "name": "Modbus TCP",
@@ -349,7 +349,7 @@
     },
     "kpi": {
       "title": "Indicators, already calculated",
-      "body": "Micro-stops, availability, night-time consumption: every machine arrives with its indicators. When data is missing, the indicator says so instead of showing a wrong figure."
+      "body": "Micro-stops, availability, energy used while stopped: every machine arrives with its indicators. When data is missing, the indicator says so instead of showing a wrong figure."
     },
     "dash": {
       "title": "Your dashboards, no code",
@@ -365,7 +365,7 @@
     },
     "logic": {
       "title": "Rules without programming",
-      "body": "Calculations, schedules, timers: the site's logic is built by connecting blocks."
+      "body": "Calculations, comparisons, logic conditions: the site's logic is built by connecting blocks."
     },
     "trace": {
       "title": "Who changed this threshold, and when?",
@@ -395,7 +395,7 @@
       "acq": "Meshvise driver list: OPC UA, Modbus, BACnet, S7, MQTT and the other protocols of a machine shop, each with its address and polling rate.",
       "hist": "Seven-day energy consumption curve in Meshvise, with the configuration deployment marked on the period.",
       "alarms": "Spindle vibration alarm settings in Meshvise: severity, threshold, deadband, delay, notification group and webhook.",
-      "kpi": "Meshvise Indicators screen: the night-time baseload of each meter, and for each indicator its window, its coverage or the reason it is missing.",
+      "kpi": "Meshvise Indicators screen: the energy each meter uses while stopped, and for each indicator its window, its coverage or the reason it is missing.",
       "dash": "Meshvise \"Right now\" dashboard: alarms, machine states and power draw, live.",
       "trace": "Configuration revision history in Meshvise: message, author and date of each change, with a rollback on every line.",
       "synoptic": "Synoptic of an installation in Meshvise, animated by live values."
@@ -405,7 +405,7 @@
   "protocols": {
     "meta": {
       "title": "Protocols · Thirteen industrial protocols included · Meshvise",
-      "description": "Modbus TCP and RTU, OPC UA, BACnet/IP, Siemens S7, MQTT, EtherNet/IP, Beckhoff ADS, REST, WebSocket, Webhook, Sparkplug B. Transport, addressing, direction and covered equipment for each."
+      "description": "Modbus TCP and RTU, OPC UA, BACnet/IP, Siemens S7, MQTT, EtherNet/IP, Beckhoff ADS, REST, WebSocket, Webhook, Sparkplug B, MTConnect. Transport, addressing, direction and covered equipment for each."
     },
     "hero": {
       "title": "Thirteen protocols, one engine",
@@ -670,8 +670,8 @@
         "transport": "MQTT / 1883 or 8883",
         "mode": "mode_push",
         "addressing": "Group, node, device, metric",
-        "write": false,
-        "desc": "Standardised industrial MQTT. Meshvise acts as the host application, the supervisor role: it reads birth messages to build the metric table, then decodes the data messages. Equipment structure is discovered, not declared.",
+        "write": true,
+        "desc": "Standardised industrial MQTT. Meshvise acts as the host application, the supervisor role: it reads birth messages to build the metric table, then decodes the data messages. A write goes out as a command message, to the node or the device. Equipment structure is discovered, not declared.",
         "equipment": "Edge gateways, unified namespace architectures",
         "note": "Automatic metric discovery is the main benefit: plugging in a gateway is enough for its points to appear."
       },

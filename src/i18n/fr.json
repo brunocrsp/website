@@ -129,12 +129,12 @@
         {
           "id": "tableaux",
           "title": "Tableaux de bord",
-          "body": "Des modèles prêts dès l'installation, et vos propres tableaux de bord à composer sans code, alimentés en direct."
+          "body": "Vos tableaux de bord, composés sans code et alimentés en direct. Un même tableau sert d'une machine à l'autre."
         },
         {
           "id": "indicateurs",
           "title": "Indicateurs",
-          "body": "Taux de marche, micro-arrêts, talon nocturne : calculés depuis vos compteurs, pour suivre ce qui progresse."
+          "body": "Taux de marche, micro-arrêts, consommation à l'arrêt : calculés depuis vos compteurs, pour suivre ce qui progresse."
         },
         {
           "id": "revisions",
@@ -270,7 +270,7 @@
       "title": "Toutes vos machines, quelle que soit la marque",
       "intro": "Treize protocoles inclus, sans module à acheter par marque.",
       "link": "Le détail de chaque protocole",
-      "after": "Meshvise trouve les équipements du réseau et les lit chacun à son rythme. Si le réseau coupe, rien n'est perdu : tout reprend là où ça s'était arrêté.",
+      "after": "Chaque équipement est lu à son rythme. Ceux qui savent se décrire livrent eux-mêmes la liste de leurs points, les autres se déclarent dans l'interface. Quand un équipement ne répond plus, Meshvise le signale au lieu de figer sa dernière valeur.",
       "protocols": [
         {
           "name": "Modbus TCP",
@@ -349,7 +349,7 @@
     },
     "kpi": {
       "title": "Les indicateurs, déjà calculés",
-      "body": "Micro-arrêts, disponibilité, consommation de nuit : chaque machine arrive avec ses indicateurs. Quand une donnée manque, l'indicateur le dit au lieu d'afficher un chiffre faux."
+      "body": "Micro-arrêts, disponibilité, consommation à l'arrêt : chaque machine arrive avec ses indicateurs. Quand une donnée manque, l'indicateur le dit au lieu d'afficher un chiffre faux."
     },
     "dash": {
       "title": "Vos tableaux de bord, sans code",
@@ -365,7 +365,7 @@
     },
     "logic": {
       "title": "Des règles sans programmer",
-      "body": "Calculs, horaires, temporisations : la logique du site se compose en reliant des blocs."
+      "body": "Calculs, comparaisons, conditions logiques : la logique du site se compose en reliant des blocs."
     },
     "trace": {
       "title": "Qui a changé ce seuil, et quand ?",
@@ -395,7 +395,7 @@
       "acq": "Liste des pilotes de Meshvise : OPC UA, Modbus, BACnet, S7, MQTT et les autres protocoles d'un atelier, chacun avec son adresse et sa cadence.",
       "hist": "Courbe d'énergie consommée sur sept jours dans Meshvise, avec le déploiement de configuration marqué sur la période.",
       "alarms": "Réglage d'une alarme de vibration de broche dans Meshvise : sévérité, seuil, bande morte, délai, groupe de notification et webhook.",
-      "kpi": "Écran Indicateurs de Meshvise : le talon de consommation nocturne de chaque compteur, et pour chaque indicateur sa fenêtre, sa couverture ou la raison de son absence.",
+      "kpi": "Écran Indicateurs de Meshvise : la consommation à l'arrêt de chaque compteur, et pour chaque indicateur sa fenêtre, sa couverture ou la raison de son absence.",
       "dash": "Tableau de bord « En ce moment » de Meshvise : alarmes, état des machines et puissance appelée, en direct.",
       "trace": "Historique des révisions de configuration dans Meshvise : message, auteur et date de chaque changement, et le retour arrière sur chaque ligne.",
       "synoptic": "Synoptique d'une installation dans Meshvise, animé par les valeurs réelles."
@@ -405,7 +405,7 @@
   "protocols": {
     "meta": {
       "title": "Protocoles · Treize protocoles industriels inclus · Meshvise",
-      "description": "Modbus TCP et RTU, OPC UA, BACnet/IP, Siemens S7, MQTT, EtherNet/IP, Beckhoff ADS, REST, WebSocket, Webhook, Sparkplug B. Transport, adressage, sens de communication et équipements couverts pour chacun."
+      "description": "Modbus TCP et RTU, OPC UA, BACnet/IP, Siemens S7, MQTT, EtherNet/IP, Beckhoff ADS, REST, WebSocket, Webhook, Sparkplug B, MTConnect. Transport, adressage, sens de communication et équipements couverts pour chacun."
     },
     "hero": {
       "title": "Treize protocoles, un seul moteur",
@@ -670,8 +670,8 @@
         "transport": "MQTT / 1883 ou 8883",
         "mode": "mode_push",
         "addressing": "Groupe, nœud, équipement, métrique",
-        "write": false,
-        "desc": "MQTT industriel normalisé. Meshvise tient le rôle d'application hôte, celui du superviseur : il lit les messages de naissance pour construire la table des métriques, puis décode les messages de données. La structure des équipements est découverte, pas déclarée.",
+        "write": true,
+        "desc": "MQTT industriel normalisé. Meshvise tient le rôle d'application hôte, celui du superviseur : il lit les messages de naissance pour construire la table des métriques, puis décode les messages de données. Une écriture part en message de commande, vers le nœud ou l'équipement. La structure des équipements est découverte, pas déclarée.",
         "equipment": "Passerelles de périphérie, architectures d'espace de noms unifié",
         "note": "La découverte automatique des métriques est le principal intérêt : brancher une passerelle suffit à voir apparaître ses points."
       },
