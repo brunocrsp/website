@@ -1,21 +1,20 @@
 /**
  * Cloudflare Worker entry. Routes:
  *   POST /api/contact → handleContactRequest (the Contact page form)
- *   POST /api/trial   → handleTrialRequest (ADR-0006)
  *   *                 → env.ASSETS.fetch (static site from ./dist)
  *
- * Same-origin form POST, so no CORS / OPTIONS handling needed. No page
- * posts to /api/trial today: the trial is on quote since 2026-09-22 and
- * requested through the Contact page. The endpoint stays, specified by
- * ADR-0006.
+ * Same-origin form POST, so no CORS / OPTIONS handling needed.
+ *
+ * POST /api/trial (ADR-0006: trial licence signed and emailed with a
+ * compose file) was removed on 2026-10-23: no page had called it since the
+ * trial went on quote (2026-09-22), and the compose it emailed could not
+ * start (DEP-16). The code is in the git history before that date.
  */
 
 import { handleContactRequest } from './worker/handlers/contact.js';
-import { handleTrialRequest } from './worker/handlers/trial.js';
 
 const ROUTES = {
   '/api/contact': handleContactRequest,
-  '/api/trial': handleTrialRequest,
 };
 
 export default {

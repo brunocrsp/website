@@ -5,8 +5,8 @@
 //
 // Défenses contre le spam, sans service tiers : un champ piège invisible
 // (`website`) qu'un humain laisse vide, et le limiteur de débit natif du
-// Worker (3 requêtes par minute et par IP), partagé avec /api/trial sous
-// une clé distincte. Turnstile pourra s'y ajouter si le spam passe.
+// Worker (3 requêtes par minute et par IP). Turnstile pourra s'y ajouter si
+// le spam passe.
 //
 // Les effets de bord (fetch) sont injectables pour les tests.
 
@@ -68,7 +68,7 @@ export async function handleContactRequest(request, env, deps = {}) {
   if (install.length > 5000) return badRequest('bad-install', 'Message is too long (5000 chars max).');
 
   const ip = request.headers.get('CF-Connecting-IP') || request.headers.get('X-Real-IP') || 'unknown';
-  const rate = await checkNativeRateLimit(env.TRIAL_RATE_LIMITER, `contact:${ip}`);
+  const rate = await checkNativeRateLimit(env.CONTACT_RATE_LIMITER, `contact:${ip}`);
   if (!rate.allowed) {
     return tooManyRequests('rate-limit', 'Too many requests. Try again in a minute.');
   }

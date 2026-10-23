@@ -22,28 +22,15 @@
     { "pattern": "www.meshvise.com", "custom_domain": true }
   ],
 
-  // Trial license bindings (Vague 5).
-  // - TRIAL_DEDUPE: KV used for email dedupe (key `email:<lower>`, TTL 30d)
-  //   and per-IP 24h throttle (key `ip:<addr>`, TTL 24h). 1 namespace, 2 key
-  //   prefixes, simpler ops than maintaining two namespaces.
-  // - TRIAL_RATE_LIMITER: native Cloudflare Rate Limiting binding for the
-  //   short-window spam shield (3 req per 60s per IP). Native simple
-  //   bindings only support period=10 or period=60, so the longer 24h
-  //   policy from ADR-0006 is implemented in TRIAL_DEDUPE above.
-  // Provisionnes 2026-05-07 sur compte CF Meshvise (les anciens IDs Vague 5
-  // etaient sur le compte legacy WireGrid, supprime au cutover).
-  // Local `wrangler dev` utilise preview_id; CI/prod utilise id.
-  "kv_namespaces": [
-    {
-      "binding": "TRIAL_DEDUPE",
-      "id": "cab6e14b8ed24b09a6a4cbf085d255f8",
-      "preview_id": "e13e35188b704cdd9eaff3d76c31fa68"
-    }
-  ],
+  // CONTACT_RATE_LIMITER: native Cloudflare Rate Limiting binding, the
+  // spam shield of the contact form (3 requests per 60 s per IP, key
+  // `contact:<ip>`). It was TRIAL_RATE_LIMITER, shared with /api/trial,
+  // until that route was removed on 2026-10-23; the KV namespace of the
+  // trial (TRIAL_DEDUPE) went with it.
   "unsafe": {
     "bindings": [
       {
-        "name": "TRIAL_RATE_LIMITER",
+        "name": "CONTACT_RATE_LIMITER",
         "type": "ratelimit",
         "namespace_id": "1001",
         "simple": {

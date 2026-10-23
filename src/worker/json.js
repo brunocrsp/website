@@ -1,4 +1,4 @@
-// Tiny JSON / Response helpers shared by the trial handler. No deps.
+// Tiny JSON / Response helpers for the worker handlers. No deps.
 
 export function jsonResponse(body, init = {}) {
   return new Response(JSON.stringify(body), {

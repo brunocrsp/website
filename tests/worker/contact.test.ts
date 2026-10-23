@@ -93,15 +93,15 @@ describe('POST /api/contact', () => {
 
   it('refuses when the rate limiter says no', async () => {
     const { fn, calls } = makeFetch();
-    const env = { ...ENV, TRIAL_RATE_LIMITER: { limit: async () => ({ success: false }) } };
+    const env = { ...ENV, CONTACT_RATE_LIMITER: { limit: async () => ({ success: false }) } };
     const res = await handleContactRequest(request(VALIDE), env, { fetch: fn });
     expect(res.status).toBe(429);
     expect(calls).toHaveLength(0);
   });
 
-  it('keys the rate limit on the contact form, apart from the trial', async () => {
+  it('keys the rate limit on the contact form', async () => {
     const keys: string[] = [];
-    const env = { ...ENV, TRIAL_RATE_LIMITER: { limit: async ({ key }: { key: string }) => { keys.push(key); return { success: true }; } } };
+    const env = { ...ENV, CONTACT_RATE_LIMITER: { limit: async ({ key }: { key: string }) => { keys.push(key); return { success: true }; } } };
     await handleContactRequest(request(VALIDE), env, { fetch: makeFetch().fn });
     expect(keys).toEqual(['contact:1.2.3.4']);
   });
