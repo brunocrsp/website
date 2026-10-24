@@ -235,12 +235,12 @@
   "product": {
     "meta": {
       "title": "Produit · Ce que fait Meshvise · Supervision industrielle",
-      "description": "Acquisition, historique, alarmes, indicateurs, tableaux de bord : ce que Meshvise fait de vos données, de la machine au rapport du lundi."
+      "description": "Acquisition, historique, alarmes, indicateurs, tableaux de bord : ce que Meshvise fait de vos données, de la machine au tableau de bord."
     },
     "hero": {
       "lead": "Acquérir, historiser,",
       "accent": "alerter, montrer.",
-      "subtitle": "Ce que Meshvise fait de vos données, de la machine jusqu'au rapport du lundi matin.",
+      "subtitle": "Ce que Meshvise fait de vos données, de la machine jusqu'au tableau de bord.",
       "nav": "Les quatre chapitres"
     },
     "doors": [

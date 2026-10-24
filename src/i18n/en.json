@@ -235,12 +235,12 @@
   "product": {
     "meta": {
       "title": "Product · What Meshvise does · Industrial supervision",
-      "description": "Acquisition, history, alarms, indicators, dashboards: what Meshvise does with your data, from the machine to Monday's report."
+      "description": "Acquisition, history, alarms, indicators, dashboards: what Meshvise does with your data, from the machine to the dashboard."
     },
     "hero": {
       "lead": "Acquire, record,",
       "accent": "alert, show.",
-      "subtitle": "What Meshvise does with your data, from the machine to the Monday morning report.",
+      "subtitle": "What Meshvise does with your data, from the machine to the dashboard.",
       "nav": "The four chapters"
     },
     "doors": [
