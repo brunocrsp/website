@@ -377,3 +377,29 @@ describe('Files for search engines and AI', () => {
     });
   }
 });
+
+describe('Security headers', () => {
+  // Cloudflare pose `_headers` sur chaque fichier servi : sans lui, la
+  // vitrine partait sans aucun en-tête de sécurité (2026-10-25/MEL-11).
+  const headers = () => readFileSync(resolve(dist, '_headers'), 'utf-8');
+
+  it('_headers covers every file with the six headers of the demo', () => {
+    const t = headers();
+    expect(t).toMatch(/^\/\*$/m);
+    for (const h of ['Content-Security-Policy', 'Strict-Transport-Security', 'X-Frame-Options',
+                     'X-Content-Type-Options', 'Referrer-Policy', 'Permissions-Policy']) {
+      expect(t).toMatch(new RegExp(`^  ${h}: \\S`, 'm'));
+    }
+    expect(t).toContain("default-src 'self'");
+    expect(t).toContain("frame-ancestors 'none'");
+    expect(t).toContain("object-src 'none'");
+  });
+
+  // La CSP n'admet que le site lui-même : un script, une feuille ou une
+  // police tirée d'ailleurs serait bloquée chez le visiteur.
+  for (const name of SITE) {
+    it(`${name} loads nothing from another origin`, () => {
+      expect(html[name]).not.toMatch(/<(script|link|img|iframe)\b[^>]*\b(src|href)="(https?:)?\/\/(?!meshvise\.com[/"])[^"]*"[^>]*>/i);
+    });
+  }
+});
