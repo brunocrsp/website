@@ -82,7 +82,7 @@
         {
           "id": "operateur",
           "label": "Opérateur",
-          "line": "Son compteur de pièces et son objectif affichés au poste, sans fiche à remplir.",
+          "line": "Ses pièces et l'état de sa machine affichés au poste, sans fiche à remplir.",
           "alt": "Un opérateur consulte une tablette devant un tour à commande numérique."
         },
         {
@@ -100,7 +100,7 @@
         {
           "id": "direction",
           "label": "Direction de site",
-          "line": "Le coût d'un arrêt, mesuré au lieu d'être estimé.",
+          "line": "Le temps perdu en arrêts, mesuré au lieu d'être estimé.",
           "alt": "Un responsable commente des tableaux de bord affichés au mur."
         }
       ],

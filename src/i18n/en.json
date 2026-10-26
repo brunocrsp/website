@@ -82,7 +82,7 @@
         {
           "id": "operateur",
           "label": "Operator",
-          "line": "Their piece counter and their target shown at the workstation, with no sheet to fill in.",
+          "line": "Their part count and their machine's status shown at the workstation, with no sheet to fill in.",
           "alt": "An operator checks a tablet in front of a CNC lathe."
         },
         {
@@ -100,7 +100,7 @@
         {
           "id": "direction",
           "label": "Site management",
-          "line": "The cost of a stoppage, measured instead of estimated.",
+          "line": "The time lost to stoppages, measured instead of estimated.",
           "alt": "A manager talks through dashboards displayed on the wall."
         }
       ],
