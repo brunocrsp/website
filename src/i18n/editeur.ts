@@ -13,14 +13,14 @@ import { href } from './routes';
 
 export const EDITEUR = {
   /** Prénom et nom de l'entrepreneur individuel. */
-  nom: '',
+  nom: 'Bruno Crespo',
   /** Adresse postale, ou adresse de domiciliation. */
-  adresse: '',
-  siren: '',
+  adresse: '602 route de la Molière, 74150 Marcellaz-Albanais, France',
+  siren: '104 366 406',
   /** Un moyen de contact direct, exigé d'un éditeur professionnel. */
-  telephone: '',
+  telephone: '+33 6 09 68 98 79',
   /** Le directeur de la publication, a priori l'éditeur lui-même. */
-  directeur: '',
+  directeur: 'Bruno Crespo',
 };
 
 export type ChampEditeur = keyof typeof EDITEUR;
