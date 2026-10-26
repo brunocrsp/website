@@ -1,7 +1,10 @@
 /**
  * Cloudflare Worker entry. Routes:
- *   POST /api/contact → handleContactRequest (the Contact page form)
- *   *                 → env.ASSETS.fetch (static site from ./dist)
+ *   POST /api/contact     → handleContactRequest (the Contact page form)
+ *   POST /api/demo-access → handleDemoAccessRequest (the Demo page form:
+ *                           emails the visitor's details, answers the demo
+ *                           URL with a signed access pass, since 2026-10-26)
+ *   *                     → env.ASSETS.fetch (static site from ./dist)
  *
  * Same-origin form POST, so no CORS / OPTIONS handling needed.
  *
@@ -12,9 +15,11 @@
  */
 
 import { handleContactRequest } from './worker/handlers/contact.js';
+import { handleDemoAccessRequest } from './worker/handlers/demo-access.js';
 
 const ROUTES = {
   '/api/contact': handleContactRequest,
+  '/api/demo-access': handleDemoAccessRequest,
 };
 
 export default {

@@ -147,7 +147,7 @@
       "demo": {
         "name": "Online demonstration",
         "price": "Public",
-        "note": "Direct access",
+        "note": "Instant access",
         "cta": "Open the demo"
       },
       "trial": {
@@ -753,10 +753,27 @@
   "demo_page": {
     "meta": {
       "title": "Demo · Meshvise",
-      "description": "The public Meshvise demo is coming. Meanwhile, request a video demonstration on your equipment."
+      "description": "Open the Meshvise demo: a simulated machining shop, its machines, alarms and indicators, live."
     },
-    "title": "The public demo is not online yet",
-    "body": "It will run on a simulated industrial site, with direct access. Meanwhile, a thirty-minute video demonstration on a case close to yours is available now."
+    "title": "Open the demo",
+    "body": "A simulated machining shop, replayed around the clock: machines, alarms, indicators, synoptics. Leave your details and the demo opens right away, for thirty days.",
+    "form": {
+      "phone": "Phone (optional)",
+      "phone_ph": "+44 7700 900123",
+      "submit": "Open the demo",
+      "sending": "Opening the demo…",
+      "error": "The demo could not open.",
+      "error_rate": "Too many requests in a short time, try again in a minute.",
+      "error_email": "Check the email address.",
+      "error_phone": "Check the phone number.",
+      "fallback": "Write to us",
+      "notice": "Your details are used to get back to you about Meshvise. You can object at any time, see the {privacy}.",
+      "privacy": "privacy policy",
+      "already": "Already registered on this device?",
+      "already_link": "Open the demo"
+    },
+    "visio": "Prefer a guided demonstration, on a case close to yours?",
+    "visio_link": "Request it here."
   },
   "legal": {
     "meta": {
@@ -810,7 +827,7 @@
       "description": "The data the meshvise.com website collects, why, for how long, and your rights."
     },
     "title": "Privacy policy",
-    "lede": "The website collects one thing only: what you write in the contact form. Here is what happens to it.",
+    "lede": "The website collects only what you write in its two forms: the contact request and the demo access. Here is what happens to it.",
     "updated": "Updated on 26 October 2026.",
     "legal_link": "legal notice",
     "sections": [
@@ -823,7 +840,7 @@
       {
         "title": "Data collected",
         "body": [
-          "The contact form collects your name, your company, your email address, the subject of your request and the message you write. Nothing is collected until you send it.",
+          "The contact form collects your name, your company, your email address, the subject of your request and the message you write. The demo access form collects your name, your company, your email address and, if you give it, your phone number. Nothing is collected until you send the form.",
           "As with any website, the host processes each visitor's IP address to deliver the pages and protect the site, in particular to limit repeated submissions of the form."
         ]
       },
@@ -831,7 +848,8 @@
         "title": "Purpose and legal basis",
         "body": [
           "This data serves one purpose: answering your request, whether it concerns a licence, a trial, a demonstration or a question. Processing relies on pre-contractual steps taken at your request (Article 6(1)(b) GDPR) and, for a general question, on the legitimate interest in answering you (Article 6(1)(f)).",
-          "It is neither sold nor transferred, and is used for no mailing you did not ask for."
+          "The details of the demo access form open the demo for you, then are used to get back to you about Meshvise, by email or by phone. This processing relies on the publisher's legitimate interest in presenting its offer to professionals who show an interest in it (Article 6(1)(f)). You can object to it at any time, without giving a reason, by writing to {email}.",
+        "The data is neither sold nor transferred. The contact form data is used for no mailing you did not ask for."
         ]
       },
       {
@@ -850,7 +868,8 @@
       {
         "title": "Cookies",
         "body": [
-          "The website sets no cookie of its own and uses no audience measurement, advertising or social media tool: no banner asks for your consent. Cloudflare may set a technical security cookie, strictly necessary to the service and exempt from consent."
+          "The website sets no cookie of its own and uses no audience measurement, advertising or social media tool: no banner asks for your consent. Cloudflare may set a technical security cookie, strictly necessary to the service and exempt from consent.",
+        "The demonstration, on demo.meshvise.com, sets a single cookie once the demo access form is sent: it keeps your access for thirty days and holds no personal data. Strictly necessary to the service you ask for, it is exempt from consent."
         ]
       },
       {

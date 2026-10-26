@@ -141,6 +141,32 @@ describe('Contact pages collect a request with its topic', () => {
   }
 });
 
+// La démo ne s'ouvre qu'après le formulaire de la page Démo (2026-10-26) :
+// la page le porte, dit à quoi servent les coordonnées et renvoie à la
+// politique de confidentialité, qui décrit ce formulaire et le cookie de la
+// démo.
+describe('Demo page opens the demo through its access form', () => {
+  for (const lang of ['fr', 'en'] as const) {
+    const page = (h: Record<Page, string>) => h[`${lang}_demo` as Page];
+    it(`${lang}/demo/index.html has the access form: name, company, email, optional phone`, () => {
+      const p = page(html);
+      expect(p).toMatch(/data-demo-access/);
+      expect(p).toContain("'/api/demo-access'");
+      for (const field of ['name', 'company', 'email']) expect(p).toMatch(new RegExp(`name="${field}"[^>]*required`));
+      expect(p).toMatch(/name="phone"/);
+      expect(p).not.toMatch(/name="phone"[^>]*required/);
+      expect(p).toContain(lang === 'fr' ? 'href="/fr/confidentialite/"' : 'href="/en/privacy/"');
+      expect(p).toContain('href="https://demo.meshvise.com/"');
+    });
+
+    it(`${lang} privacy policy describes the demo access form and its cookie`, () => {
+      const p = html[`${lang}_privacy`];
+      expect(p).toContain(lang === 'fr' ? 'formulaire d&#39;accès à la démo' : 'demo access form');
+      expect(p).toContain('demo.meshvise.com');
+    });
+  }
+});
+
 describe('Landing pages send the trial request to the Contact page', () => {
   for (const lang of ['fr', 'en'] as const) {
     it(`${lang}/index.html links to /${lang}/contact/?sujet=essai`, () => {

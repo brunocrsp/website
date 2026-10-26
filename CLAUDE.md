@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Marketing site for Meshvise (the SCADA/IIoT product), served at https://meshvise.com and https://www.meshvise.com. Pure static Astro build, deployed via Cloudflare Workers (wrangler). The same Worker handles the contact form (`POST /api/contact`). See cross-repo references below.
+Marketing site for Meshvise (the SCADA/IIoT product), served at https://meshvise.com and https://www.meshvise.com. Pure static Astro build, deployed via Cloudflare Workers (wrangler). The same Worker handles the contact form (`POST /api/contact`) and the demo access form (`POST /api/demo-access`). See cross-repo references below.
 
 ## Sister repo and cross-repo context
 
@@ -24,7 +24,7 @@ Paths below are relative to the workspace root, `~/Meshvise`. The Meshvise produ
 | i18n | French (default) + English. Routes `/<lang>/`, slugs in `src/i18n/routes.ts` |
 | Tests | vitest (`tests/`), including assertions on the built HTML |
 
-The Worker proxies `env.ASSETS` and serves `POST /api/contact` only; `/crl.json` is a static page of the build (the revocation list of production licences, ADR-0006 § 3). The trial is on quote and requested through the Contact page. Stay minimal on the edge: a route exists only if a page calls it.
+The Worker proxies `env.ASSETS` and serves `POST /api/contact` and `POST /api/demo-access` only; `/crl.json` is a static page of the build (the revocation list of production licences, ADR-0006 § 3). The trial is on quote and requested through the Contact page. Stay minimal on the edge: a route exists only if a page calls it.
 
 ## The site (since 2026-09-23)
 
@@ -42,10 +42,11 @@ Seven pages per language, plus the two legal pages linked from the footer:
 | Mentions légales | `/fr/mentions-legales/` · `/en/legal-notice/` | `pages/LegalPage.astro` |
 | Confidentialité | `/fr/confidentialite/` · `/en/privacy/` | `pages/PrivacyPage.astro` |
 
-- **Legal pages**: the publisher's identity (name, address, SIREN, phone, publication director) lives in `src/i18n/editeur.ts`, one source for both languages. An empty field shows "à compléter" on the page and **fails the build in CI**: the site cannot be deployed without its publisher. The privacy policy describes exactly what the site collects (the contact form, and the IP address the host sees); a new form, cookie, analytics tool or third-party script changes that page in the same commit.
+- **Legal pages**: the publisher's identity (name, address, SIREN, phone, publication director) lives in `src/i18n/editeur.ts`, one source for both languages. An empty field shows "à compléter" on the page and **fails the build in CI**: the site cannot be deployed without its publisher. The privacy policy describes exactly what the site collects (the contact form, the demo access form and the demo's access cookie, and the IP address the host sees); a new form, cookie, analytics tool or third-party script changes that page in the same commit.
 
 - **Top bar**: Accueil, Pourquoi superviser, Produit, Protocoles, Tarifs, Contact (since 2026-10-23), and the "Voir la démo" button. The mobile menu shows the same list.
 - **Removed on 2026-09-23**, do not bring back without Bruno: FAQ, Guides (and the content collection), À propos, Intégrateurs, Essai (trial page), the `preview-motion` pages. The FAQ survives as a section of the pricing page only (`FAQ_KEYS`, seven buyer questions), and its FAQPage structured data is emitted there only (`<Base faq>`).
+- **The public demo opens only after the Demo page form** (Bruno, 2026-10-26: he wants to know who opens the demo, to get back to them). `DemoAccessForm.astro` collects name, company, email and an optional phone; `POST /api/demo-access` emails them to contact@meshvise.com like a contact request, signs a thirty-day access pass (Ed25519, worker secret `DEMO_ACCESS_KEY`, `src/worker/demo-pass.js`) and answers the demo URL with `?acces=<pass>`, which the page follows. The demo worker (product repo, `apps/demo/src/access.ts`) checks the pass with its public key and sends anyone without one back to `/<lang>/demo/?suite=<page>`. The contract is in the documentation repo's `interfaces-entre-repos.md`. If the email fails, the visitor still gets in and the details are written to the Worker logs. Every "Voir la démo" goes to the Demo page, never straight to `demo.meshvise.com`.
 - **Every "Prendre contact" leads to the Contact page** with the request pre-selected: `/fr/contact/?sujet=licence`, `exploitation`, `essai`, `demo`, `autre`. The form posts to `/api/contact`, which emails contact@meshvise.com through Resend (worker secret `RESEND_API_KEY`); the request sets the email subject. Without the key the endpoint answers an error and the page offers a pre-filled email instead of a false success.
 - **Pricing**: one licence per site, 2 400 € per year, support and every update included, major versions too (decision of 2026-09-23, documentation `2d0b225`). Commissioning on quote. Managed operations "on request", not deliverable yet: promise nothing more.
 
@@ -114,7 +115,7 @@ un refus veut dire que la vitrine tourne déjà sur 4321.
 
 ## Key files
 
-- `src/worker.js` Cloudflare Worker entry (`/api/contact`, static assets)
+- `src/worker.js` Cloudflare Worker entry (`/api/contact`, `/api/demo-access`, static assets)
 - `wrangler.jsonc` Worker config, custom domains, bindings (KV, rate limiting, secrets)
 - `src/pages/<lang>/*.astro` thin route files; the pages live in `src/components/pages/`
 - `src/layouts/Base.astro` head, icons, structured data

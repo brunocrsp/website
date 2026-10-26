@@ -1,0 +1,160 @@
+---
+/**
+ * Le formulaire d'accès à la démo (2026-10-26, demande de Bruno : savoir qui
+ * ouvre la démo, pour le recontacter). Nom, entreprise, courriel et, au
+ * choix, téléphone ; l'envoi poste sur `/api/demo-access`, qui transmet les
+ * coordonnées à contact@meshvise.com et rend l'adresse de la démo avec un
+ * laissez-passer de trente jours : la page la suit aussitôt.
+ *
+ * La démo renvoie ici qui arrive sans laissez-passer, avec la page qu'il
+ * demandait en `?suite=` : elle repart avec l'envoi, et le visiteur y
+ * revient une fois inscrit.
+ */
+import { t, type Lang } from '../i18n';
+import { href } from '../i18n/routes';
+import { DEMO_URL } from '../worker/demo-pass.js';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+
+const [avant, apres] = t(lang, 'demo_page.form.notice').split('{privacy}');
+---
+
+<section class="section border-b border-line">
+  <div class="wrap grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-5">
+      <h1 class="t-page">{t(lang, 'demo_page.title')}</h1>
+      <p class="t-lede mt-5">{t(lang, 'demo_page.body')}</p>
+      <p class="t-small mt-6">
+        {t(lang, 'demo_page.form.already')}{' '}
+        <a href={DEMO_URL + '/'} class="lien" data-deja>{t(lang, 'demo_page.form.already_link')}</a>
+      </p>
+    </div>
+
+    <form
+      class="lg:col-span-7 panel p-7 md:p-9 grid sm:grid-cols-2 gap-6"
+      data-demo-access
+      data-lang={lang}
+      data-demo={DEMO_URL}
+      data-contact={href(lang, 'contact') + '?sujet=demo'}
+      data-sending={t(lang, 'demo_page.form.sending')}
+      data-error={t(lang, 'demo_page.form.error')}
+      data-error-rate={t(lang, 'demo_page.form.error_rate')}
+      data-error-email={t(lang, 'demo_page.form.error_email')}
+      data-error-phone={t(lang, 'demo_page.form.error_phone')}
+      data-fallback={t(lang, 'demo_page.form.fallback')}
+    >
+      <div>
+        <label for="demo-name" class="field-label">{t(lang, 'contact_form.name')}</label>
+        <input id="demo-name" name="name" type="text" required autocomplete="name" placeholder={t(lang, 'contact_form.name_ph')} class="field" />
+      </div>
+      <div>
+        <label for="demo-company" class="field-label">{t(lang, 'contact_form.company')}</label>
+        <input id="demo-company" name="company" type="text" required autocomplete="organization" placeholder={t(lang, 'contact_form.company_ph')} class="field" />
+      </div>
+      <div>
+        <label for="demo-email" class="field-label">{t(lang, 'contact_form.email')}</label>
+        <input id="demo-email" name="email" type="email" required autocomplete="email" placeholder={t(lang, 'contact_form.email_ph')} class="field" />
+      </div>
+      <div>
+        <label for="demo-phone" class="field-label">{t(lang, 'demo_page.form.phone')}</label>
+        <input id="demo-phone" name="phone" type="tel" autocomplete="tel" placeholder={t(lang, 'demo_page.form.phone_ph')} class="field" />
+      </div>
+
+      <!-- Piège à robots : invisible et hors du parcours clavier, un
+           humain le laisse vide. -->
+      <div class="piege" aria-hidden="true">
+        <label for="demo-website">Website</label>
+        <input id="demo-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <p class="sm:col-span-2 t-small">
+        {avant}<a href={href(lang, 'privacy')} class="lien">{t(lang, 'demo_page.form.privacy')}</a>{apres}
+      </p>
+
+      <div class="sm:col-span-2 pied">
+        <button type="submit" class="btn btn-primary btn-lg envoyer">{t(lang, 'demo_page.form.submit')}</button>
+        <p class="statut" data-statut role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var form = document.querySelector('form[data-demo-access]');
+    if (!form) return;
+    var textes = form.dataset;
+    var statut = form.querySelector('[data-statut]');
+    var bouton = form.querySelector('button[type="submit"]');
+
+    // La page de la démo d'où le visiteur a été renvoyé : il y revient,
+    // inscrit ou déjà inscrit.
+    var suite = new URLSearchParams(window.location.search).get('suite') || '';
+    if (!/^\/(?![\/\\])/.test(suite)) suite = '';
+    var deja = document.querySelector('[data-deja]');
+    if (deja && suite) deja.href = textes.demo + suite;
+
+    function erreur(message) {
+      statut.textContent = message + ' ';
+      var a = document.createElement('a');
+      a.href = textes.contact;
+      a.textContent = textes.fallback;
+      statut.appendChild(a);
+      statut.classList.add('statut--erreur');
+      bouton.disabled = false;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var fd = new FormData(form);
+      bouton.disabled = true;
+      statut.classList.remove('statut--erreur');
+      statut.textContent = textes.sending;
+      fetch('/api/demo-access', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          name: fd.get('name'),
+          company: fd.get('company'),
+          email: fd.get('email'),
+          phone: fd.get('phone'),
+          website: fd.get('website'),
+          lang: textes.lang,
+          suite: suite,
+        }),
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            if (res.ok && data.ok && data.url) {
+              window.location.assign(data.url);
+              return;
+            }
+            var message = res.status === 429 ? textes.errorRate
+              : data.code === 'bad-email' ? textes.errorEmail
+              : data.code === 'bad-phone' ? textes.errorPhone
+              : textes.error;
+            erreur(message);
+          });
+        })
+        .catch(function () { erreur(textes.error); });
+    });
+  })();
+</script>
+
+<style>
+  .lien { color: var(--color-accent); font-weight: 500; }
+  .lien:hover { text-decoration: underline; }
+  .pied {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+  }
+  .envoyer:disabled { opacity: 0.6; cursor: progress; }
+  .statut { margin: 0; font-size: 0.9375rem; color: var(--color-ink-2); }
+  .statut:empty { display: none; }
+  .statut--erreur { color: var(--color-crit); }
+  .statut :global(a) { color: var(--color-accent); font-weight: 500; }
+  .piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+</style>

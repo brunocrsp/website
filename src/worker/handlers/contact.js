@@ -22,7 +22,7 @@ const TOPICS = {
   autre: { fr: 'Autre question', en: 'Other question' },
 };
 
-const DEFAULTS = {
+export const DEFAULTS = {
   to: 'contact@meshvise.com',
   from: 'Formulaire Meshvise <formulaire@meshvise.com>',
 };
@@ -34,6 +34,19 @@ function escapeHtml(value) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+}
+
+/** Le corps du courriel : les champs en tableau, puis le message. Partagé
+ *  avec le formulaire d'accès à la démo. */
+export function mailBody(lignes, message) {
+  const text = [...lignes.map(([k, v]) => `${k} : ${v}`), '', message].join('\n');
+  const html = [
+    '<table style="font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',sans-serif;font-size:14px;color:#161b23;border-collapse:collapse">',
+    ...lignes.map(([k, v]) => `<tr><td style="padding:4px 16px 4px 0;color:#4b5462">${k}</td><td style="padding:4px 0">${escapeHtml(v)}</td></tr>`),
+    '</table>',
+    `<p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;color:#161b23;white-space:pre-wrap;margin-top:16px">${escapeHtml(message)}</p>`,
+  ].join('');
+  return { text, html };
 }
 
 export async function handleContactRequest(request, env, deps = {}) {
@@ -87,13 +100,7 @@ export async function handleContactRequest(request, env, deps = {}) {
     ['Entreprise', company],
     ['Courriel', email],
   ];
-  const text = [...lignes.map(([k, v]) => `${k} : ${v}`), '', install || '(pas de message)'].join('\n');
-  const html = [
-    '<table style="font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',sans-serif;font-size:14px;color:#161b23;border-collapse:collapse">',
-    ...lignes.map(([k, v]) => `<tr><td style="padding:4px 16px 4px 0;color:#4b5462">${k}</td><td style="padding:4px 0">${escapeHtml(v)}</td></tr>`),
-    '</table>',
-    `<p style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;color:#161b23;white-space:pre-wrap;margin-top:16px">${escapeHtml(install || '(pas de message)')}</p>`,
-  ].join('');
+  const { text, html } = mailBody(lignes, install || '(pas de message)');
 
   const res = await sendResend({
     apiKey: env.RESEND_API_KEY,

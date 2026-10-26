@@ -1,23 +1,27 @@
 ---
 /**
- * Page intermédiaire tant que la démonstration publique n'est pas
- * branchée. Quand elle le sera, la route `demo` pointera vers son URL.
+ * La page Démo : le formulaire qui ouvre la démo publique (depuis le
+ * 2026-10-26, la démo ne s'ouvre qu'après lui), le visuel du site en
+ * aperçu, et la démonstration commentée pour qui la préfère.
  */
 import Base from '../../layouts/Base.astro';
-import PageHero from '../PageHero.astro';
+import DemoAccessForm from '../DemoAccessForm.astro';
 import LiveTable from '../LiveTable.astro';
-import ContactForm from '../ContactForm.astro';
 import { t, type Lang } from '../../i18n';
+import { href } from '../../i18n/routes';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 ---
 
 <Base lang={lang} title={t(lang, 'demo_page.meta.title')} description={t(lang, 'demo_page.meta.description')}>
-  <PageHero title={t(lang, 'demo_page.title')} subtitle={t(lang, 'demo_page.body')} />
+  <DemoAccessForm lang={lang} />
   <section class="wrap py-14 md:py-20">
     <p class="t-small mb-3">{t(lang, 'home.live.caption')}</p>
     <LiveTable lang={lang} />
+    <p class="t-body mt-10">
+      {t(lang, 'demo_page.visio')}{' '}
+      <a href={href(lang, 'contact') + '?sujet=demo'} class="text-accent font-medium hover:underline">{t(lang, 'demo_page.visio_link')}</a>
+    </p>
   </section>
-  <ContactForm lang={lang} title={t(lang, 'why.cta.title')} body={t(lang, 'why.cta.body')} topic="demo" />
 </Base>

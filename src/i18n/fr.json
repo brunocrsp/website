@@ -147,7 +147,7 @@
       "demo": {
         "name": "Démonstration en ligne",
         "price": "Publique",
-        "note": "Accès direct",
+        "note": "Accès immédiat",
         "cta": "Ouvrir la démo"
       },
       "trial": {
@@ -753,10 +753,27 @@
   "demo_page": {
     "meta": {
       "title": "Démo · Meshvise",
-      "description": "La démonstration publique de Meshvise arrive. En attendant, demandez une démonstration en visio sur vos équipements."
+      "description": "Ouvrez la démonstration de Meshvise : un atelier d'usinage simulé, ses machines, ses alarmes et ses indicateurs, en direct."
     },
-    "title": "La démo publique n'est pas encore en ligne",
-    "body": "Elle tournera sur un site industriel simulé, en accès direct. En attendant, une démonstration de trente minutes en visio, sur un cas proche du vôtre, est possible dès maintenant."
+    "title": "Ouvrez la démo",
+    "body": "Un atelier d'usinage simulé, rejoué en continu : machines, alarmes, indicateurs, synoptiques. Laissez vos coordonnées, la démo s'ouvre aussitôt, pour trente jours.",
+    "form": {
+      "phone": "Téléphone (facultatif)",
+      "phone_ph": "06 39 98 12 34",
+      "submit": "Ouvrir la démo",
+      "sending": "Ouverture de la démo…",
+      "error": "La démo n'a pas pu s'ouvrir.",
+      "error_rate": "Trop de demandes en peu de temps, réessayez dans une minute.",
+      "error_email": "Vérifiez l'adresse courriel.",
+      "error_phone": "Vérifiez le numéro de téléphone.",
+      "fallback": "Écrivez-nous",
+      "notice": "Vos coordonnées servent à vous recontacter au sujet de Meshvise. Vous pouvez vous y opposer à tout moment, voir la {privacy}.",
+      "privacy": "politique de confidentialité",
+      "already": "Déjà inscrit sur cet appareil ?",
+      "already_link": "Ouvrir la démo"
+    },
+    "visio": "Vous préférez une démonstration commentée, sur un cas proche du vôtre ?",
+    "visio_link": "Demandez-la ici."
   },
   "legal": {
     "meta": {
@@ -810,7 +827,7 @@
       "description": "Les données que collecte le site meshvise.com, pourquoi, combien de temps, et vos droits."
     },
     "title": "Politique de confidentialité",
-    "lede": "Le site ne collecte qu'une chose : ce que vous écrivez dans le formulaire de contact. Voici ce qu'il en advient.",
+    "lede": "Le site ne collecte que ce que vous écrivez dans ses deux formulaires : la demande de contact et l'accès à la démo. Voici ce qu'il en advient.",
     "updated": "Mise à jour le 26 octobre 2026.",
     "legal_link": "mentions légales",
     "sections": [
@@ -823,7 +840,7 @@
       {
         "title": "Données collectées",
         "body": [
-          "Le formulaire de contact recueille votre nom, votre entreprise, votre adresse électronique, l'objet de votre demande et le message que vous écrivez. Rien n'est recueilli tant que vous ne l'envoyez pas.",
+          "Le formulaire de contact recueille votre nom, votre entreprise, votre adresse électronique, l'objet de votre demande et le message que vous écrivez. Le formulaire d'accès à la démo recueille votre nom, votre entreprise, votre adresse électronique et, si vous l'indiquez, votre numéro de téléphone. Rien n'est recueilli tant que vous n'envoyez pas le formulaire.",
           "Comme pour tout site, l'hébergeur traite l'adresse IP de chaque visiteur pour acheminer les pages et protéger le site, notamment pour limiter les envois répétés du formulaire."
         ]
       },
@@ -831,7 +848,8 @@
         "title": "Finalité et base légale",
         "body": [
           "Ces données servent à une seule chose : répondre à votre demande, qu'il s'agisse d'une licence, d'un essai, d'une démonstration ou d'une question. Le traitement repose sur les mesures précontractuelles prises à votre demande (article 6.1.b du RGPD) et, pour une question générale, sur l'intérêt légitime à vous répondre (article 6.1.f).",
-          "Elles ne sont ni vendues ni cédées, et ne servent à aucun envoi que vous n'avez pas demandé."
+          "Celles du formulaire d'accès à la démo vous ouvrent la démo, puis servent à vous recontacter au sujet de Meshvise, par courriel ou par téléphone. Ce traitement repose sur l'intérêt légitime de l'éditeur à présenter son offre aux professionnels qui s'y intéressent (article 6.1.f). Vous pouvez vous y opposer à tout moment, sans avoir à vous justifier, en écrivant à {email}.",
+        "Les données ne sont ni vendues ni cédées. Celles du formulaire de contact ne servent à aucun envoi que vous n'avez pas demandé."
         ]
       },
       {
@@ -850,7 +868,8 @@
       {
         "title": "Cookies",
         "body": [
-          "Le site ne dépose lui-même aucun cookie et n'utilise aucun outil de mesure d'audience, de publicité ni de réseau social : aucun bandeau ne vous demande donc votre consentement. Cloudflare peut déposer un cookie technique de sécurité, strictement nécessaire au service et dispensé de consentement."
+          "Le site ne dépose lui-même aucun cookie et n'utilise aucun outil de mesure d'audience, de publicité ni de réseau social : aucun bandeau ne vous demande donc votre consentement. Cloudflare peut déposer un cookie technique de sécurité, strictement nécessaire au service et dispensé de consentement.",
+        "La démonstration, sur demo.meshvise.com, dépose un seul cookie, une fois le formulaire d'accès envoyé : il vous en garde l'accès trente jours et ne contient aucune donnée personnelle. Strictement nécessaire au service que vous demandez, il est dispensé de consentement."
         ]
       },
       {

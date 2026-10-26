@@ -22,9 +22,14 @@
     { "pattern": "www.meshvise.com", "custom_domain": true }
   ],
 
+  // Secrets (wrangler secret put): RESEND_API_KEY for both forms, and
+  // DEMO_ACCESS_KEY, the Ed25519 private key (PKCS#8, base64url) that signs
+  // the demo access pass (src/worker/demo-pass.js); its public key is in the
+  // wrangler.jsonc of the demo, in the product repo.
+  //
   // CONTACT_RATE_LIMITER: native Cloudflare Rate Limiting binding, the
-  // spam shield of the contact form (3 requests per 60 s per IP, key
-  // `contact:<ip>`). It was TRIAL_RATE_LIMITER, shared with /api/trial,
+  // spam shield of both forms (3 requests per 60 s per IP, keys
+  // `contact:<ip>` and `demo:<ip>`). It was TRIAL_RATE_LIMITER, shared with /api/trial,
   // until that route was removed on 2026-10-23; the KV namespace of the
   // trial (TRIAL_DEDUPE) went with it.
   "unsafe": {
