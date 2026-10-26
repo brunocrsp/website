@@ -9,7 +9,10 @@
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // La racine passe par le worker, qui redirige vers la langue du
+    // navigateur (src/worker/root.js) ; tout le reste est servi tel quel.
+    "run_worker_first": ["/"]
   },
   "compatibility_flags": [
     "nodejs_compat"

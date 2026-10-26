@@ -1,3 +1,6 @@
 ---
+// En ligne, le worker répond sur `/` avant cette page (src/worker/root.js,
+// `run_worker_first`) et redirige vers la langue du navigateur. Elle ne sert
+// qu'à `npm run dev`, où le worker ne tourne pas.
 return Astro.redirect('/fr/');
 ---

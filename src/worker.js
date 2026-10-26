@@ -4,6 +4,8 @@
  *   POST /api/demo-access → handleDemoAccessRequest (the Demo page form:
  *                           emails the visitor's details, answers the demo
  *                           URL with a signed access pass, since 2026-10-26)
+ *   /                     → handleRoot (302 to /fr/ or /en/, from the
+ *                           browser's language, since 2026-10-26)
  *   *                     → env.ASSETS.fetch (static site from ./dist)
  *
  * Same-origin form POST, so no CORS / OPTIONS handling needed.
@@ -16,6 +18,7 @@
 
 import { handleContactRequest } from './worker/handlers/contact.js';
 import { handleDemoAccessRequest } from './worker/handlers/demo-access.js';
+import { handleRoot } from './worker/root.js';
 
 const ROUTES = {
   '/api/contact': handleContactRequest,
@@ -35,6 +38,7 @@ export default {
       }
       return handler(request, env);
     }
+    if (url.pathname === '/') return handleRoot(request);
     return env.ASSETS.fetch(request);
   },
 };
