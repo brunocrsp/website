@@ -1,10 +1,8 @@
 {
   "nav": {
     "home": "Accueil",
-    "why": "Pourquoi superviser",
     "product": "Produit",
     "protocols": "Protocoles",
-    "pricing": "Tarifs",
     "demo": "Voir la démo",
     "contact": "Contact"
   },
@@ -14,32 +12,13 @@
   "home": {
     "meta": {
       "title": "Meshvise · Supervision industrielle, hébergée chez vous",
-      "description": "Tous vos équipements dans une seule supervision, hébergée chez vous. Treize protocoles industriels inclus, une licence par site quel que soit le nombre de points, support et mises à jour compris."
+      "description": "Meshvise est une plateforme de supervision industrielle installée sur site : acquisition sur treize protocoles, historique, alarmes, indicateurs et tableaux de bord."
     },
     "hero": {
-      "title": "Avec Meshvise, vous gagnez",
-      "gains": [
-        {
-          "word": "en réactivité.",
-          "proof": "L'alarme part à deux heures du matin, pas à huit heures."
-        },
-        {
-          "word": "en compréhension.",
-          "proof": "Les minutes qui ont précédé l'arrêt, pas seulement son heure."
-        },
-        {
-          "word": "en connaissance.",
-          "proof": "Trente jours du comportement réel de votre site, au lieu d'une impression."
-        },
-        {
-          "word": "en preuve.",
-          "proof": "Chaque paramètre horodaté, chaque seuil modifié signé et daté."
-        },
-        {
-          "word": "en arbitrage.",
-          "proof": "Les chiffres du mois avant la réunion, pas reconstitués après."
-        }
-      ]
+      "lead": "Supervision industrielle,",
+      "accent": "installée sur site.",
+      "subtitle": "Meshvise lit les équipements d'un atelier, conserve leur historique, lève les alarmes et calcule les indicateurs. Treize protocoles industriels, une interface web, et les données restent sur le site.",
+      "cta_product": "Voir le produit"
     },
     "screen": {
       "label": "Aperçu du produit",
@@ -64,50 +43,8 @@
       "note_drift": "dérive lente depuis 3 jours",
       "note_lost": "plus de valeur depuis 12 min"
     },
-    "doors": {
-      "left": {
-        "title": "Vous n'avez pas encore de supervision.",
-        "body": "Vos relevés sont sur un carnet, votre taux de rendement dans un tableur, et une alarme de nuit veut dire un déplacement. Voici ce que la supervision vous fait gagner.",
-        "cta": "Pourquoi superviser"
-      },
-      "right": {
-        "title": "Vous en avez une, et elle ne suit plus.",
-        "body": "Brancher une IA, suivre vos indicateurs de performance, alimenter votre outil décisionnel, raccorder une machine d'une autre marque : les exigences d'aujourd'hui, et Meshvise est construit pour elles.",
-        "cta": "Produit et tarifs"
-      }
-    },
-    "personas": {
-      "title": "Une seule supervision, de l'atelier à la direction.",
-      "roles": [
-        {
-          "id": "operateur",
-          "label": "Opérateur",
-          "line": "Ses pièces et l'état de sa machine affichés au poste, sans fiche à remplir.",
-          "alt": "Un opérateur consulte une tablette devant un tour à commande numérique."
-        },
-        {
-          "id": "maintenance",
-          "label": "Maintenance",
-          "line": "L'alarme part dans la minute, avec les minutes qui ont précédé l'arrêt.",
-          "alt": "Un technicien de maintenance intervient dans une armoire électrique ouverte."
-        },
-        {
-          "id": "methodes",
-          "label": "Méthodes",
-          "line": "Marche, arrêts et pièces produites, calculés machine par machine.",
-          "alt": "Un opérateur au pupitre d'un portique qui dépose des pièces sur un convoyeur."
-        },
-        {
-          "id": "direction",
-          "label": "Direction de site",
-          "line": "Le temps perdu en arrêts, mesuré au lieu d'être estimé.",
-          "alt": "Un responsable commente des tableaux de bord affichés au mur."
-        }
-      ],
-      "aria": "Ce que chaque métier y lit"
-    },
     "see": {
-      "title": "Ce que vous gérez avec Meshvise",
+      "title": "Ce que fait Meshvise",
       "aria": "Fonctionnalités de Meshvise",
       "features": [
         {
@@ -141,84 +78,13 @@
           "body": "Qui a changé quoi et quand, et le retour arrière en une opération."
         }
       ]
-    },
-    "pricing_brief": {
-      "title": "Par où commencer",
-      "demo": {
-        "name": "Démonstration en ligne",
-        "price": "Publique",
-        "note": "Accès immédiat",
-        "cta": "Ouvrir la démo"
-      },
-      "trial": {
-        "name": "Essai sur vos équipements",
-        "price": "Sur devis",
-        "note": "Sur votre infrastructure",
-        "cta": "Demander l'essai"
-      },
-      "onprem": {
-        "name": "On-Premise",
-        "price": "Licence annuelle",
-        "note": "Par site, tous protocoles, tous points",
-        "cta": "Voir la licence"
-      },
-      "managed": {
-        "name": "Exploitation déléguée",
-        "price": "Sur demande",
-        "note": "Pour les sites sans équipe technique",
-        "cta": "Voir l'offre"
-      }
-    },
-    "ai": {
-      "title": "Grâce à l'IA, répondez enfin à vos questions."
     }
-  },
-  "why": {
-    "meta": {
-      "title": "Pourquoi superviser · Ce que la supervision fait gagner · Meshvise",
-      "description": "Moins d'arrêts, moins d'énergie gaspillée, des décisions prises sur des faits : ce que la supervision fait gagner à un site industriel."
-    },
-    "hero": {
-      "lead": "Ce que vous coûte",
-      "accent": "de ne pas savoir.",
-      "subtitle": "Superviser, c'est voir ce qui se passe réellement sur le site. Voici ce que ça fait gagner.",
-      "nav": "Les trois gains"
-    },
-    "cta": {
-      "title": "Une démonstration sur vos équipements",
-      "body": "Trente minutes en visio, sur un cas proche du vôtre. Sans engagement."
-    },
-    "gains": [
-      {
-        "key": "arrets",
-        "title": "Moins d'arrêts",
-        "short": "Chaque arrêt compté, même le plus court.",
-        "body": "Chaque arrêt est enregistré, même le plus court, avec sa durée et son moment. Ceux que personne ne notait apparaissent, s'additionnent, et on sait enfin où la production se perd.",
-        "alt": "Une journée de production sur laquelle de courts arrêts apparaissent un à un, puis s'additionnent en un temps perdu bien visible."
-      },
-      {
-        "key": "nuit",
-        "title": "Moins d'énergie gaspillée",
-        "short": "Ce qui tourne pour rien, enfin visible.",
-        "body": "Ce qui consomme hors production devient visible : les machines qui tournent la nuit, les fuites, les veilles qui n'en sont pas. On arrête de payer pour un atelier vide.",
-        "alt": "Plusieurs jours de consommation : la nuit, la courbe ne redescend pas au niveau de veille, et l'écart, chaque nuit, est de l'énergie perdue."
-      },
-      {
-        "key": "decisions",
-        "title": "Des décisions sur des faits",
-        "short": "Des indicateurs calculés, pas estimés.",
-        "body": "Les indicateurs sont calculés depuis les machines, pas reconstitués à la main. On sait ce qui progresse et ce qui recule, et on décide sur des chiffres plutôt que sur des impressions.",
-        "alt": "Un indicateur suivi semaine après semaine : les barres montent, la tendance se trace et une flèche confirme la progression."
-      }
-    ]
   },
   "contact_form": {
     "topic": "Votre demande",
     "topics": {
-      "licence": "Licence On‑Premise",
-      "exploitation": "Exploitation déléguée",
-      "essai": "Essai sur vos équipements",
       "demo": "Démonstration",
+      "integrateur": "Vous êtes intégrateur",
       "autre": "Autre question"
     },
     "name": "Nom",
@@ -227,9 +93,8 @@
     "company_ph": "Votre société",
     "email": "Courriel professionnel",
     "email_ph": "vous@societe.fr",
-    "install": "Votre installation, en une ligne",
-    "install_ph": "Type de site, équipements, ce que vous aimeriez voir",
-    "submit": "Demander une démonstration",
+    "install": "Votre demande, en quelques mots",
+    "install_ph": "Votre activité, vos équipements, ce que vous aimeriez voir",
     "submit_contact": "Envoyer"
   },
   "product": {
@@ -685,71 +550,6 @@
       }
     ]
   },
-  "pricing": {
-    "meta": {
-      "title": "Tarifs · Meshvise",
-      "description": "Meshvise On-Premise : 2 400 € par an, quel que soit le nombre de points. Mise en service sur devis. Tarifs hors taxes, facturation annuelle."
-    },
-    "hero": {
-      "lead": "Une licence par site,",
-      "accent": "tout compris.",
-      "subtitle": "Toutes les fonctions et autant de machines que vous voulez, pour un prix annuel fixe."
-    },
-    "onprem": {
-      "name": "On-Premise",
-      "price": "2 400 €",
-      "period": "par an, hors taxes",
-      "setup": "Mise en service sur devis",
-      "tagline": "La licence complète, hébergée chez vous.",
-      "items": [
-        "Toutes les fonctions, sans option",
-        "Machines, points et écrans sans limite",
-        "Installée sur votre serveur",
-        "Connexion avec les comptes de l'entreprise",
-        "Toutes les mises à jour, majeures comprises",
-        "Support par courriel sous deux jours ouvrés"
-      ]
-    },
-    "managed": {
-      "name": "Exploitation déléguée",
-      "price": "Sur demande",
-      "tagline": "Pour les sites sans équipe technique : Meshvise est exploité pour vous.",
-      "body": "L'offre n'est pas encore ouverte. Écrivez pour en discuter."
-    },
-    "faq_title": "Vos questions avant de commander"
-  },
-  "faq": {
-    "title": "Questions fréquentes",
-    "subtitle": "Si la vôtre n'y est pas, écrivez à contact@meshvise.com.",
-    "hardware": {
-      "q": "Quel matériel minimum ?",
-      "a": "Deux cœurs, quatre giga de mémoire, vingt giga de disque pour cinq cents points et trente jours d'historique. Un mini-PC d'atelier ou un serveur existant suffit."
-    },
-    "disappear": {
-      "q": "Et si vous fermez demain ?",
-      "a": "Vos données restent sur votre serveur, dans une base standard, lisibles sans Meshvise. N'importe quel intégrateur peut reprendre l'exploitation."
-    },
-    "notfor": {
-      "q": "Pour qui Meshvise n'est pas fait ?",
-      "a": "Les très grands groupes multi-pays avec des cycles d'achat de douze mois, les projets de moins de cinquante points, et tout ce qui relève de la sécurité fonctionnelle."
-    },
-    "support": {
-      "q": "À quoi ressemble le support ?",
-      "a": "Par courriel, réponse sous deux jours ouvrés, par la personne qui a écrit le code."
-    },
-    "updates": {
-      "q": "Les mises à jour sont-elles comprises ?",
-      "a": "Oui, toutes celles publiées pendant l'abonnement, les correctifs comme les versions majeures. Pas de contrat de maintenance à côté, pas de supplément pour changer de version. Seul un accompagnement à la migration se facture, au temps passé."
-    },
-    "trial_how": {
-      "q": "Comment se passe l'essai ?",
-      "a": "Vous décrivez votre site dans le formulaire de contact, en choisissant « Essai sur vos équipements ». Nous vous proposons un devis qui fixe la durée, le périmètre et l'accompagnement. L'essai tourne ensuite sur votre infrastructure, avec vos équipements."
-    },
-    "demo_vs_trial": {
-      "q": "Quelle différence entre la démo et l'essai ?",
-      "a": "La démo est publique et tourne sur un site simulé, sans rien installer. L'essai tourne chez vous, sur vos vrais équipements."
-    }
-  },
   "demo_page": {
     "meta": {
       "title": "Démo · Meshvise",
@@ -847,9 +647,9 @@
       {
         "title": "Finalité et base légale",
         "body": [
-          "Ces données servent à une seule chose : répondre à votre demande, qu'il s'agisse d'une licence, d'un essai, d'une démonstration ou d'une question. Le traitement repose sur les mesures précontractuelles prises à votre demande (article 6.1.b du RGPD) et, pour une question générale, sur l'intérêt légitime à vous répondre (article 6.1.f).",
+          "Ces données servent à une seule chose : répondre à votre demande, qu'il s'agisse d'une démonstration, d'un projet d'intégration ou d'une question. Le traitement repose sur les mesures précontractuelles prises à votre demande (article 6.1.b du RGPD) et, pour une question générale, sur l'intérêt légitime à vous répondre (article 6.1.f).",
           "Celles du formulaire d'accès à la démo vous ouvrent la démo, puis servent à vous recontacter au sujet de Meshvise, par courriel ou par téléphone. Ce traitement repose sur l'intérêt légitime de l'éditeur à présenter son offre aux professionnels qui s'y intéressent (article 6.1.f). Vous pouvez vous y opposer à tout moment, sans avoir à vous justifier, en écrivant à {email}.",
-        "Les données ne sont ni vendues ni cédées. Celles du formulaire de contact ne servent à aucun envoi que vous n'avez pas demandé."
+          "Les données ne sont ni vendues ni cédées. Celles du formulaire de contact ne servent à aucun envoi que vous n'avez pas demandé."
         ]
       },
       {
@@ -869,7 +669,7 @@
         "title": "Cookies",
         "body": [
           "Le site ne dépose lui-même aucun cookie et n'utilise aucun outil de mesure d'audience, de publicité ni de réseau social : aucun bandeau ne vous demande donc votre consentement. Cloudflare peut déposer un cookie technique de sécurité, strictement nécessaire au service et dispensé de consentement.",
-        "La démonstration, sur demo.meshvise.com, dépose un seul cookie, une fois le formulaire d'accès envoyé : il vous en garde l'accès trente jours et ne contient aucune donnée personnelle. Strictement nécessaire au service que vous demandez, il est dispensé de consentement."
+          "La démonstration, sur demo.meshvise.com, dépose un seul cookie, une fois le formulaire d'accès envoyé : il vous en garde l'accès trente jours et ne contient aucune donnée personnelle. Strictement nécessaire au service que vous demandez, il est dispensé de consentement."
         ]
       },
       {
@@ -886,7 +686,6 @@
     "product": "Produit",
     "contact": "Contact",
     "rights": "Tous droits réservés.",
-    "tech_line": "Contrat en français, droit français.",
     "legal": "Mentions légales",
     "privacy": "Confidentialité"
   },
@@ -897,15 +696,15 @@
     "switch_language": "Basculer en {lang}"
   },
   "meta": {
-    "og_image_alt": "Meshvise · Tous vos équipements. Une seule supervision."
+    "og_image_alt": "Meshvise · Supervision industrielle, installée sur site."
   },
   "contact": {
     "meta": {
       "title": "Contact · Meshvise",
-      "description": "Licence, exploitation déléguée, essai ou démonstration : écrivez-nous, réponse sous deux jours ouvrés."
+      "description": "Une démonstration, un projet d'intégration ou une question : écrivez-nous, réponse sous deux jours ouvrés."
     },
-    "lead": "Parlons de",
-    "accent": "votre site.",
+    "lead": "Prenons",
+    "accent": "contact.",
     "subtitle": "Dites-nous ce que vous cherchez. Réponse sous deux jours ouvrés.",
     "form": {
       "sending": "Envoi en cours…",

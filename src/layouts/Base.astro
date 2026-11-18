@@ -2,24 +2,21 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { FAQ_KEYS } from '../i18n/faq-keys';
 import { t, type Lang } from '../i18n';
-import { alternateHref, href } from '../i18n/routes';
+import { alternateHref } from '../i18n/routes';
 
 interface Props {
   /** `article` sur un guide, `website` partout ailleurs. */
   ogType?: 'website' | 'article';
   /** Balisage propre à la page, ajouté à celui du site. */
   extraLd?: Record<string, unknown> | null;
-  /** La page affiche la FAQ : son balisage FAQPage n'est émis que là. */
-  faq?: boolean;
   title: string;
   description: string;
   lang: Lang;
   ogImage?: string;
 }
 
-const { title, description, lang, ogImage = '/og-image.png', ogType = 'website', extraLd = null, faq = false } = Astro.props;
+const { title, description, lang, ogImage = '/og-image.png', ogType = 'website', extraLd = null } = Astro.props;
 
 const SITE_ORIGIN = 'https://meshvise.com';
 const alternateLang: Lang = lang === 'fr' ? 'en' : 'fr';
@@ -68,35 +65,8 @@ const softwareLd = {
   publisher: { '@id': `${SITE_ORIGIN}/#organization` },
   url: SITE_ORIGIN,
   inLanguage: ['fr', 'en'],
-  offers: [
-    {
-      '@type': 'Offer',
-      name: t(lang, 'pricing.onprem.name'),
-      price: '2400',
-      priceCurrency: 'EUR',
-      priceSpecification: {
-        '@type': 'UnitPriceSpecification',
-        price: '2400',
-        priceCurrency: 'EUR',
-        billingDuration: 'P1Y',
-        unitText: 'YEAR',
-      },
-      availability: 'https://schema.org/InStock',
-      url: `${SITE_ORIGIN}${href(lang, 'pricing')}`,
-      description: `${t(lang, 'pricing.onprem.tagline')} ${t(lang, 'pricing.hero.subtitle')}`,
-    },
-  ],
 };
 
-const faqLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: FAQ_KEYS.map((key) => ({
-    '@type': 'Question',
-    name: t(lang, `faq.${key}.q`),
-    acceptedAnswer: { '@type': 'Answer', text: t(lang, `faq.${key}.a`) },
-  })),
-};
 ---
 
 <!DOCTYPE html>
@@ -147,7 +117,6 @@ const faqLd = {
     <script type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(softwareLd)} />
-    {faq && <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />}
     {extraLd && <script type="application/ld+json" set:html={JSON.stringify(extraLd)} />}
   </head>
   <body class="bg-canvas text-ink antialiased">

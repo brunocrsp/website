@@ -9,17 +9,14 @@
  */
 import type { APIRoute } from 'astro';
 import en from '../i18n/en.json';
-import { FAQ_KEYS } from '../i18n/faq-keys';
 import { href, type RouteKey } from '../i18n/routes';
 
 const SITE = 'https://meshvise.com';
 
 const LIENS: Array<[RouteKey, string]> = [
   ['home', en.nav.home],
-  ['why', en.nav.why],
   ['product', en.nav.product],
   ['protocols', en.nav.protocols],
-  ['pricing', en.nav.pricing],
   ['contact', en.nav.contact],
 ];
 
@@ -33,18 +30,6 @@ function resume(): string {
   p('', `## ${en.home.see.title}`, '');
   for (const f of en.home.see.features) p(`- **${f.title}**: ${f.body}`);
   p(`- **${en.product.assistant.title}**: ${en.product.assistant.connect}`);
-
-  const o = en.pricing.onprem;
-  p('', `## ${en.nav.pricing}`, '');
-  p(`- **${o.name}**: ${o.price} ${o.period}. ${o.setup}. ${o.tagline}`);
-  for (const it of o.items) p(`  - ${it}`);
-  p(`- **${en.pricing.managed.name}**: ${en.pricing.managed.price}. ${en.pricing.managed.tagline} ${en.pricing.managed.body}`);
-
-  p('', `## ${en.pricing.faq_title}`, '');
-  for (const k of FAQ_KEYS) {
-    const q = (en.faq as Record<string, { q: string; a: string }>)[k];
-    p(`- **${q.q}** ${q.a}`);
-  }
 
   p('', '## Links', '');
   for (const [k, nom] of LIENS) p(`- ${nom}: ${SITE}${href('fr', k)} · ${SITE}${href('en', k)}`);

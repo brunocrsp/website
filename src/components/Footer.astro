@@ -25,10 +25,8 @@ const year = new Date().getFullYear();
       <div class="col-span-1 md:col-span-2 md:col-start-7">
         <h4 class="text-[13px] font-medium text-ink mb-3">{t(lang, 'footer.product')}</h4>
         <ul class="space-y-2.5 text-[14px]">
-          <li><a href={href(lang, 'why')} class="text-ink-2 hover:text-ink">{t(lang, 'nav.why')}</a></li>
           <li><a href={href(lang, 'product')} class="text-ink-2 hover:text-ink">{t(lang, 'nav.product')}</a></li>
           <li><a href={href(lang, 'protocols')} class="text-ink-2 hover:text-ink">{t(lang, 'nav.protocols')}</a></li>
-          <li><a href={href(lang, 'pricing')} class="text-ink-2 hover:text-ink">{t(lang, 'nav.pricing')}</a></li>
           <li><a href={href(lang, 'demo')} class="text-ink-2 hover:text-ink">{t(lang, 'nav.demo')}</a></li>
         </ul>
       </div>
@@ -48,7 +46,6 @@ const year = new Date().getFullYear();
         <a href={href(lang, 'legal')} class="hover:text-ink">{t(lang, 'footer.legal')}</a>
         <a href={href(lang, 'privacy')} class="hover:text-ink">{t(lang, 'footer.privacy')}</a>
       </p>
-      <p>{t(lang, 'footer.tech_line')}</p>
     </div>
   </div>
 </footer>

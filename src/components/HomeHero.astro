@@ -1,17 +1,16 @@
 ---
 /**
- * Premier écran. Il n'a qu'un travail : faire choisir entre les deux portes.
+ * Premier écran. Il dit ce qu'est Meshvise en une phrase et mène aux deux
+ * suites utiles : la page Produit et la démo.
  *
- * Les portes sont l'action, pas un rappel plus bas dans la page. Elles ont
- * remplacé les deux boutons qui occupaient cette place, lesquels posaient déjà
- * un choix binaire mais sans dire au visiteur lequel le concernait. Rien ne
- * s'intercale entre l'accroche et ce choix : la table de points, elle, prouve
- * quelque chose à quelqu'un qui a déjà décidé de lire, donc elle vit plus bas.
+ * Depuis le 2026-11-18, le site explique le produit et ne le vend plus : les
+ * cinq gains animés et les deux portes (« pas encore de supervision » /
+ * « elle ne suit plus ») sont retirés avec les pages Tarifs et Pourquoi
+ * superviser. La capture du produit suit juste en dessous (HomeScreen).
  */
 import { t, type Lang } from '../i18n';
 import { href } from '../i18n/routes';
 import TrendBackground from './bg/TrendBackground.astro';
-import HeroGains from './HeroGains.astro';
 
 interface Props {
   lang: Lang;
@@ -23,44 +22,33 @@ const { lang } = Astro.props;
 <section class="relative overflow-hidden border-b border-line isolate">
   <TrendBackground />
   <div class="wrap relative pt-12 pb-12 md:pt-16 md:pb-16">
-    <HeroGains lang={lang} />
-
-    <div class="mt-10 md:mt-12 grid md:grid-cols-2 doors dark-block relative">
-      <a href={href(lang, 'why')} class="door md:border-r border-n-700">
-        <h2 class="t-section">{t(lang, 'home.doors.left.title')}</h2>
-        <p class="t-body mt-3">{t(lang, 'home.doors.left.body')}</p>
-        <span class="link mt-5 inline-block text-[15px]">{t(lang, 'home.doors.left.cta')}</span>
-      </a>
-      <a href={href(lang, 'product')} class="door border-t md:border-t-0 border-n-700">
-        <h2 class="t-section">{t(lang, 'home.doors.right.title')}</h2>
-        <p class="t-body mt-3">{t(lang, 'home.doors.right.body')}</p>
-        <span class="link mt-5 inline-block text-[15px]">{t(lang, 'home.doors.right.cta')}</span>
-      </a>
+    <h1 class="t-hero accroche">
+      <span class="block">{t(lang, 'home.hero.lead')}</span>
+      <span class="block accent">{t(lang, 'home.hero.accent')}</span>
+    </h1>
+    <p class="sous-titre">{t(lang, 'home.hero.subtitle')}</p>
+    <div class="actions">
+      <a href={href(lang, 'product')} class="btn btn-primary btn-lg">{t(lang, 'home.hero.cta_product')}</a>
+      <a href={href(lang, 'demo')} class="btn btn-outline btn-lg">{t(lang, 'nav.demo')}</a>
     </div>
   </div>
 </section>
 
 <style>
-  /* Le seul bloc graphite de la page, posé là où se trouve l'action. Sur un
-     site aussi clair, c'est ce qui donne au choix le poids qu'il mérite : un
-     cadre blanc sur fond blanc ne se voyait pas. */
-  .doors {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgb(22 27 35 / 0.10), 0 18px 40px -20px rgb(22 27 35 / 0.45);
+  .accroche { max-width: 46rem; margin: 0; }
+  .accent { color: var(--color-accent); }
+  .sous-titre {
+    margin-top: 0.9rem;
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--color-ink-2);
+    max-width: 58ch;
   }
-  .door {
+  .actions {
+    margin-top: 1.75rem;
     display: flex;
-    flex-direction: column;
-    padding: 1.75rem;
-    text-decoration: none;
-    color: inherit;
-    transition: background-color 120ms;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
-  @media (min-width: 768px) { .door { padding: 2rem; } }
-  .door:hover { background: rgb(255 255 255 / 0.04); }
-  .door h2 { color: var(--color-n-0); }
-  .door .link { color: var(--color-accent-soft); }
-  .door:hover .link { color: var(--color-n-0); }
-  .door .link { margin-top: auto; padding-top: 1.25rem; }
 </style>

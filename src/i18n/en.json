@@ -1,10 +1,8 @@
 {
   "nav": {
     "home": "Home",
-    "why": "Why supervise",
     "product": "Product",
     "protocols": "Protocols",
-    "pricing": "Pricing",
     "demo": "See the demo",
     "contact": "Contact"
   },
@@ -14,32 +12,13 @@
   "home": {
     "meta": {
       "title": "Meshvise · Industrial supervision, hosted on your premises",
-      "description": "All your equipment in one supervision system, hosted on your premises. Thirteen industrial protocols included, one licence per site whatever the number of points, support and updates included."
+      "description": "Meshvise is an industrial supervision platform installed on site: acquisition over thirteen protocols, history, alarms, indicators and dashboards."
     },
     "hero": {
-      "title": "With Meshvise, you gain",
-      "gains": [
-        {
-          "word": "in responsiveness.",
-          "proof": "The alarm goes out at two in the morning, not at eight."
-        },
-        {
-          "word": "in understanding.",
-          "proof": "The minutes that led to the stoppage, not just the time it happened."
-        },
-        {
-          "word": "in knowledge.",
-          "proof": "Thirty days of how your site actually behaves, instead of an impression."
-        },
-        {
-          "word": "in evidence.",
-          "proof": "Every parameter timestamped, every changed threshold signed and dated."
-        },
-        {
-          "word": "in decision-making.",
-          "proof": "This month's figures before the meeting, not reconstructed after it."
-        }
-      ]
+      "lead": "Industrial supervision,",
+      "accent": "installed on site.",
+      "subtitle": "Meshvise reads the equipment of a workshop, keeps its history, raises alarms and computes indicators. Thirteen industrial protocols, one web interface, and the data stays on site.",
+      "cta_product": "See the product"
     },
     "screen": {
       "label": "Product preview",
@@ -64,50 +43,8 @@
       "note_drift": "slow drift for 3 days",
       "note_lost": "no value for 12 min"
     },
-    "doors": {
-      "left": {
-        "title": "You have no supervision yet.",
-        "body": "Your readings are in a notebook, your OEE in a spreadsheet, and a night alarm means driving to site. Here is what supervision gains you.",
-        "cta": "Why supervise"
-      },
-      "right": {
-        "title": "You have one, and it no longer keeps up.",
-        "body": "Connecting an AI, tracking your performance indicators, feeding your BI tool, adding a machine from another brand: today's requirements, and Meshvise is built for them.",
-        "cta": "Product and pricing"
-      }
-    },
-    "personas": {
-      "title": "One supervision system, from the shop floor to management.",
-      "roles": [
-        {
-          "id": "operateur",
-          "label": "Operator",
-          "line": "Their part count and their machine's status shown at the workstation, with no sheet to fill in.",
-          "alt": "An operator checks a tablet in front of a CNC lathe."
-        },
-        {
-          "id": "maintenance",
-          "label": "Maintenance",
-          "line": "The alarm goes out within the minute, with the minutes that preceded the stoppage.",
-          "alt": "A maintenance technician works inside an open electrical cabinet."
-        },
-        {
-          "id": "methodes",
-          "label": "Process engineering",
-          "line": "Running time, stoppages and parts produced, calculated machine by machine.",
-          "alt": "An operator at the panel of a gantry placing parts onto a conveyor."
-        },
-        {
-          "id": "direction",
-          "label": "Site management",
-          "line": "The time lost to stoppages, measured instead of estimated.",
-          "alt": "A manager talks through dashboards displayed on the wall."
-        }
-      ],
-      "aria": "What each role reads in it"
-    },
     "see": {
-      "title": "What you manage with Meshvise",
+      "title": "What Meshvise does",
       "aria": "Meshvise features",
       "features": [
         {
@@ -141,84 +78,13 @@
           "body": "Who changed what and when, and a rollback in one operation."
         }
       ]
-    },
-    "pricing_brief": {
-      "title": "Where to start",
-      "demo": {
-        "name": "Online demonstration",
-        "price": "Public",
-        "note": "Instant access",
-        "cta": "Open the demo"
-      },
-      "trial": {
-        "name": "Trial on your equipment",
-        "price": "On quote",
-        "note": "On your infrastructure",
-        "cta": "Request the trial"
-      },
-      "onprem": {
-        "name": "On-Premise",
-        "price": "Annual licence",
-        "note": "Per site, all protocols, all points",
-        "cta": "See the licence"
-      },
-      "managed": {
-        "name": "Managed operations",
-        "price": "On request",
-        "note": "For sites without a technical team",
-        "cta": "See the offer"
-      }
-    },
-    "ai": {
-      "title": "With AI, finally answer your questions."
     }
-  },
-  "why": {
-    "meta": {
-      "title": "Why supervise · What supervision gains you · Meshvise",
-      "description": "Fewer stoppages, less wasted energy, decisions based on facts: what supervision gains an industrial site."
-    },
-    "hero": {
-      "lead": "What not knowing",
-      "accent": "costs you.",
-      "subtitle": "Supervising means seeing what really happens on site. Here is what it gains you.",
-      "nav": "The three gains"
-    },
-    "cta": {
-      "title": "A demonstration on your equipment",
-      "body": "Thirty minutes by video call, on a case close to yours. No commitment."
-    },
-    "gains": [
-      {
-        "key": "arrets",
-        "title": "Fewer stoppages",
-        "short": "Every stoppage counted, even the shortest.",
-        "body": "Every stoppage is recorded, even the shortest, with its duration and its time. The ones nobody wrote down appear, add up, and you finally know where production is lost.",
-        "alt": "A production day on which short stoppages appear one by one, then add up to a clearly visible loss of time."
-      },
-      {
-        "key": "nuit",
-        "title": "Less wasted energy",
-        "short": "What runs for nothing, finally visible.",
-        "body": "What consumes outside production becomes visible: machines running at night, leaks, standby modes that are not. You stop paying for an empty shop floor.",
-        "alt": "Several days of consumption: at night the curve does not drop back to standby level, and the gap, every night, is wasted energy."
-      },
-      {
-        "key": "decisions",
-        "title": "Decisions based on facts",
-        "short": "Indicators calculated, not estimated.",
-        "body": "Indicators are calculated from the machines, not rebuilt by hand. You know what improves and what slips, and you decide on figures rather than impressions.",
-        "alt": "An indicator tracked week after week: the bars rise, the trend is drawn and an arrow confirms the improvement."
-      }
-    ]
   },
   "contact_form": {
     "topic": "Your request",
     "topics": {
-      "licence": "On‑Premise licence",
-      "exploitation": "Managed operations",
-      "essai": "Trial on your equipment",
       "demo": "Demonstration",
+      "integrateur": "You are an integrator",
       "autre": "Other question"
     },
     "name": "Name",
@@ -227,9 +93,8 @@
     "company_ph": "Your company",
     "email": "Work email",
     "email_ph": "you@company.com",
-    "install": "Your installation, in one line",
-    "install_ph": "Type of site, equipment, what you would like to see",
-    "submit": "Request a demonstration",
+    "install": "Your request, in a few words",
+    "install_ph": "Your business, your equipment, what you would like to see",
     "submit_contact": "Send"
   },
   "product": {
@@ -685,71 +550,6 @@
       }
     ]
   },
-  "pricing": {
-    "meta": {
-      "title": "Pricing · Meshvise",
-      "description": "Meshvise On-Premise: €2,400 per year, whatever the number of points. Commissioning quoted separately. Prices excluding VAT, annual billing."
-    },
-    "hero": {
-      "lead": "One licence per site,",
-      "accent": "everything included.",
-      "subtitle": "Every feature and as many machines as you want, for a fixed yearly price."
-    },
-    "onprem": {
-      "name": "On-Premise",
-      "price": "€2,400",
-      "period": "per year, excl. VAT",
-      "setup": "Commissioning quoted separately",
-      "tagline": "The full licence, hosted on your premises.",
-      "items": [
-        "Every feature, no options",
-        "Unlimited machines, points and screens",
-        "Installed on your server",
-        "Sign-in with your company accounts",
-        "Every update, major versions included",
-        "Email support within two business days"
-      ]
-    },
-    "managed": {
-      "name": "Managed operations",
-      "price": "On request",
-      "tagline": "For sites without a technical team: Meshvise is run for you.",
-      "body": "The offer is not open yet. Write to discuss it."
-    },
-    "faq_title": "Your questions before ordering"
-  },
-  "faq": {
-    "title": "Frequently asked questions",
-    "subtitle": "If yours is not here, write to contact@meshvise.com.",
-    "hardware": {
-      "q": "Minimum hardware?",
-      "a": "Two cores, four gigabytes of memory, twenty gigabytes of disk for five hundred points and thirty days of history. A shop-floor mini-PC or an existing server is enough."
-    },
-    "disappear": {
-      "q": "What if you close tomorrow?",
-      "a": "Your data stays on your server, in a standard database, readable without Meshvise. Any integrator can take over operations."
-    },
-    "notfor": {
-      "q": "Who is Meshvise not for?",
-      "a": "Very large multi-country groups with twelve-month buying cycles, projects under fifty points, and anything that falls under functional safety."
-    },
-    "support": {
-      "q": "What does support look like?",
-      "a": "By email, reply within two business days, from the person who wrote the code."
-    },
-    "updates": {
-      "q": "Are updates included?",
-      "a": "Yes, every one released during the subscription, fixes and major versions alike. No separate maintenance contract, no upgrade fee. Only help with a migration is billed, as time spent."
-    },
-    "trial_how": {
-      "q": "How does the trial work?",
-      "a": "You describe your site in the contact form, choosing \"Trial on your equipment\". We send you a quote that sets the duration, the scope and the support. The trial then runs on your infrastructure, with your equipment."
-    },
-    "demo_vs_trial": {
-      "q": "What is the difference between the demo and the trial?",
-      "a": "The demo is public and runs on a simulated site, nothing to install. The trial runs on your premises, on your real equipment."
-    }
-  },
   "demo_page": {
     "meta": {
       "title": "Demo · Meshvise",
@@ -847,9 +647,9 @@
       {
         "title": "Purpose and legal basis",
         "body": [
-          "This data serves one purpose: answering your request, whether it concerns a licence, a trial, a demonstration or a question. Processing relies on pre-contractual steps taken at your request (Article 6(1)(b) GDPR) and, for a general question, on the legitimate interest in answering you (Article 6(1)(f)).",
+          "This data serves one purpose: answering your request, whether it concerns a demonstration, an integration project or a question. Processing relies on pre-contractual steps taken at your request (Article 6(1)(b) GDPR) and, for a general question, on the legitimate interest in answering you (Article 6(1)(f)).",
           "The details of the demo access form open the demo for you, then are used to get back to you about Meshvise, by email or by phone. This processing relies on the publisher's legitimate interest in presenting its offer to professionals who show an interest in it (Article 6(1)(f)). You can object to it at any time, without giving a reason, by writing to {email}.",
-        "The data is neither sold nor transferred. The contact form data is used for no mailing you did not ask for."
+          "The data is neither sold nor transferred. The contact form data is used for no mailing you did not ask for."
         ]
       },
       {
@@ -869,7 +669,7 @@
         "title": "Cookies",
         "body": [
           "The website sets no cookie of its own and uses no audience measurement, advertising or social media tool: no banner asks for your consent. Cloudflare may set a technical security cookie, strictly necessary to the service and exempt from consent.",
-        "The demonstration, on demo.meshvise.com, sets a single cookie once the demo access form is sent: it keeps your access for thirty days and holds no personal data. Strictly necessary to the service you ask for, it is exempt from consent."
+          "The demonstration, on demo.meshvise.com, sets a single cookie once the demo access form is sent: it keeps your access for thirty days and holds no personal data. Strictly necessary to the service you ask for, it is exempt from consent."
         ]
       },
       {
@@ -886,7 +686,6 @@
     "product": "Product",
     "contact": "Contact",
     "rights": "All rights reserved.",
-    "tech_line": "Contract in French, French law.",
     "legal": "Legal notice",
     "privacy": "Privacy"
   },
@@ -897,15 +696,15 @@
     "switch_language": "Switch to {lang}"
   },
   "meta": {
-    "og_image_alt": "Meshvise · All your equipment. One supervision system."
+    "og_image_alt": "Meshvise · Industrial supervision, installed on site."
   },
   "contact": {
     "meta": {
       "title": "Contact · Meshvise",
-      "description": "Licence, managed operations, trial or demonstration: write to us, reply within two business days."
+      "description": "A demonstration, an integration project or a question: write to us, reply within two business days."
     },
-    "lead": "Let's talk about",
-    "accent": "your site.",
+    "lead": "Get in",
+    "accent": "touch.",
     "subtitle": "Tell us what you are looking for. Reply within two business days.",
     "form": {
       "sending": "Sending…",

@@ -18,7 +18,7 @@ import fr from '../i18n/fr.json';
 import en from '../i18n/en.json';
 import { t, type Lang } from '../i18n';
 
-const SUJETS = ['licence', 'exploitation', 'essai', 'demo', 'autre'] as const;
+const SUJETS = ['demo', 'integrateur', 'autre'] as const;
 
 interface Props {
   lang: Lang;
@@ -57,9 +57,7 @@ const libelles = (lang === 'fr' ? fr : en).contact_form.topics as Record<string,
             <input type="radio" name="topic" value={k} checked={k === topic} data-libelle={libelles[k]} />
             <span class="icone" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false">
-                {k === 'licence' && <g><circle cx="8" cy="12" r="4" /><path d="M12 12 H21 M18 12 V15 M21 12 V14" /></g>}
-                {k === 'exploitation' && <g><path d="M5 14 V12 A7 7 0 0 1 19 12 V14" /><rect x="3.5" y="13" width="4" height="6" rx="1.5" /><rect x="16.5" y="13" width="4" height="6" rx="1.5" /></g>}
-                {k === 'essai' && <g><rect x="3" y="6" width="10" height="12" rx="2" /><path d="M13 12 H17" /><rect x="17" y="9" width="4" height="6" rx="1" /></g>}
+                {k === 'integrateur' && <g><rect x="3" y="6" width="10" height="12" rx="2" /><path d="M13 12 H17" /><rect x="17" y="9" width="4" height="6" rx="1" /></g>}
                 {k === 'demo' && <g><rect x="3" y="4.5" width="18" height="12" rx="2" /><path d="M10 8 L14.5 10.5 L10 13 Z M8 20 H16" /></g>}
                 {k === 'autre' && <g><path d="M4 5 H20 V16 H11 L7 20 V16 H4 Z" /><path d="M10 9 A2 2 0 1 1 12 11 V12.5 M12 14.5 V14.6" /></g>}
               </svg>
@@ -117,7 +115,7 @@ const libelles = (lang === 'fr' ? fr : en).contact_form.topics as Record<string,
       var choix = sujet && form.querySelector('input[name="topic"][value="' + CSS.escape(sujet) + '"]');
       if (choix) choix.checked = true;
     }
-    // La demande annoncée par le lien (?sujet=licence) est cochée d'office,
+    // La demande annoncée par le lien (?sujet=demo) est cochée d'office,
     // comme celle d'un bouton de la même page qui porte data-sujet.
     cocher(new URLSearchParams(window.location.search).get('sujet'));
     document.querySelectorAll('a[data-sujet]').forEach(function (a) {
@@ -198,12 +196,10 @@ const libelles = (lang === 'fr' ? fr : en).contact_form.topics as Record<string,
 
   .sujets { border: 0; margin: 0; padding: 0; min-width: 0; }
   .legende { padding: 0; margin-bottom: 0.625rem; }
-  /* Les cinq demandes sur une ligne ; sur écran moyen, trois en haut et les
-     deux dernières plus larges en dessous (six colonnes, aucune ligne ne
-     laisse de trou). */
+  /* Les trois demandes sur une ligne, empilées sur téléphone. */
   .tuiles {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.75rem;
   }
   /* L'icône à gauche, le nom à droite : une tuile basse. */
@@ -301,17 +297,10 @@ const libelles = (lang === 'fr' ? fr : en).contact_form.topics as Record<string,
 
   @media (max-width: 1023px) {
     .champs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .tuiles { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-    .tuile { grid-column: span 2; }
-    .tuile--demo,
-    .tuile--autre { grid-column: span 3; }
   }
   @media (max-width: 640px) {
     .carte { padding: 1.5rem; }
     .champs { grid-template-columns: minmax(0, 1fr); }
-    .tuiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .tuile,
-    .tuile--demo { grid-column: span 1; }
-    .tuile--autre { grid-column: 1 / -1; }
+    .tuiles { grid-template-columns: minmax(0, 1fr); }
   }
 </style>

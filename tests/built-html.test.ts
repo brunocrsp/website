@@ -17,14 +17,10 @@ const pages = {
   apex: resolve(dist, 'index.html'),
   fr: resolve(dist, 'fr', 'index.html'),
   en: resolve(dist, 'en', 'index.html'),
-  fr_why: resolve(dist, 'fr', 'pourquoi-superviser', 'index.html'),
-  en_why: resolve(dist, 'en', 'why-supervise', 'index.html'),
   fr_product: resolve(dist, 'fr', 'produit', 'index.html'),
   en_product: resolve(dist, 'en', 'product', 'index.html'),
   fr_protocols: resolve(dist, 'fr', 'protocoles', 'index.html'),
   en_protocols: resolve(dist, 'en', 'protocols', 'index.html'),
-  fr_pricing: resolve(dist, 'fr', 'tarifs', 'index.html'),
-  en_pricing: resolve(dist, 'en', 'pricing', 'index.html'),
   fr_demo: resolve(dist, 'fr', 'demo', 'index.html'),
   en_demo: resolve(dist, 'en', 'demo', 'index.html'),
   fr_contact: resolve(dist, 'fr', 'contact', 'index.html'),
@@ -129,9 +125,12 @@ describe('Contact pages collect a request with its topic', () => {
       expect(html[key]).toMatch(/name="install"/);
     });
 
-    it(`${lang}/contact/index.html offers the licence, managed operations and trial topics`, () => {
-      for (const topic of ['licence', 'exploitation', 'essai']) {
+    it(`${lang}/contact/index.html offers the demonstration, integrator and other topics, and no commercial one`, () => {
+      for (const topic of ['demo', 'integrateur', 'autre']) {
         expect(html[key]).toContain(`value="${topic}"`);
+      }
+      for (const topic of ['licence', 'exploitation', 'essai']) {
+        expect(html[key]).not.toContain(`value="${topic}"`);
       }
     });
 
@@ -163,14 +162,6 @@ describe('Demo page opens the demo through its access form', () => {
       const p = html[`${lang}_privacy`];
       expect(p).toContain(lang === 'fr' ? 'formulaire d&#39;accès à la démo' : 'demo access form');
       expect(p).toContain('demo.meshvise.com');
-    });
-  }
-});
-
-describe('Landing pages send the trial request to the Contact page', () => {
-  for (const lang of ['fr', 'en'] as const) {
-    it(`${lang}/index.html links to /${lang}/contact/?sujet=essai`, () => {
-      expect(html[lang]).toContain(`href="/${lang}/contact/?sujet=essai"`);
     });
   }
 });
@@ -219,12 +210,12 @@ describe('Navigation', () => {
       return m[1];
     };
 
-    it(`${lang} top bar lists home, why, product, protocols, pricing, contact`, () => {
+    it(`${lang} top bar lists home, product, protocols, contact`, () => {
       const liens = [...nav().matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
       expect(liens).toEqual(
         lang === 'fr'
-          ? ['/fr/', '/fr/pourquoi-superviser/', '/fr/produit/', '/fr/protocoles/', '/fr/tarifs/', '/fr/contact/']
-          : ['/en/', '/en/why-supervise/', '/en/product/', '/en/protocols/', '/en/pricing/', '/en/contact/'],
+          ? ['/fr/', '/fr/produit/', '/fr/protocoles/', '/fr/contact/']
+          : ['/en/', '/en/product/', '/en/protocols/', '/en/contact/'],
       );
     });
 
@@ -235,61 +226,34 @@ describe('Navigation', () => {
 
   for (const key of SITE) {
     it(`${key} links to no removed page`, () => {
-      expect(html[key]).not.toMatch(/href="\/(fr|en)\/(guides|faq|a-propos|about|integrateurs|integrators|trial|preview-motion)\//);
+      expect(html[key]).not.toMatch(/href="\/(fr|en)\/(guides|faq|a-propos|about|integrateurs|integrators|trial|preview-motion|tarifs|pricing|pourquoi-superviser|why-supervise)\//);
     });
   }
 });
 
-describe('Personas section', () => {
-  for (const lang of ['fr', 'en'] as const) {
-    it(`${lang} home renders four persona tabs and panels`, () => {
-      const m = html[lang].match(/<section id="personas"[\s\S]*?<\/section>/);
-      expect(m).not.toBeNull();
-      expect(m![0].match(/role="tab"/g) ?? []).toHaveLength(4);
-      expect(m![0].match(/role="tabpanel"/g) ?? []).toHaveLength(4);
+// Depuis le 2026-11-18, le site explique le produit et ne le vend plus : ni
+// page Tarifs, ni page Pourquoi superviser, ni prix, ni offre dans les
+// données structurées.
+describe('The site explains the product and sells nothing', () => {
+  it('the pricing and why pages are not built', () => {
+    for (const p of ['fr/tarifs', 'en/pricing', 'fr/pourquoi-superviser', 'en/why-supervise']) {
+      expect(existsSync(resolve(dist, p, 'index.html')), p).toBe(false);
+    }
+  });
+
+  for (const key of SITE) {
+    it(`${key} shows no price and no offer`, () => {
+      expect(html[key]).not.toMatch(/2[\s\u00a0\u202f,]?400/);
+      expect(html[key]).not.toContain('"@type":"Offer"');
+      expect(html[key]).not.toContain('"@type":"FAQPage"');
     });
   }
-});
 
-// La FAQ vit sur la page Tarifs, réduite aux questions d'un acheteur, et son
-// balisage FAQPage n'est émis que là.
-describe('FAQ on the pricing page', () => {
-  const QUESTIONS = ['trial_how', 'demo_vs_trial', 'hardware', 'support', 'updates', 'disappear', 'notfor'];
   for (const lang of ['fr', 'en'] as const) {
-    const key = `${lang}_pricing` as Page;
-
-    it(`${lang} pricing page shows the seven buyer questions`, () => {
-      for (const q of QUESTIONS) expect(html[key]).toContain(`id="faq-${q}"`);
-    });
-
-    it(`${lang} FAQPage structured data only on the pricing page`, () => {
-      expect(html[key]).toContain('"@type":"FAQPage"');
-      expect(html[lang]).not.toContain('"@type":"FAQPage"');
-    });
-  }
-});
-
-describe('Pricing page', () => {
-  for (const lang of ['fr', 'en'] as const) {
-    const key = `${lang}_pricing` as Page;
-
-    it(`${lang} shows the licence price`, () => {
-      expect(html[key]).toContain(lang === 'fr' ? '2 400 €' : '€2,400');
-    });
-
-    it(`${lang} offer buttons lead to the request form on the page, with their topic`, () => {
-      expect(html[key]).toMatch(/href="#demande" data-sujet="licence"/);
-      expect(html[key]).toMatch(/href="#demande" data-sujet="exploitation"/);
-      expect(html[key]).toContain('id="demande"');
-      expect(html[key]).toMatch(/name="topic" value="licence" checked/);
-    });
-
-    it(`${lang} keeps the anchor the homepage links to`, () => {
-      expect(html[key]).toContain('id="exploitation-deleguee"');
-    });
-
-    it(`${lang} announces every update, major versions included`, () => {
-      expect(html[key]).toMatch(lang === 'fr' ? /majeures comprises/ : /major versions included/);
+    it(`${lang} home leads to the product page and the demo page`, () => {
+      const hero = html[lang].match(/<h1[\s\S]*?<\/section>/)![0];
+      expect(hero).toContain(lang === 'fr' ? 'href="/fr/produit/"' : 'href="/en/product/"');
+      expect(hero).toContain(`href="/${lang}/demo/"`);
     });
   }
 });
@@ -372,7 +336,6 @@ describe('Files for search engines and AI', () => {
     const t = lire('llms.txt');
     expect(t).toContain(en.home.meta.description);
     for (const f of en.home.see.features) expect(t).toContain(f.body);
-    expect(t).toContain(en.pricing.onprem.price);
     expect(t).toContain('https://meshvise.com/fr/contact/');
     expect(t).not.toContain('undefined');
     expect(t).not.toContain('—');
@@ -380,8 +343,8 @@ describe('Files for search engines and AI', () => {
 
   it('llms-full.txt carries every page in both languages', () => {
     const t = lire('llms-full.txt');
-    for (const s of ['/en/why-supervise/', '/en/product/', '/en/protocols/', '/en/pricing/', '/en/contact/',
-                     '/fr/pourquoi-superviser/', '/fr/produit/', '/fr/protocoles/', '/fr/tarifs/', '/fr/contact/']) {
+    for (const s of ['/en/product/', '/en/protocols/', '/en/contact/',
+                     '/fr/produit/', '/fr/protocoles/', '/fr/contact/']) {
       expect(t).toContain(`https://meshvise.com${s}`);
     }
     expect(t).not.toContain('undefined');

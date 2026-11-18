@@ -11,7 +11,6 @@
 import type { APIRoute } from 'astro';
 import fr from '../i18n/fr.json';
 import en from '../i18n/en.json';
-import { FAQ_KEYS } from '../i18n/faq-keys';
 import { href } from '../i18n/routes';
 
 type Dict = typeof en;
@@ -30,14 +29,9 @@ function section(lang: Lang, d: Dict): string {
   l.push(`# Meshvise (${fr_ ? 'français' : 'English'})`, '', `> ${d.home.meta.description}`);
 
   titre(`${d.nav.home}: ${url('home')}`);
-  p(`${d.home.hero.title} ${d.home.hero.gains.map((g) => g.word.replace(/\.$/, '')).join(', ')}.`);
-  for (const g of d.home.hero.gains) p(`- ${g.proof}`);
+  p(`${d.home.hero.lead} ${d.home.hero.accent} ${d.home.hero.subtitle}`);
   sous(d.home.see.title);
   for (const f of d.home.see.features) p(`- **${f.title}**: ${f.body}`);
-
-  titre(`${d.nav.why}: ${url('why')}`);
-  p(`${d.why.hero.lead} ${d.why.hero.accent} ${d.why.hero.subtitle}`);
-  for (const g of d.why.gains) p(`- **${g.title}**: ${g.body}`);
 
   titre(`${d.nav.product}: ${url('product')}`);
   p(d.product.hero.subtitle);
@@ -53,17 +47,6 @@ function section(lang: Lang, d: Dict): string {
   titre(`${d.nav.protocols}: ${url('protocols')}`);
   for (const pr of d.protocols.list) {
     p(`- **${pr.name}** (${pr.transport}): ${pr.desc} ${fr_ ? 'Équipements' : 'Equipment'}: ${pr.equipment}.`);
-  }
-
-  titre(`${d.nav.pricing}: ${url('pricing')}`);
-  p(`${d.pricing.hero.lead} ${d.pricing.hero.accent} ${d.pricing.hero.subtitle}`);
-  p(`- **${d.pricing.onprem.name}**: ${d.pricing.onprem.price} ${d.pricing.onprem.period}. ${d.pricing.onprem.setup}. ${d.pricing.onprem.tagline}`);
-  for (const it of d.pricing.onprem.items) p(`  - ${it}`);
-  p(`- **${d.pricing.managed.name}**: ${d.pricing.managed.price}. ${d.pricing.managed.tagline} ${d.pricing.managed.body}`);
-  sous(d.pricing.faq_title);
-  for (const k of FAQ_KEYS) {
-    const q = (d.faq as Record<string, { q: string; a: string }>)[k];
-    p(`**${q.q}** ${q.a}`, '');
   }
 
   titre(`${d.nav.contact}: ${url('contact')}`);

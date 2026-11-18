@@ -1,18 +1,19 @@
 ---
 /**
  * Contact. La page où mènent tous les « Prendre contact » du site depuis le
- * 2026-09-23, et le seul formulaire de demande : licence, exploitation
- * déléguée, essai, démonstration ou autre question.
+ * 2026-09-23, et le seul formulaire de demande : démonstration, intégrateur
+ * ou autre question (les demandes de licence, d'exploitation déléguée et
+ * d'essai sont retirées le 2026-11-18, avec la page Tarifs).
  *
  * Même grammaire que les autres pages : une accroche en deux temps dont la
  * fin est à la couleur d'accent, puis le formulaire sur sa carte blanche,
  * seul sur la page. La demande se choisit par de grandes tuiles plutôt que
  * par une liste déroulante :
  * on voit d'un regard ce qu'on peut demander. Le lien qui mène ici la choisit
- * d'office (`?sujet=licence`, `?sujet=exploitation`, `?sujet=essai`…).
+ * d'office (`?sujet=demo`, `?sujet=integrateur`).
  *
  * La demande elle-même (tuiles, champs, envoi direct) vit dans
- * ContactRequest, partagé avec la page Tarifs.
+ * ContactRequest.
  */
 import Base from '../../layouts/Base.astro';
 import fr from '../../i18n/fr.json';

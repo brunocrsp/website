@@ -15,10 +15,8 @@ import { checkNativeRateLimit } from '../rate.js';
 import { sendResend } from '../resend.js';
 
 const TOPICS = {
-  licence: { fr: 'Licence On-Premise', en: 'On-Premise licence' },
-  exploitation: { fr: 'Exploitation déléguée', en: 'Managed operations' },
-  essai: { fr: 'Essai sur vos équipements', en: 'Trial on your equipment' },
   demo: { fr: 'Démonstration', en: 'Demonstration' },
+  integrateur: { fr: 'Intégrateur', en: 'Integrator' },
   autre: { fr: 'Autre question', en: 'Other question' },
 };
 

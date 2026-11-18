@@ -7,11 +7,9 @@ import type { Lang } from './index';
  */
 export const ROUTES = {
   home: { fr: '', en: '' },
-  why: { fr: 'pourquoi-superviser', en: 'why-supervise' },
   product: { fr: 'produit', en: 'product' },
   protocols: { fr: 'protocoles', en: 'protocols' },
   contact: { fr: 'contact', en: 'contact' },
-  pricing: { fr: 'tarifs', en: 'pricing' },
   demo: { fr: 'demo', en: 'demo' },
   legal: { fr: 'mentions-legales', en: 'legal-notice' },
   privacy: { fr: 'confidentialite', en: 'privacy' },

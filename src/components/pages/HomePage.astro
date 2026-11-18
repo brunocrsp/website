@@ -2,10 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import HomeHero from '../HomeHero.astro';
 import HomeScreen from '../HomeScreen.astro';
-import Personas from '../Personas.astro';
-import HomeAssistant from '../HomeAssistant.astro';
 import WhatYouSee from '../WhatYouSee.astro';
-import PricingBrief from '../PricingBrief.astro';
 import { t, type Lang } from '../../i18n';
 import accueilFr from '../../assets/screens/fr/accueil.png';
 import accueilEn from '../../assets/screens/en/accueil.png';
@@ -17,8 +14,5 @@ const { lang } = Astro.props;
 <Base lang={lang} title={t(lang, 'home.meta.title')} description={t(lang, 'home.meta.description')}>
   <HomeHero lang={lang} />
   <HomeScreen lang={lang} shot={lang === 'fr' ? accueilFr : accueilEn} />
-  <Personas lang={lang} />
-  <HomeAssistant lang={lang} />
   <WhatYouSee lang={lang} />
-  <PricingBrief lang={lang} />
 </Base>

@@ -27,7 +27,7 @@ function request(body: unknown) {
 }
 
 const VALIDE = {
-  topic: 'licence',
+  topic: 'integrateur',
   name: 'Jeanne Dupont',
   company: 'Usinage Dupont',
   email: 'Jeanne@Dupont.fr',
@@ -49,7 +49,7 @@ describe('POST /api/contact', () => {
     expect(calls[0].url).toContain('api.resend.com/emails');
     expect(b.to).toEqual(['contact@meshvise.com']);
     expect(b.reply_to).toBe('jeanne@dupont.fr');
-    expect(b.subject).toBe('Meshvise · Licence On-Premise · Usinage Dupont');
+    expect(b.subject).toBe('Meshvise · Intégrateur · Usinage Dupont');
     expect(String(b.text)).toContain('Douze machines CN');
   });
 
