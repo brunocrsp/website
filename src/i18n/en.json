@@ -280,6 +280,7 @@
       "title": "Plugging AI into the shop floor",
       "lede": "Your company's AI finally reads the shop floor, and answers questions simply, without any need for manual analysis.",
       "ias": [
+        "Le Chat (Mistral)",
         "Copilot",
         "Claude",
         "ChatGPT",

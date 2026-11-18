@@ -280,6 +280,7 @@
       "title": "Brancher l'IA sur l'atelier",
       "lede": "L'IA de votre entreprise lit enfin l'atelier, et répond simplement aux questions, sans avoir besoin de faire des analyses manuelles.",
       "ias": [
+        "Le Chat (Mistral)",
         "Copilot",
         "Claude",
         "ChatGPT",
