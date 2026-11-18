@@ -615,7 +615,7 @@
       "description": "Éditeur, directeur de la publication et hébergeur du site meshvise.com."
     },
     "title": "Mentions légales",
-    "updated": "Mise à jour le 26 octobre 2026.",
+    "updated": "Mise à jour le 18 novembre 2026.",
     "pending": "à compléter",
     "privacy_link": "politique de confidentialité",
     "editor": {
@@ -650,7 +650,7 @@
       {
         "title": "Données personnelles",
         "body": [
-          "Les données envoyées par le formulaire de contact sont traitées comme le décrit la {privacy}."
+          "Les données envoyées par le formulaire de contact et par le formulaire d'accès à la démo sont traitées comme le décrit la {privacy}."
         ]
       }
     ]
@@ -662,7 +662,7 @@
     },
     "title": "Politique de confidentialité",
     "lede": "Le site ne collecte que ce que vous écrivez dans ses deux formulaires : la demande de contact et l'accès à la démo. Voici ce qu'il en advient.",
-    "updated": "Mise à jour le 26 octobre 2026.",
+    "updated": "Mise à jour le 18 novembre 2026.",
     "legal_link": "mentions légales",
     "sections": [
       {
