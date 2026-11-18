@@ -231,6 +231,17 @@ describe('Navigation', () => {
   }
 });
 
+describe('Personas section', () => {
+  for (const lang of ['fr', 'en'] as const) {
+    it(`${lang} home renders four persona tabs and panels`, () => {
+      const m = html[lang].match(/<section id="personas"[\s\S]*?<\/section>/);
+      expect(m).not.toBeNull();
+      expect(m![0].match(/role="tab"/g) ?? []).toHaveLength(4);
+      expect(m![0].match(/role="tabpanel"/g) ?? []).toHaveLength(4);
+    });
+  }
+});
+
 // Depuis le 2026-11-18, le site explique le produit et ne le vend plus : ni
 // page Tarifs, ni page Pourquoi superviser, ni prix, ni offre dans les
 // données structurées.

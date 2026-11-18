@@ -43,6 +43,39 @@
       "note_drift": "slow drift for 3 days",
       "note_lost": "no value for 12 min"
     },
+    "personas": {
+      "title": "Who uses it",
+      "roles": [
+        {
+          "id": "operateur",
+          "label": "Operator",
+          "line": "Their part count and their machine's status shown at the workstation, with no sheet to fill in.",
+          "alt": "An operator checks a tablet in front of a CNC lathe."
+        },
+        {
+          "id": "maintenance",
+          "label": "Maintenance",
+          "line": "The alarm goes out within the minute, with the minutes that preceded the stoppage.",
+          "alt": "A maintenance technician works inside an open electrical cabinet."
+        },
+        {
+          "id": "methodes",
+          "label": "Process engineering",
+          "line": "Running time, stoppages and parts produced, calculated machine by machine.",
+          "alt": "An operator at the panel of a gantry placing parts onto a conveyor."
+        },
+        {
+          "id": "direction",
+          "label": "Site management",
+          "line": "The time lost to stoppages, measured instead of estimated.",
+          "alt": "A manager talks through dashboards displayed on the wall."
+        }
+      ],
+      "aria": "What each role reads in it"
+    },
+    "ai": {
+      "title": "Ask the workshop in plain language"
+    },
     "see": {
       "title": "What Meshvise does",
       "aria": "Meshvise features",

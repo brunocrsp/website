@@ -28,7 +28,7 @@ The Worker proxies `env.ASSETS` and serves `POST /api/contact` and `POST /api/de
 
 ## The site (since 2026-11-18)
 
-**The site explains the product and sells nothing** (Bruno, 2026-11-18). The strategy changed: Meshvise is no longer sold directly to industrial sites, it is offered to a small integrator who deploys it at its own customers. The site an integrator lands on says what the product is and does, shows the demo and gives a contact; it carries no price, no offer, no sales argument for end customers. The Pricing and Why supervise pages, the animated gains, the personas, the assistant teaser and the "Par où commencer" section were removed that day (branch `feat/vitrine-sobre`); they are in the git history. Do not bring back a price or a commercial offer without Bruno.
+**The site explains the product and sells nothing** (Bruno, 2026-11-18). The strategy changed: Meshvise is no longer sold directly to industrial sites, it is offered to a small integrator who deploys it at its own customers. The site an integrator lands on says what the product is and does, shows the demo and gives a contact; it carries no price, no offer, no sales argument for end customers. The Pricing and Why supervise pages, the animated gains, the two doors and the "Par où commencer" section were removed that day (branch `feat/vitrine-sobre`); they are in the git history. Do not bring back a price or a commercial offer without Bruno.
 
 Five pages per language, plus the two legal pages linked from the footer:
 

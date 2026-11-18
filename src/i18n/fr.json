@@ -43,6 +43,39 @@
       "note_drift": "dérive lente depuis 3 jours",
       "note_lost": "plus de valeur depuis 12 min"
     },
+    "personas": {
+      "title": "Qui s'en sert",
+      "roles": [
+        {
+          "id": "operateur",
+          "label": "Opérateur",
+          "line": "Ses pièces et l'état de sa machine affichés au poste, sans fiche à remplir.",
+          "alt": "Un opérateur consulte une tablette devant un tour à commande numérique."
+        },
+        {
+          "id": "maintenance",
+          "label": "Maintenance",
+          "line": "L'alarme part dans la minute, avec les minutes qui ont précédé l'arrêt.",
+          "alt": "Un technicien de maintenance intervient dans une armoire électrique ouverte."
+        },
+        {
+          "id": "methodes",
+          "label": "Méthodes",
+          "line": "Marche, arrêts et pièces produites, calculés machine par machine.",
+          "alt": "Un opérateur au pupitre d'un portique qui dépose des pièces sur un convoyeur."
+        },
+        {
+          "id": "direction",
+          "label": "Direction de site",
+          "line": "Le temps perdu en arrêts, mesuré au lieu d'être estimé.",
+          "alt": "Un responsable commente des tableaux de bord affichés au mur."
+        }
+      ],
+      "aria": "Ce que chaque métier y lit"
+    },
+    "ai": {
+      "title": "Interroger l'atelier en langage naturel"
+    },
     "see": {
       "title": "Ce que fait Meshvise",
       "aria": "Fonctionnalités de Meshvise",
