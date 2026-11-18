@@ -675,6 +675,7 @@
         "title": "Données collectées",
         "body": [
           "Le formulaire de contact recueille votre nom, votre entreprise, votre adresse électronique, l'objet de votre demande et le message que vous écrivez. Le formulaire d'accès à la démo recueille votre nom, votre entreprise, votre adresse électronique et, si vous l'indiquez, votre numéro de téléphone. Rien n'est recueilli tant que vous n'envoyez pas le formulaire.",
+          "Si l'éditeur vous a écrit en vous donnant un lien personnel vers la démo, ouvrir ce lien lui indique que l'invitation adressée à votre société a été ouverte, avec le navigateur utilisé et le pays de connexion. Aucune autre donnée n'est recueillie par ce lien.",
           "Comme pour tout site, l'hébergeur traite l'adresse IP de chaque visiteur pour acheminer les pages et protéger le site, notamment pour limiter les envois répétés du formulaire."
         ]
       },
@@ -703,7 +704,7 @@
         "title": "Cookies",
         "body": [
           "Le site ne dépose lui-même aucun cookie et n'utilise aucun outil de mesure d'audience, de publicité ni de réseau social : aucun bandeau ne vous demande donc votre consentement. Cloudflare peut déposer un cookie technique de sécurité, strictement nécessaire au service et dispensé de consentement.",
-          "La démonstration, sur demo.meshvise.com, dépose un seul cookie, une fois le formulaire d'accès envoyé : il vous en garde l'accès trente jours et ne contient aucune donnée personnelle. Strictement nécessaire au service que vous demandez, il est dispensé de consentement."
+          "La démonstration, sur demo.meshvise.com, dépose un seul cookie, une fois le formulaire d'accès envoyé ou un lien d'invitation ouvert : il vous en garde l'accès trente jours et ne contient aucune donnée personnelle. Strictement nécessaire au service que vous demandez, il est dispensé de consentement."
         ]
       },
       {

@@ -69,8 +69,8 @@ describe('Worker routes', () => {
     expect(rootLang('')).toBe('fr');
   });
 
-  it('sends the root to the worker before the static files (wrangler.jsonc)', () => {
+  it('sends the root and the invitation links to the worker before the static files (wrangler.jsonc)', () => {
     const config = readFileSync(new URL('../../wrangler.jsonc', import.meta.url), 'utf8');
-    expect(config).toMatch(/"run_worker_first":\s*\[\s*"\/"\s*\]/);
+    expect(config).toMatch(/"run_worker_first":\s*\[\s*"\/",\s*"\/i\/\*"\s*\]/);
   });
 });

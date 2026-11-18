@@ -11,8 +11,10 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     // La racine passe par le worker, qui redirige vers la langue du
-    // navigateur (src/worker/root.js) ; tout le reste est servi tel quel.
-    "run_worker_first": ["/"]
+    // navigateur (src/worker/root.js), et les liens d'invitation a la demo
+    // aussi (src/worker/handlers/demo-invite.js) ; tout le reste est servi
+    // tel quel.
+    "run_worker_first": ["/", "/i/*"]
   },
   "compatibility_flags": [
     "nodejs_compat"
@@ -29,6 +31,9 @@
   // DEMO_ACCESS_KEY, the Ed25519 private key (PKCS#8, base64url) that signs
   // the demo access pass (src/worker/demo-pass.js); its public key is in the
   // wrangler.jsonc of the demo, in the product repo.
+  // DEMO_INVITE_KEY seals the personal invitation links to the demo
+  // (src/worker/handlers/demo-invite.js); the links are made outside this
+  // repository, with that secret.
   //
   // CONTACT_RATE_LIMITER: native Cloudflare Rate Limiting binding, the
   // spam shield of both forms (3 requests per 60 s per IP, keys

@@ -4,6 +4,10 @@
  *   POST /api/demo-access → handleDemoAccessRequest (the Demo page form:
  *                           emails the visitor's details, answers the demo
  *                           URL with a signed access pass, since 2026-10-26)
+ *   GET /i/<invitation>   → handleDemoInvite (the personal link written in
+ *                           an email to an integrator: opens the demo
+ *                           without the form and tells the publisher who
+ *                           opened it, since 2026-11-18)
  *   /                     → handleRoot (302 to /fr/ or /en/, from the
  *                           browser's language, since 2026-10-26)
  *   *                     → env.ASSETS.fetch (static site from ./dist)
@@ -18,6 +22,7 @@
 
 import { handleContactRequest } from './worker/handlers/contact.js';
 import { handleDemoAccessRequest } from './worker/handlers/demo-access.js';
+import { handleDemoInvite, INVITE_PREFIX } from './worker/handlers/demo-invite.js';
 import { handleRoot } from './worker/root.js';
 
 const ROUTES = {
@@ -37,6 +42,12 @@ export default {
         });
       }
       return handler(request, env);
+    }
+    if (url.pathname.startsWith(INVITE_PREFIX)) {
+      if (request.method !== 'GET' && request.method !== 'HEAD') {
+        return new Response('Method Not Allowed', { status: 405, headers: { allow: 'GET, HEAD' } });
+      }
+      return handleDemoInvite(request, env);
     }
     if (url.pathname === '/') return handleRoot(request);
     return env.ASSETS.fetch(request);

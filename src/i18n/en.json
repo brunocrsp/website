@@ -675,6 +675,7 @@
         "title": "Data collected",
         "body": [
           "The contact form collects your name, your company, your email address, the subject of your request and the message you write. The demo access form collects your name, your company, your email address and, if you give it, your phone number. Nothing is collected until you send the form.",
+          "If the publisher wrote to you with a personal link to the demo, opening that link tells the publisher that the invitation sent to your company was opened, with the browser used and the country of connection. That link collects nothing else.",
           "As with any website, the host processes each visitor's IP address to deliver the pages and protect the site, in particular to limit repeated submissions of the form."
         ]
       },
@@ -703,7 +704,7 @@
         "title": "Cookies",
         "body": [
           "The website sets no cookie of its own and uses no audience measurement, advertising or social media tool: no banner asks for your consent. Cloudflare may set a technical security cookie, strictly necessary to the service and exempt from consent.",
-          "The demonstration, on demo.meshvise.com, sets a single cookie once the demo access form is sent: it keeps your access for thirty days and holds no personal data. Strictly necessary to the service you ask for, it is exempt from consent."
+          "The demonstration, on demo.meshvise.com, sets a single cookie once the demo access form is sent or an invitation link is opened: it keeps your access for thirty days and holds no personal data. Strictly necessary to the service you ask for, it is exempt from consent."
         ]
       },
       {

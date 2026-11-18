@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Presentation site for Meshvise (the SCADA/IIoT product), served at https://meshvise.com and https://www.meshvise.com. Pure static Astro build, deployed via Cloudflare Workers (wrangler). The same Worker handles the contact form (`POST /api/contact`) and the demo access form (`POST /api/demo-access`). See cross-repo references below.
+Presentation site for Meshvise (the SCADA/IIoT product), served at https://meshvise.com and https://www.meshvise.com. Pure static Astro build, deployed via Cloudflare Workers (wrangler). The same Worker handles the contact form (`POST /api/contact`), the demo access form (`POST /api/demo-access`) and the personal invitation links to the demo (`GET /i/<invitation>`). See cross-repo references below.
 
 ## Sister repo and cross-repo context
 
@@ -24,7 +24,7 @@ Paths below are relative to the workspace root, `~/Meshvise`. The Meshvise produ
 | i18n | French (default) + English. Routes `/<lang>/`, slugs in `src/i18n/routes.ts` |
 | Tests | vitest (`tests/`), including assertions on the built HTML |
 
-The Worker proxies `env.ASSETS` and serves `POST /api/contact` and `POST /api/demo-access` only; `/crl.json` is a static page of the build (the revocation list of production licences, ADR-0006 § 3). No trial and no licence is offered on the site since 2026-11-18. Stay minimal on the edge: a route exists only if a page calls it.
+The Worker proxies `env.ASSETS` and serves `POST /api/contact`, `POST /api/demo-access` and `GET /i/<invitation>` only; `/crl.json` is a static page of the build (the revocation list of production licences, ADR-0006 § 3). No trial and no licence is offered on the site since 2026-11-18. Stay minimal on the edge: a route exists only if a page calls it, or, for `/i/`, a link written by the publisher in an email.
 
 ## The site (since 2026-11-18)
 
@@ -47,6 +47,7 @@ Five pages per language, plus the two legal pages linked from the footer:
 - **Top bar**: Accueil, Produit, Protocoles, Contact, and the "Voir la démo" button. The mobile menu shows the same list.
 - **Removed on 2026-09-23**, do not bring back without Bruno: FAQ, Guides (and the content collection), À propos, Intégrateurs, Essai (trial page), the `preview-motion` pages. The FAQ went with the pricing page on 2026-11-18.
 - **The public demo opens only after the Demo page form** (Bruno, 2026-10-26: he wants to know who opens the demo, to get back to them). `DemoAccessForm.astro` collects name, company, email and an optional phone; `POST /api/demo-access` emails them to contact@meshvise.com like a contact request, signs a thirty-day access pass (Ed25519, worker secret `DEMO_ACCESS_KEY`, `src/worker/demo-pass.js`) and answers the demo URL with `?acces=<pass>`, which the page follows. The demo worker (product repo, `apps/demo/src/access.ts`) checks the pass with its public key and sends anyone without one back to `/<lang>/demo/?suite=<page>`. The contract is in the documentation repo's `interfaces-entre-repos.md`. If the email fails, the visitor still gets in and the details are written to the Worker logs. Every "Voir la démo" goes to the Demo page, never straight to `demo.meshvise.com`.
+- **A personal invitation link skips that form** (Bruno, 2026-11-18: he writes to integrators and does not want them to fill a form to see what he offers). `GET /i/<ref>-<seal>` (`src/worker/handlers/demo-invite.js`) checks the seal, the first twenty hex characters of the HMAC-SHA256 of `invite:<ref>` under the worker secret `DEMO_INVITE_KEY`, emails contact@meshvise.com that this recipient opened the demo (once an hour per recipient: mail gateways open links before people do), signs the same thirty-day pass and redirects to the demo. A wrong or damaged link goes to the Demo page form. The links are made outside this repository, which is public: no recipient name belongs here. The privacy policy says what the link tells the publisher.
 - **Every "Prendre contact" leads to the Contact page** with the request pre-selected: `/fr/contact/?sujet=demo`, `integrateur`, `autre` (the licence, managed operations and trial topics were removed on 2026-11-18). The form posts to `/api/contact`, which emails contact@meshvise.com through Resend (worker secret `RESEND_API_KEY`); the request sets the email subject. Without the key the endpoint answers an error and the page offers a pre-filled email instead of a false success.
 
 ## Design and writing conventions
@@ -114,7 +115,7 @@ un refus veut dire que la vitrine tourne déjà sur 4321.
 
 ## Key files
 
-- `src/worker.js` Cloudflare Worker entry (`/api/contact`, `/api/demo-access`, static assets)
+- `src/worker.js` Cloudflare Worker entry (`/api/contact`, `/api/demo-access`, `/i/<invitation>`, static assets)
 - `wrangler.jsonc` Worker config, custom domains, bindings (KV, rate limiting, secrets)
 - `src/pages/<lang>/*.astro` thin route files; the pages live in `src/components/pages/`
 - `src/layouts/Base.astro` head, icons, structured data
